@@ -4,14 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-/*
- * author: Antonella Solomon
+/**
+ * @author alexbrozovich
  *
  */
 
 @Controller
 public class HomeController {
 
+	/**
+	 * Hello world method 
+	 * @return
+	 */
 	@RequestMapping("/welcome")
 	public ModelAndView helloWorld() {
 
