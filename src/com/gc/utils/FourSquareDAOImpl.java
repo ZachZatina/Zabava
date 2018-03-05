@@ -17,6 +17,10 @@ import com.google.gson.Gson;
  * The classes for the JSON import (via GSON) are in 
  * com.gc.model.foursquareobjs
  */
+/**
+ * @author Ben Fogt
+ *
+ */
 
 public class FourSquareDAOImpl {
 
@@ -30,6 +34,11 @@ public class FourSquareDAOImpl {
 		String radius = "1000";
 		String VERSION = FourSquareAPICred.VERSION;
 
+		
+		// Build the string for the URL. addRequestProperty didn't work
+		// so we're building the string using the variables from FourSquareAPICred
+		// The credentials files are hidden from Git, so make sure you have a copy
+		// from Slack.
 		String urlParams = "?client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET + "&ll=" + ll + "&section="
 				+ section + "&radius=" + radius + "&v=" + VERSION;
 
