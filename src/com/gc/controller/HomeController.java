@@ -12,15 +12,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-	/**
-	 * Hello world method 
-	 * @return
-	 */
-	@RequestMapping("/welcome")
-	public ModelAndView helloWorld() {
+	@RequestMapping("/")
+	public ModelAndView home() {	
+		
+		return new ModelAndView("index", "message", "success");
+	}
+	
+	@RequestMapping("quest")
+	public ModelAndView quest() {
+		return new ModelAndView("quest","message","success");
 
-		String message = "<br><div style='text-align:center;'>"
-				+ "<h3>This message is coming from HomeController.java</h3>";
-		return new ModelAndView("welcome", "message", message);
 	}
 }
