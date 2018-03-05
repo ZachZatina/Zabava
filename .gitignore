@@ -18,6 +18,8 @@ target/
 *.class
 
 bin/
+FourSquareAPICred.java
 
 #hibernate
 hibernate.cfg.xml
+
