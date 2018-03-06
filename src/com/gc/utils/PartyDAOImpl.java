@@ -14,14 +14,12 @@ public class PartyDAOImpl implements PartyDAO {
 	
 	
 	
-	public PartyDAOImpl(List<Party> parties) {
-		parties = new ArrayList<Party>();
-		
+	public PartyDAOImpl(List<Party> parties) {		
 		}
 
 	@Override
 	public List<Party> getAllParties() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
