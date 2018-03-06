@@ -5,10 +5,11 @@ package com.gc.utils;
  * 
  * Credentials File - INCLUDE THIS IN YOUR .GITIGNORE file
  */
+
 public interface APICredentials {
 
-	String CLIENT_ID = "xxxxxxxxxx";
-	String CLIENT_SECRET = "xxxxxxxxxxxxxx";
+	static final String CLIENT_ID = "xxxxxxxxxx";
+	static final String CLIENT_SECRET = "xxxxxxxxxxxxxx";
 	
 	
 
