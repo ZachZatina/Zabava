@@ -1,5 +1,8 @@
 package com.gc.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,25 +29,35 @@ public class HomeController {
 //	}
 	@RequestMapping("quest")
 	public ModelAndView map() {
+		ArrayList<String> latList = new ArrayList<String>();
+		ArrayList<String> longList = new ArrayList<String>();
+		latList.add("42.335953");
+		longList.add("-83.049772");
+		latList.add("42.336034");
+		longList.add("-83.050234");
+		latList.add("43.446034");
+		longList.add("-84.050234");
 		String mapCode = "<script>\n" + 
 				"\n" + 
 				"      function initMap() {\n" + 
-				"\n" + 
-				"        var grandCircus = {lat: 42.335953, lng: -83.049772};\n" + 
-				"        var GCParking = {lat:42.336034, lng: -83.050234};\n" + 
-				"        var test = {lat:43.336034, lng: -84.050234};\n" + 
-				"\n" + 
+				"\n";
+				for(int i = 0; i < latList.size(); i++ ) {
+					mapCode += "        var set" + String.valueOf(i) + " = {lat: " + latList.get(i) + ", lng: " + longList.get(i) + "};\n";
+				}
+
+				
+				mapCode += "\n" + 
 				"        var map = new google.maps.Map(document.getElementById('map'), {\n" + 
 				"\n" + 
 				"          zoom: 16,\n" + 
 				"\n" + 
-				"          center: grandCircus\n" + 
+				"          center: set0\n" + 
 				"\n" + 
 				"        });\n" + 
 				"\n" + 
 				"        var marker = new google.maps.Marker({\n" + 
 				"\n" + 
-				"          position: grandCircus,\n" + 
+				"          position: set0,\n" + 
 				"\n" + 
 				"          map: map\n" + 
 				"\n" + 
@@ -52,14 +65,63 @@ public class HomeController {
 				"\n" + 
 				"         var marker = new google.maps.Marker({\n" + 
 				"\n" + 
-				"          position: GCParking,\n" + 
+				"          position: set1,\n" + 
 				"\n" + 
 				"          map: map\n" + 
 				"\n" + 
 				"        });\n" + 
 				"        var marker = new google.maps.Marker({\n" + 
 				"\n" + 
-				"        position: test,\n" + 
+				"        position: set2,\n" + 
+				"\n" + 
+				"        map: map\n" + 
+				"\n" + 
+				"});\n" + 
+				"        var marker = new google.maps.Marker({\n" + 
+				"\n" + 
+				"        position: set3,\n" + 
+				"\n" + 
+				"        map: map\n" + 
+				"\n" + 
+				"});\n" + 
+				"        var marker = new google.maps.Marker({\n" + 
+				"\n" + 
+				"        position: set4,\n" + 
+				"\n" + 
+				"        map: map\n" + 
+				"\n" + 
+				"});\n" + 
+				"        var marker = new google.maps.Marker({\n" + 
+				"\n" + 
+				"        position: set5,\n" + 
+				"\n" + 
+				"        map: map\n" + 
+				"\n" + 
+				"});\n" + 
+				"        var marker = new google.maps.Marker({\n" + 
+				"\n" + 
+				"        position: set6,\n" + 
+				"\n" + 
+				"        map: map\n" + 
+				"\n" + 
+				"});\n" + 
+				"        var marker = new google.maps.Marker({\n" + 
+				"\n" + 
+				"        position: set7,\n" + 
+				"\n" + 
+				"        map: map\n" + 
+				"\n" + 
+				"});\n" + 
+				"        var marker = new google.maps.Marker({\n" + 
+				"\n" + 
+				"        position: set8,\n" + 
+				"\n" + 
+				"        map: map\n" + 
+				"\n" + 
+				"});\n" + 
+				"        var marker = new google.maps.Marker({\n" + 
+				"\n" + 
+				"        position: set9,\n" + 
 				"\n" + 
 				"        map: map\n" + 
 				"\n" + 
@@ -71,7 +133,7 @@ public class HomeController {
 				"\n" + 
 				"    <script async defer\n" + 
 				"\n" + 
-				"    src=\"https://maps.googleapis.com/maps/api/js?key=" + GoogleMapsAPICred.MAPS_API_KEY + "ap\">\n" + 
+				"    src=\"https://maps.googleapis.com/maps/api/js?key=" + GoogleMapsAPICred.MAPS_API_KEY + "&callback=initMap\">\n" + 
 				
 				"\n" + 
 				"    </script>";
