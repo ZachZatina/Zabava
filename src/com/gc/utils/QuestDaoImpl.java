@@ -3,29 +3,29 @@ package com.gc.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gc.model.Quest;
+import com.gc.model.QuestDTO;
 
 public class QuestDaoImpl implements QuestDao {
 
-	List<Quest> quests;
+	List<QuestDTO> quests;
 	
 	public QuestDaoImpl() {
-		quests = new ArrayList<Quest>();
+		quests = new ArrayList<QuestDTO>();
 	// FIXME: 	
 	}
 	
 	@Override
-	public List<Quest> getAllQuests() {
+	public List<QuestDTO> getAllQuests() {
 		return null;
 	}
 
 	@Override
-	public Quest getQuest(int questId) {
+	public QuestDTO getQuest(int questId) {
 		return null;
 	}
 
 	@Override
-	public void updateQuest(Quest quest) {
+	public void updateQuest(QuestDTO quest) {
 	// FIXME: 
 		quests.get(quest.getQuestId()).setLocation(quest.getLocation());
 		
@@ -33,10 +33,16 @@ public class QuestDaoImpl implements QuestDao {
 	}
 
 	@Override
-	public void deleteQuest(Quest quest) {
+	public void deleteQuest(QuestDTO quest) {
 		quests.remove(quest.getQuestId());
 		System.out.println("Quest: QuestID " + quest.getQuestId() + ", deleted from database");
 
+	}
+
+	@Override
+	public void saveQuest(QuestDTO quest) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -2,12 +2,18 @@ package com.gc.utils;
 
 import java.util.List;
 
-import com.gc.model.Quest;
+import com.gc.model.QuestDTO;
 
 public interface QuestDao {
+	
+	/*
+	 * @author Andrew Calabro-Cavin
+	 * Handles all CRUD operations
+	 */
 
-	   public List<Quest> getAllQuests();
-	   public Quest getQuest(int questId);
-	   public void updateQuest(Quest quest);
-	   public void deleteQuest(Quest quest);
+	   public List<QuestDTO> getAllQuests();
+	   public QuestDTO getQuest(int questId);
+	   public void saveQuest(QuestDTO quest);
+	   public void updateQuest(QuestDTO quest);
+	   public void deleteQuest(QuestDTO quest);
 }

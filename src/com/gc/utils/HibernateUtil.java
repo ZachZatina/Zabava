@@ -37,7 +37,7 @@ public class HibernateUtil {
 		}		
 	}
 	/*
-	 * Method controlling access to session foactory
+	 * Method controlling access to session factory
 	 */
 	public static SessionFactory getSessionFactory(){		
 		return factory;

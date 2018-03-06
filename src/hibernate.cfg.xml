@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<!-- a SessionFactory instance -->
+	<session-factory>
+
+		<!-- The show-sql property set to true is used for testing and allows us 
+			to see the hibernate queries in our console turn to false when app is fully 
+			tested and finished -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="use_sql_comments">false</property>
+
+
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		
+		<!-- This is the same connection info we used for JDBC -->
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/zabavadb.cghpmpef5e7u.us-east-1.rds.amazonaws.com</property> <!-- correct? -->
+
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">WeLoveGChirpus</property>
+
+		<!-- This mapping directs the application on where to find the objects 
+			to use with the DB -->
+		<mapping class="com.gc.model.Quest" />
+	</session-factory>
+</hibernate-configuration>
