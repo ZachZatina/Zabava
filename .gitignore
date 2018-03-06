@@ -20,6 +20,8 @@ target/
 bin/
 FourSquareAPICred.java
 MySQLAPICred.java
+GoogleMapsAPICred.java
+MySQLCred.java
 
 #hibernate
 hibernate.cfg.xml
