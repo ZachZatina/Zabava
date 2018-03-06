@@ -19,7 +19,6 @@ target/
 
 bin/
 FourSquareAPICred.java
-MySQLAPICred.java
 GoogleMapsAPICred.java
 MySQLCred.java
 
