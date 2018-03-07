@@ -12,7 +12,7 @@ import com.gc.utils.HibernateUtil;
 
 public class QuestController {
 	
-	public ArrayList<TaskDTO> generateQuestList() {
+	public static ArrayList<TaskDTO> generateQuestList() {
 
 		SessionFactory sessFact = HibernateUtil.getSessionFactory();
 		Session sess = sessFact.openSession();
