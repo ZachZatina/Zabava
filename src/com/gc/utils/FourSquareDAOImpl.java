@@ -6,7 +6,11 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.net.ssl.HttpsURLConnection;
+
+import com.gc.model.TaskDTO;
 import com.gc.model.foursquareobjs.FourSquare;
+import com.gc.model.foursquareobjs.Group;
+import com.gc.model.foursquareobjs.Item;
 import com.gc.model.foursquareobjs.Venue;
 import com.google.gson.Gson;
 
@@ -32,7 +36,7 @@ public class FourSquareDAOImpl {
 	 * com.gc.model.foursquareobjs package.
 	 */
 
-	public FourSquare getFS() throws IOException {
+	public FourSquare getFS(String lat, String lon, int distance, int limit) throws IOException {
 
 		/*
 		 * Variables to make the API call. The final variables come from the
@@ -42,12 +46,12 @@ public class FourSquareDAOImpl {
 
 		String CLIENT_ID = FourSquareAPICred.CLIENT_ID;
 		String CLIENT_SECRET = FourSquareAPICred.CLIENT_SECRET;
-		String ll = "42.3359321,-83.04993389999998";
+		String ll = lat + "," + lon;
 
 		// Section is the type of venues to return. topPicks returns a mix of them.
 		String section = "topPicks";
 		// Radius is in Meters.
-		String radius = "1000";
+		int radius = distance;
 		// Version is the date that we want the API to be fixed to.
 		// Any API changes after this date will not effect this code.
 		String VERSION = FourSquareAPICred.VERSION;
@@ -57,7 +61,7 @@ public class FourSquareDAOImpl {
 		// The credentials files are hidden from Git, so make sure you have a copy
 		// from Slack.
 		String urlParams = "?client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET + "&ll=" + ll + "&section="
-				+ section + "&radius=" + radius + "&v=" + VERSION;
+				+ section + "&radius=" + radius + "&limit=" + limit + "&v=" + VERSION;
 
 		URL url = new URL("https://api.foursquare.com/v2/venues/explore" + urlParams);
 
@@ -77,6 +81,33 @@ public class FourSquareDAOImpl {
 		FourSquare fsObj = gson.fromJson(json, FourSquare.class);
 
 		return fsObj;
+	}
+	
+
+	/* 
+	 * Get the JSON data from FourSquare and loop through it to produce an array of
+	 * TaskDTO objects with the data we need for the Task table. 
+	 */
+	public static ArrayList<TaskDTO> getFSvenues(String lat, String lon, int distance, int limit) throws IOException {
+		
+		FourSquareDAOImpl dao = new FourSquareDAOImpl();
+		
+		FourSquare fsObj = dao.getFS(lat, lon, distance, limit);
+		ArrayList<Group> groups = (ArrayList<Group>) fsObj.getResponse().getGroups();
+		ArrayList<Item> items = (ArrayList<Item>) groups.get(0).getItems();
+		ArrayList<TaskDTO> locations = new ArrayList<TaskDTO>();
+		for (int i=0; i<items.size();i++ ) {
+			TaskDTO task = new TaskDTO();
+			task.setLat(items.get(i).getVenue().location.lat.toString());
+			task.setLon(items.get(i).getVenue().location.lng.toString());
+			task.setLocationName(items.get(i).getVenue().name);
+			task.setLocationID(items.get(i).getVenue().id);
+			task.setAddress(items.get(i).getVenue().location.formattedAddress.get(0));
+			task.setCsz(items.get(i).getVenue().location.formattedAddress.get(1));
+			
+			locations.add(task);			
+		}
+		return locations;
 	}
 
 }
