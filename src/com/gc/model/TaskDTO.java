@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="task")
 
-public class Task {
+public class TaskDTO {
 	
 	int taskID;
 	String lat;
@@ -24,10 +24,10 @@ public class Task {
 	String locationID;
 
 
-	public Task() {
+	public TaskDTO() {
 	}
 
-	public Task(int taskID, String lat, String lon, String taskType, String taskDesc, String taskAnswer, int questID,
+	public TaskDTO(int taskID, String lat, String lon, String taskType, String taskDesc, String taskAnswer, int questID,
 			String address, String csz, String locationName, String locationID) {
 		this.taskID = taskID;
 		this.lat = lat;
