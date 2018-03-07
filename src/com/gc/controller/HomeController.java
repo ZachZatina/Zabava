@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gc.utils.GoogleMapsAPICred;
-
+import com.gc.model.Task;
+import com.gc.utils.HibernateUtil;
 /**
  * @author alexbrozovich
  *
@@ -29,14 +30,20 @@ public class HomeController {
 //	}
 	@RequestMapping("quest")
 	public ModelAndView map() {
+		ArrayList<Task> taskList = QuestController.generateQuestList();
+		System.out.println(taskList.size());
 		ArrayList<String> latList = new ArrayList<String>();
 		ArrayList<String> longList = new ArrayList<String>();
-		latList.add("42.335953");
-		longList.add("-83.049772");
-		latList.add("42.336034");
-		longList.add("-83.050234");
-		latList.add("43.446034");
-		longList.add("-84.050234");
+		for(int i = 0; i < taskList.size(); i++) {
+			latList.add(taskList.get(i).getLat());
+			longList.add(taskList.get(i).getLon());
+		}
+//		latList.add("42.335953");
+//		longList.add("-83.049772");
+//		latList.add("42.336034");
+//		longList.add("-83.050234");
+//		latList.add("43.446034");
+//		longList.add("-84.050234");
 		String mapCode = "<script>\n" + 
 				"\n" + 
 				"      function initMap() {\n" + 
@@ -137,7 +144,7 @@ public class HomeController {
 				
 				"\n" + 
 				"    </script>";
-		
+//		
 		return new ModelAndView("quest", "mapIn", mapCode);
 	}
 }
