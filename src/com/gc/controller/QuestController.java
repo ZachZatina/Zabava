@@ -13,6 +13,7 @@ import com.gc.utils.HibernateUtil;
 public class QuestController {
 	
 	public ArrayList<TaskDTO> generateQuestList() {
+
 		SessionFactory sessFact = HibernateUtil.getSessionFactory();
 		Session sess = sessFact.openSession();
 		Transaction tx = sess.beginTransaction();
@@ -23,12 +24,5 @@ public class QuestController {
 		return taskList;
 	}
 	
-//	@RequestMapping 
-//	public ModelAndView saveQuest(QuestDTO questDto) {
-//		QuestDao questDao = new HibernateQuestDao(); 
-//		questDao.updateQuest(questDto);
-//	
-//		return ModelAndView("", "", "");
-//	}
 
 }
