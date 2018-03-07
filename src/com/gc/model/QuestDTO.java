@@ -24,7 +24,7 @@ public class QuestDTO {
 
 
 	@Id // maps the primary key
-	@Column(name = "questID") // name is optional if your column names match your variable names
+	@Column(name = "questID") 
 	public int getQuestId() {
 		return questId;
 	}
