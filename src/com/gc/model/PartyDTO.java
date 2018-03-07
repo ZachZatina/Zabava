@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="party")
 
-public class Party {
+public class PartyDTO {
 	
 	private int partyID;
 	private int questID;
@@ -22,11 +22,11 @@ public class Party {
 	private String partyName;
 	
 	// Default, empty constructor
-	public Party() {
+	public PartyDTO() {
 	}
 
 	// Overridden Constructor with all fields.
-	public Party(int partyID, int questID, String partyCode, String partyName) {
+	public PartyDTO(int partyID, int questID, String partyCode, String partyName) {
 		this.partyID = partyID;
 		this.questID = questID;
 		this.partyCode = partyCode;

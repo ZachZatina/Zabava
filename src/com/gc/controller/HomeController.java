@@ -66,7 +66,9 @@ public class HomeController {
 				"\n" + 
 				"          position: set0,\n" + 
 				"\n" + 
-				"          map: map\n" + 
+				"          map: map,\n" + 
+				"\n" + 
+				"          label: '1'\n" + 
 				"\n" + 
 				"        });\n" + 
 				"\n" + 
@@ -74,63 +76,81 @@ public class HomeController {
 				"\n" + 
 				"          position: set1,\n" + 
 				"\n" + 
-				"          map: map\n" + 
+				"          map: map,\n" + 
+				"\n" + 
+				"          label: '2'\n" + 
 				"\n" + 
 				"        });\n" + 
 				"        var marker = new google.maps.Marker({\n" + 
 				"\n" + 
 				"        position: set2,\n" + 
 				"\n" + 
-				"        map: map\n" + 
+				"        map: map,\n" + 
+				"\n" + 
+				"        label: '3'\n" + 
 				"\n" + 
 				"});\n" + 
 				"        var marker = new google.maps.Marker({\n" + 
 				"\n" + 
 				"        position: set3,\n" + 
 				"\n" + 
-				"        map: map\n" + 
+				"        map: map,\n" + 
+				"\n" + 
+				"        label: '4'\n" + 
 				"\n" + 
 				"});\n" + 
 				"        var marker = new google.maps.Marker({\n" + 
 				"\n" + 
 				"        position: set4,\n" + 
 				"\n" + 
-				"        map: map\n" + 
+				"        map: map,\n" + 
+				"\n" + 
+				"        label: '5'\n" + 
 				"\n" + 
 				"});\n" + 
 				"        var marker = new google.maps.Marker({\n" + 
 				"\n" + 
 				"        position: set5,\n" + 
 				"\n" + 
-				"        map: map\n" + 
+				"        map: map,\n" + 
+				"\n" + 
+				"        label: '6'\n" + 
 				"\n" + 
 				"});\n" + 
 				"        var marker = new google.maps.Marker({\n" + 
 				"\n" + 
 				"        position: set6,\n" + 
 				"\n" + 
-				"        map: map\n" + 
+				"        map: map,\n" + 
+				"\n" + 
+				"        label: '7'\n" + 
 				"\n" + 
 				"});\n" + 
 				"        var marker = new google.maps.Marker({\n" + 
 				"\n" + 
 				"        position: set7,\n" + 
 				"\n" + 
-				"        map: map\n" + 
+				"        map: map,\n" + 
+				"\n" + 
+				"        label: '8'\n" + 
 				"\n" + 
 				"});\n" + 
 				"        var marker = new google.maps.Marker({\n" + 
 				"\n" + 
 				"        position: set8,\n" + 
 				"\n" + 
-				"        map: map\n" + 
+				"        map: map,\n" + 
+				"\n" + 
+				"        label: '9'\n" + 
 				"\n" + 
 				"});\n" + 
 				"        var marker = new google.maps.Marker({\n" + 
 				"\n" + 
 				"        position: set9,\n" + 
 				"\n" + 
-				"        map: map\n" + 
+				"        map: map,\n" + 
+				"\n" + 
+				"        label: '10'\n" + 
 				"\n" + 
 				"});\n" + 
 				"\n" + 

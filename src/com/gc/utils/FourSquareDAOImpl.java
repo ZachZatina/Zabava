@@ -32,7 +32,7 @@ public class FourSquareDAOImpl {
 	 * com.gc.model.foursquareobjs package.
 	 */
 
-	public FourSquare getFS() throws IOException {
+	public FourSquare getFS(String lat, String lon, int distance) throws IOException {
 
 		/*
 		 * Variables to make the API call. The final variables come from the
@@ -42,12 +42,12 @@ public class FourSquareDAOImpl {
 
 		String CLIENT_ID = FourSquareAPICred.CLIENT_ID;
 		String CLIENT_SECRET = FourSquareAPICred.CLIENT_SECRET;
-		String ll = "42.3359321,-83.04993389999998";
+		String ll = lat + "," + lon;
 
 		// Section is the type of venues to return. topPicks returns a mix of them.
 		String section = "topPicks";
 		// Radius is in Meters.
-		String radius = "1000";
+		int radius = distance;
 		// Version is the date that we want the API to be fixed to.
 		// Any API changes after this date will not effect this code.
 		String VERSION = FourSquareAPICred.VERSION;
