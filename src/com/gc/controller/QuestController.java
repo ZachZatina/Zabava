@@ -12,7 +12,7 @@ import com.gc.utils.HibernateUtil;
 
 public class QuestController {
 	
-	public ArrayList<Task> generateQuestList() {
+	public static ArrayList<Task> generateQuestList() {
 		SessionFactory sessFact = HibernateUtil.getSessionFactory();
 		Session sess = sessFact.openSession();
 		Transaction tx = sess.beginTransaction();
@@ -21,6 +21,15 @@ public class QuestController {
 		tx.commit();
 		sess.close();
 		return taskList;
+	}
+	
+	public static ArrayList<String> getTaskDescList() {
+		ArrayList<String> taskDescList = new ArrayList<>();
+		ArrayList<Task> taskList = generateQuestList();
+		for (int i = 0; i < taskList.size(); i++) {
+			taskDescList.add(taskList.get(i).getTaskDesc());
+		}
+		return taskDescList;
 	}
 	
 //	@RequestMapping 
