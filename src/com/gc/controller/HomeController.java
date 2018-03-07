@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gc.utils.GoogleMapsAPICred;
-import com.gc.model.Task;
+import com.gc.model.TaskDTO;
 import com.gc.utils.HibernateUtil;
 /**
  * @author alexbrozovich
@@ -30,7 +30,7 @@ public class HomeController {
 //	}
 	@RequestMapping("quest")
 	public ModelAndView map() {
-		ArrayList<Task> taskList = QuestController.generateQuestList();
+		ArrayList<TaskDTO> taskList = QuestController.generateQuestList();
 		System.out.println(taskList.size());
 		ArrayList<String> latList = new ArrayList<String>();
 		ArrayList<String> longList = new ArrayList<String>();
