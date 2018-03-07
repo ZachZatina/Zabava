@@ -7,28 +7,22 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.gc.model.Task;
+import com.gc.model.TaskDTO;
 import com.gc.utils.HibernateUtil;
 
 public class QuestController {
 	
-	public static ArrayList<Task> generateQuestList() {
+	public static ArrayList<TaskDTO> generateQuestList() {
+
 		SessionFactory sessFact = HibernateUtil.getSessionFactory();
 		Session sess = sessFact.openSession();
 		Transaction tx = sess.beginTransaction();
-		Criteria crit = sess.createCriteria(Task.class);
-		ArrayList<Task> taskList = (ArrayList<Task>) crit.list();
+		Criteria crit = sess.createCriteria(TaskDTO.class);
+		ArrayList<TaskDTO> taskList = (ArrayList<TaskDTO>) crit.list();
 		tx.commit();
 		sess.close();
 		return taskList;
 	}
 	
-//	@RequestMapping 
-//	public ModelAndView saveQuest(QuestDTO questDto) {
-//		QuestDao questDao = new HibernateQuestDao(); 
-//		questDao.updateQuest(questDto);
-//	
-//		return ModelAndView("", "", "");
-//	}
 
 }
