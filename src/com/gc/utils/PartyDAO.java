@@ -2,13 +2,13 @@ package com.gc.utils;
 
 import java.util.List;
 
-import com.gc.model.Party;
+import com.gc.model.PartyDTO;
 
 public interface PartyDAO {
 	
-	public List<Party> getAllParties();
-	   public Party getParty(int partyID);
-	   public void updateParty(Party party);
-	   public void deleteParty(Party party);
+	public List<PartyDTO> getAllParties();
+	   public PartyDTO getParty(int partyID);
+	   public void updateParty(PartyDTO party);
+	   public void deleteParty(PartyDTO party);
 
 }
