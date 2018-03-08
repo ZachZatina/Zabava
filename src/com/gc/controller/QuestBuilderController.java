@@ -16,9 +16,20 @@ import com.gc.utils.GoogleMapsAPICred;
 @Controller
 public class QuestBuilderController {
 
+	
+	@RequestMapping("enter")
+	public ModelAndView getAddress(Model model) {
+		
+		return new ModelAndView("enter", "message", "hello");
+	}
+	
 	@RequestMapping("admin")
-	public ModelAndView admin(Model model) {
+	public ModelAndView admin(@RequestParam("address") String address, Model model) {
 		// presume this page will be called through submit on a login page
+		
+		String strAddress = address;
+		
+		model.addAttribute("address", strAddress);
 
 		String mapkey = GoogleMapsAPICred.MAPS_API_KEY;
 		

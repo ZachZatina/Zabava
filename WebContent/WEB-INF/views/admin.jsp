@@ -27,6 +27,8 @@ Maximum number of venues: <input type="number" name="limit"><br><br>
 <input type="submit" value="Create Quest">
 </form>
 <br>
+${address}
+
 <h3>Current location (drag marker to center your quest)</h3>
     <div id="map"></div>
     <script>
