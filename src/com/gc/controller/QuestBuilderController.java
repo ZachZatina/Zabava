@@ -45,6 +45,7 @@ public class QuestBuilderController {
 		
 		int questID=0;
 		int taskID=0;
+		ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
 		
 		// in case our GeoCode isn't working
 		if (lat.isEmpty()) {
@@ -52,24 +53,37 @@ public class QuestBuilderController {
 			lon = "-83.049774";
 		}
 		
+		System.out.println("Builder: Step 1");
+		
 		
 		/*
 		 * Build a QuestDTO object and put it in the DB, retrieving the QuestID
 		 */
 		QuestDTO quest = new QuestDTO();
+		quest.setQuestName(questName);
 		quest.setLocation(lat + "," + lon);
+		quest.setLocationId("");
+		System.out.println(quest.getLocation());
 		HibernateQuestDao questDao = new HibernateQuestDao();
+		System.out.println("Builder: Step 1a");
 		questID = questDao.addQuest(quest);
+		if (questID==0) {
+			System.out.println("Add Quest Failed");
+		}else {
+		
+		System.out.println("Builder: Step 1b");
 
-		ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
+		
 		tasks = FourSquareDAOImpl.getFSvenues(lat, lon, radius, limit);
 
+		System.out.println("Builder: Step 2");
 		/*
 		 * Add Quest Name and ID to model to use them in the builder page
 		 */
 		model.addAttribute("questName", questName);
 		model.addAttribute("questID", questID);
 		
+		System.out.println("Builder: Step 3");
 		/*
 		 * Create tasks for each point we're given by the FourSquare query
 		 */
@@ -79,7 +93,7 @@ public class QuestBuilderController {
 			taskID = taskDao.addTask(tasks.get(i));
 			tasks.get(i).setTaskID(taskID);
 		}
-
+		}
 		return new ModelAndView("builder", "tasks", tasks);
 	}
 	

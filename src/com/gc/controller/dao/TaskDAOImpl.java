@@ -6,6 +6,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 import com.gc.model.TaskDTO;
 import com.gc.utils.TaskDAO;
 
@@ -32,6 +34,12 @@ public class TaskDAOImpl implements TaskDAO {
 
 	@Override
 	public void updateTask(TaskDTO task) {
+		try {
+	         factory = new Configuration().configure().buildSessionFactory();
+	      } catch (Throwable ex) { 
+	         System.err.println("Failed to create sessionFactory object." + ex);
+	         throw new ExceptionInInitializerError(ex); 
+	      }
 		Session session = factory.openSession();
 	      Transaction tx = null;
 	      
@@ -48,6 +56,12 @@ public class TaskDAOImpl implements TaskDAO {
 	}
 	
 	public int addTask(TaskDTO task) {
+		try {
+	         factory = new Configuration().configure().buildSessionFactory();
+	      } catch (Throwable ex) { 
+	         System.err.println("Failed to create sessionFactory object." + ex);
+	         throw new ExceptionInInitializerError(ex); 
+	      }
 		Session session = factory.openSession();
 	      Transaction tx = null;
 	      int taskID = 0;

@@ -18,7 +18,7 @@
 
 <c:forEach var="myVar" items="${tasks}">
 <tr>
-<form action="postqa" method="POST">
+<form action="#" method="POST">
 <input type="hidden" name="taskID" value=${myVar.taskID}>
 <input type="hidden" name="questID" value=${questID}>
 <td>${myVar.locationName}</td>
