@@ -56,16 +56,12 @@ System.out.println("Welcome to the HibernateQuestDAO");
 		
 		System.out.println("QuestDAO: Step 0");
 		Session session = factory.openSession();
-		System.out.println("QuestDAO: Step 0a");
 		Transaction tx = null;
 	      int questID = 0;
-	      System.out.println("QuestDAO: Step 1");
 	      
 	      try {
 	         tx = session.beginTransaction();
-	         System.out.println("QuestDAO: Step 2");
-	         questID = (Integer) session.save(quest);
-	        System.out.println("QuestDAO: Step 3 " + questID);
+	         questID = (Integer) session.save(quest); // Captures the AutoIncremented QuestID
 	         tx.commit();
 	      } catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
@@ -73,7 +69,6 @@ System.out.println("Welcome to the HibernateQuestDAO");
 	      } finally {
 	         session.close(); 
 	      }
-	      System.out.println("QuestID:"+questID);
 	      return questID;
 		
 	}

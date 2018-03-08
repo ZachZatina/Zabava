@@ -13,6 +13,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,6 +27,8 @@ import com.gc.utils.GoogleMapsAPICred;
 @Controller
 public class QuestBuilderController {
 
+	ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
+	
 	@RequestMapping("enter")
 	public ModelAndView getAddress(Model model) {
 
@@ -112,15 +115,13 @@ public class QuestBuilderController {
 		
 		int questID=0;
 		int taskID=0;
-		ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
+		
 		
 		// in case our GeoCode isn't working
 		if (lat.isEmpty()) {
 			lat = "42.335953";
 			lon = "-83.049774";
 		}
-		
-		System.out.println("Builder: Step 1");
 		
 		
 		/*
@@ -130,27 +131,20 @@ public class QuestBuilderController {
 		quest.setQuestName(questName);
 		quest.setLocation(lat + "," + lon);
 		quest.setLocationId("");
-		System.out.println(quest.getLocation());
 		HibernateQuestDao questDao = new HibernateQuestDao();
-		System.out.println("Builder: Step 1a");
 		questID = questDao.addQuest(quest);
 		if (questID==0) {
 			System.out.println("Add Quest Failed");
 		}else {
 		
-		System.out.println("Builder: Step 1b");
-
-		
 		tasks = FourSquareDAOImpl.getFSvenues(lat, lon, radius, limit);
 
-		System.out.println("Builder: Step 2");
 		/*
 		 * Add Quest Name and ID to model to use them in the builder page
 		 */
 		model.addAttribute("questName", questName);
 		model.addAttribute("questID", questID);
 		
-		System.out.println("Builder: Step 3");
 		/*
 		 * Create tasks for each point we're given by the FourSquare query
 		 */
@@ -159,25 +153,21 @@ public class QuestBuilderController {
 			TaskDAOImpl taskDao = new TaskDAOImpl();
 			taskID = taskDao.addTask(tasks.get(i));
 			tasks.get(i).setTaskID(taskID);
+			System.out.println(tasks.get(i).getLocationName());
 		}
 		}
 		return new ModelAndView("builder", "tasks", tasks);
 	}
 	
-	@RequestMapping("postqa")
-	public void saveQuestAnswers(@RequestParam("taskID") int taskID, @RequestParam("taskdesc") String taskDesc, @RequestParam("taskanswer") String taskAnswer) {
+	@RequestMapping("showquest")
+	public ModelAndView showQuest(@ModelAttribute("tasks") ArrayList<TaskDTO> tasks) {
+		for (TaskDTO task: tasks) {
+			TaskDAOImpl update = new TaskDAOImpl();
+			update.updateTask(task);
+		}
 		
-		/*
-		 * Load the task to be updated.
-		 * Set the fields to the new values.
-		 * Update the DB.
-		 */		
-		TaskDTO task = new TaskDAOImpl().getTask(taskID);
-		task.setTaskDesc(taskDesc);
-		task.setTaskAnswer(taskAnswer);
 		
-		TaskDAOImpl update = new TaskDAOImpl();
-		update.updateTask(task);
+		return new ModelAndView("showquest","tasklist",tasks);
 	}
 
 }
