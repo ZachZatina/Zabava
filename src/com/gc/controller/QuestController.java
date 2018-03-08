@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gc.model.TaskDTO;
@@ -146,4 +147,23 @@ public class QuestController {
 		
 		return new ModelAndView("quest", "mapIn", mapCode);
 	}
+	@RequestMapping("/completequest")
+	public ModelAndView completeQuest(@RequestParam("input") String input, Model model) {
+		ArrayList<TaskDTO> taskList = QuestController.generateQuestList();
+		System.out.println(input);
+		String[] inputAnswers = input.split(",");
+		String[] adminAnswers = new String[taskList.size()];
+		for(int i = 0; i < taskList.size(); i++) {
+			adminAnswers[i] = taskList.get(i).getTaskAnswer();
+		}
+		model.addAttribute("uAnswers", inputAnswers);
+		System.out.println(inputAnswers.toString());
+		System.out.println(adminAnswers.toString());
+		for(int i = 0; i < inputAnswers.length; i++) {
+			System.out.println(inputAnswers[i]);
+			System.out.println(adminAnswers[i]);
+		}
+		return new ModelAndView("completequest", "aAnswers", adminAnswers);
+	}
+
 }
