@@ -12,9 +12,31 @@ import com.gc.controller.dao.TaskDAOImpl;
 import com.gc.model.QuestDTO;
 import com.gc.model.TaskDTO;
 import com.gc.utils.FourSquareDAOImpl;
+import com.gc.utils.GoogleMapsAPICred;
 
 @Controller
 public class QuestBuilderController {
+	
+	@RequestMapping("enter")
+	public ModelAndView getAddress(Model model) {
+		
+		return new ModelAndView("enter", "message", "hello");
+	}
+	
+	@RequestMapping("admin")
+	public ModelAndView admin(@RequestParam("address") String address, Model model) {
+		// presume this page will be called through submit on a login page
+		
+		String strAddress = address;
+		
+		model.addAttribute("address", strAddress);
+
+		String mapkey = GoogleMapsAPICred.MAPS_API_KEY;
+		
+		model.addAttribute("mapkey", mapkey);
+		
+		return new ModelAndView("admin", "message", "questID");
+	}
 
 	@RequestMapping("builder")
 	public ModelAndView questBuilder(@RequestParam("lat") String lat, @RequestParam("lon") String lon,
