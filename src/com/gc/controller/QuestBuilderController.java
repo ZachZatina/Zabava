@@ -153,6 +153,7 @@ public class QuestBuilderController {
 			TaskDAOImpl taskDao = new TaskDAOImpl();
 			taskID = taskDao.addTask(tasks.get(i));
 			tasks.get(i).setTaskID(taskID);
+			System.out.println(tasks.get(i).getLocationName());
 		}
 		}
 		return new ModelAndView("builder", "tasks", tasks);
