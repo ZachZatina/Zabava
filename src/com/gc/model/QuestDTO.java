@@ -16,7 +16,7 @@ public class QuestDTO implements Serializable {
 	private String locationId; // Foursquare unique identifier
 	private String location; // latitude, longitude
 	private String questName; // User Entered Name
-	private String questCode; // Code for PArties to enter
+	private String questCode; // Code for Parties to enter
 
 	public QuestDTO() {
 
@@ -55,7 +55,7 @@ public class QuestDTO implements Serializable {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
+	
 	@Column
 	public String getQuestName() {
 		return questName;
@@ -73,4 +73,5 @@ public class QuestDTO implements Serializable {
 	public void setQuestCode(String questCode) {
 		this.questCode = questCode;
 	}
+
 }

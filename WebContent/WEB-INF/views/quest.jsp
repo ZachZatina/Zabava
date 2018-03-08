@@ -14,10 +14,15 @@
 
 </head>
 <body>
+	Your QuestCode: ${code}
+	<br>
+	Your QuestID: ${questId}
+	<br>
 	<div id="map"></div>
 	${mapIn}
 
 	<form action="completequest" method="post">
+	<input type="hidden" name="questId" value="${questId}">
 		<table>
 			<c:forEach var="task" items="${tList}">
 			<tr>
@@ -30,6 +35,7 @@
 			</tr>
 			</c:forEach>
 		</table>
+		
 		<input type="submit" value="Submit">
 	</form>
 </body>
