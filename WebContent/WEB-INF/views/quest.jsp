@@ -21,16 +21,18 @@
 	<div id="map"></div>
 	<script>
 	function initMap() {
+		var i = 1;
 		var map = new google.maps.Map(document.getElementById('map'), {
 			zoom: 16,
 			center: ${mapIn}
 		});
-		
 	<c:forEach var="loc" items="${tList}">
 	      var marker = new google.maps.Marker({
         	position: {lat: ${loc.lat}, lng: ${loc.lon}},
-        	map: map
+        	map: map,
+        	label: i.toString()
       });
+	  i += 1;
 	</c:forEach>			
 	}
 	</script>
@@ -41,9 +43,9 @@
 	<form action="completequest" method="post">
 	<input type="hidden" name="questId" value="${questId}">
 		<table>
-			<c:forEach var="task" items="${tList}">
+			<c:forEach var="task" items="${tList}" varStatus="counter">
 			<tr>
-			<td>${task.locationName} ${task.address} ${task.csz} <br>
+			<td>${counter.count}. ${task.locationName} ${task.address} ${task.csz} <br>
 			${task.taskDesc}<br>
 			<input type="text" name="input" maxlength="10">
 			<br>
