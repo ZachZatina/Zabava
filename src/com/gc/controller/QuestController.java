@@ -56,25 +56,10 @@ public class QuestController {
 		
 		ArrayList<TaskDTO> taskList = QuestController.generateQuestList(questId);
 		
-		System.out.println(taskList.size());
-		
-		ArrayList<String> latList = new ArrayList<String>();
-		ArrayList<String> longList = new ArrayList<String>();
-		
-		for(int i = 0; i < taskList.size(); i++) {
-			latList.add(taskList.get(i).getLat());
-			longList.add(taskList.get(i).getLon());
-		}
-		
-		String mapCode = "<script>\n" + 
-				"\n" + 
-				"      function initMap() {\n" + 
-				"\n";
-				for(int i = 0; i < latList.size(); i++ ) {
-					mapCode += "        var set" + String.valueOf(i) + " = {lat: " + latList.get(i) + ", lng: " + longList.get(i) + "};\n";
-				}
+		String questLoc = questList.get(0).getLocation();
+		String[] qLocation = questLoc.split(",");
 				
-		String mapCenter = "{lat: 42.33645874, lng: -83.04835879}";
+		String mapCenter = "{lat: " + qLocation[0].toString() + ", lng: " + qLocation[1].toString() + "}";
 		
 		String mapScript = "https://maps.googleapis.com/maps/api/js?key=" + GoogleMapsAPICred.MAPS_API_KEY + "&callback=initMap";
 	
