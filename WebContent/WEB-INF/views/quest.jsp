@@ -15,8 +15,25 @@
 </head>
 <body>
 	<div id="map"></div>
-	${mapIn}
-
+	<script>
+	function initMap() {
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 16,
+			center: ${mapIn}
+		});
+		
+	<c:forEach var="loc" items="${tList}">
+	      var marker = new google.maps.Marker({
+        	position: {lat: ${loc.lat}, lng: ${loc.lon}},
+        	map: map
+      });
+	</c:forEach>			
+	}
+	</script>
+	<script async defer
+	src="${mScript}">
+	</script>
+	
 	<form action="completequest" method="post">
 		<table>
 			<c:forEach var="task" items="${tList}">

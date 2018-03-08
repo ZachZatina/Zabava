@@ -34,135 +34,25 @@ public class QuestController {
 	@RequestMapping("quest")
 	public ModelAndView map(Model model) {
 		ArrayList<TaskDTO> taskList = QuestController.generateQuestList();
-		System.out.println(taskList.size());
-		ArrayList<String> latList = new ArrayList<String>();
-		ArrayList<String> longList = new ArrayList<String>();
-		for(int i = 0; i < taskList.size(); i++) {
-			latList.add(taskList.get(i).getLat());
-			longList.add(taskList.get(i).getLon());
-		}
-		String mapCode = "<script>\n" + 
-				"\n" + 
-				"      function initMap() {\n" + 
-				"\n";
-				for(int i = 0; i < latList.size(); i++ ) {
-					mapCode += "        var set" + String.valueOf(i) + " = {lat: " + latList.get(i) + ", lng: " + longList.get(i) + "};\n";
-				}
 
-				
-				mapCode += "\n" + 
-				"        var map = new google.maps.Map(document.getElementById('map'), {\n" + 
-				"\n" + 
-				"          zoom: 16,\n" + 
-				"\n" + 
-				"          center: set0\n" + 
-				"\n" + 
-				"        });\n" + 
-				"\n" + 
-				"        var marker = new google.maps.Marker({\n" + 
-				"\n" + 
-				"          position: set0,\n" + 
-				"\n" + 
-				"          map: map\n" + 
-				"\n" + 
-				"        });\n" + 
-				"\n" + 
-				"         var marker = new google.maps.Marker({\n" + 
-				"\n" + 
-				"          position: set1,\n" + 
-				"\n" + 
-				"          map: map\n" + 
-				"\n" + 
-				"        });\n" + 
-				"        var marker = new google.maps.Marker({\n" + 
-				"\n" + 
-				"        position: set2,\n" + 
-				"\n" + 
-				"        map: map\n" + 
-				"\n" + 
-				"});\n" + 
-				"        var marker = new google.maps.Marker({\n" + 
-				"\n" + 
-				"        position: set3,\n" + 
-				"\n" + 
-				"        map: map\n" + 
-				"\n" + 
-				"});\n" + 
-				"        var marker = new google.maps.Marker({\n" + 
-				"\n" + 
-				"        position: set4,\n" + 
-				"\n" + 
-				"        map: map\n" + 
-				"\n" + 
-				"});\n" + 
-				"        var marker = new google.maps.Marker({\n" + 
-				"\n" + 
-				"        position: set5,\n" + 
-				"\n" + 
-				"        map: map\n" + 
-				"\n" + 
-				"});\n" + 
-				"        var marker = new google.maps.Marker({\n" + 
-				"\n" + 
-				"        position: set6,\n" + 
-				"\n" + 
-				"        map: map\n" + 
-				"\n" + 
-				"});\n" + 
-				"        var marker = new google.maps.Marker({\n" + 
-				"\n" + 
-				"        position: set7,\n" + 
-				"\n" + 
-				"        map: map\n" + 
-				"\n" + 
-				"});\n" + 
-				"        var marker = new google.maps.Marker({\n" + 
-				"\n" + 
-				"        position: set8,\n" + 
-				"\n" + 
-				"        map: map\n" + 
-				"\n" + 
-				"});\n" + 
-				"        var marker = new google.maps.Marker({\n" + 
-				"\n" + 
-				"        position: set9,\n" + 
-				"\n" + 
-				"        map: map\n" + 
-				"\n" + 
-				"});\n" + 
-				"\n" + 
-				"      }\n" + 
-				"\n" + 
-				"    </script>\n" + 
-				"\n" + 
-				"    <script async defer\n" + 
-				"\n" + 
-				"    src=\"https://maps.googleapis.com/maps/api/js?key=" + GoogleMapsAPICred.MAPS_API_KEY + "&callback=initMap\">\n" + 
-				
-				"\n" + 
-				"    </script>";
-				
-				
-				model.addAttribute("tList", taskList);
+		String mapCenter = "{lat: 42.33645874, lng: -83.04835879}";
 		
-		return new ModelAndView("quest", "mapIn", mapCode);
+		String mapScript = "https://maps.googleapis.com/maps/api/js?key=" + GoogleMapsAPICred.MAPS_API_KEY + "&callback=initMap";
+	
+				model.addAttribute("tList", taskList);
+				model.addAttribute("mScript", mapScript);
+		
+		return new ModelAndView("quest", "mapIn", mapCenter);
 	}
 	@RequestMapping("/completequest")
 	public ModelAndView completeQuest(@RequestParam("input") String input, Model model) {
 		ArrayList<TaskDTO> taskList = QuestController.generateQuestList();
-		System.out.println(input);
 		String[] inputAnswers = input.split(",");
 		String[] adminAnswers = new String[taskList.size()];
 		for(int i = 0; i < taskList.size(); i++) {
 			adminAnswers[i] = taskList.get(i).getTaskAnswer();
 		}
 		model.addAttribute("uAnswers", inputAnswers);
-		System.out.println(inputAnswers.toString());
-		System.out.println(adminAnswers.toString());
-		for(int i = 0; i < inputAnswers.length; i++) {
-			System.out.println(inputAnswers[i]);
-			System.out.println(adminAnswers[i]);
-		}
 		return new ModelAndView("completequest", "aAnswers", adminAnswers);
 	}
 
