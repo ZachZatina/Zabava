@@ -11,9 +11,10 @@
 <table>
 <tr>
 <th>Venue Name</th>
+<th>Address</th>
 <th>Question</th>
 <th>Answer</th>
-<th>  </th>
+
 </tr>
 <c:forEach var="myVar" items="${tasks}" varStatus="status">
 <tr>
