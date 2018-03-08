@@ -18,7 +18,7 @@
 		<input type="submit" Value="Submit">
 		</form>
 		<br>
-		or do a <a href="quest.html">Practice Quest</a>
+		<!--  or do a <a href="quest.html">Practice Quest</a>-->
 		</h3>
 	</div>
 </body>
