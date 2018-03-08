@@ -24,11 +24,11 @@
 
 <c:forEach var="myVar" items="${tasks}" varStatus="status">
 <tr>
-<%--  <input type="hidden" path="${myVar.taskID}"> --%>
+<input type="hidden" name="taskID" value=${myVar.taskID}>
 <%--  <input type="hidden" path="${myVar.questID}"> --%>
 <td>${myVar.locationName}</td>
-<td><input path="${MyVar.taskDesc}" type="text" name="taskdesc" placeholder="Question to Answer"></td>
-<td><input path="${MyVar.taskAnswer}" type="text" name="taskanswer" placeholder="Answer to the Question"></td>
+<td><input type="text" name="taskdesc" placeholder="Question to Answer"></td>
+<td><input type="text" name="taskanswer" placeholder="Answer to the Question"></td>
 </tr>
 </c:forEach>
 
