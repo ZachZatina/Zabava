@@ -1,1 +1,5 @@
 com.gc.controller
+com.gc.controller.dao
+com.gc.model
+com.gc.model.foursquareobjs
+com.gc.utils
