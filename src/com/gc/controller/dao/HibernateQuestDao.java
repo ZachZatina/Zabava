@@ -9,9 +9,10 @@ import org.hibernate.cfg.Configuration;
 
 import com.gc.model.QuestDTO;
 import com.gc.utils.QuestDao;
+import com.gc.utils.RandCharMaker;
 
 public class HibernateQuestDao implements QuestDao {
-	
+
 	private static SessionFactory factory;
 
 	@Override
@@ -41,36 +42,56 @@ public class HibernateQuestDao implements QuestDao {
 	@Override
 	public void saveQuest(QuestDTO quest) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public int addQuest(QuestDTO quest) {
-System.out.println("Welcome to the HibernateQuestDAO");
+		System.out.println("Welcome to the HibernateQuestDAO");
 
 		try {
 			factory = new Configuration().configure().buildSessionFactory();
-	      } catch (Throwable ex) { 
-	         System.err.println("Failed to create sessionFactory object." + ex);
-	         throw new ExceptionInInitializerError(ex); 
-	      }
-		
+		} catch (Throwable ex) {
+			System.err.println("Failed to create sessionFactory object." + ex);
+			throw new ExceptionInInitializerError(ex);
+		}
+
 		System.out.println("QuestDAO: Step 0");
 		Session session = factory.openSession();
 		Transaction tx = null;
-	      int questID = 0;
-	      
-	      try {
-	         tx = session.beginTransaction();
-	         questID = (Integer) session.save(quest); // Captures the AutoIncremented QuestID
-	         tx.commit();
-	      } catch (HibernateException e) {
-	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
-	      } finally {
-	         session.close(); 
-	      }
-	      return questID;
-		
+		int questID = 0;
+
+		try {
+			tx = session.beginTransaction();
+			questID = (Integer) session.save(quest); // Captures the AutoIncremented QuestID
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return questID;
+
+	}
+
+	public static String getQuestCode() {
+		boolean isEqual = true;
+		String questCode = null;
+
+		while (isEqual == true) {
+			questCode = "";
+
+			for (int i = 0; i < 4; i++) {
+				questCode += RandCharMaker.getRandChar();
+			}
+
+			if (RandCharMaker.checkForUse(questCode) == true) {
+				isEqual = false;
+			}
+		}
+		return questCode;
+
 	}
 
 }
