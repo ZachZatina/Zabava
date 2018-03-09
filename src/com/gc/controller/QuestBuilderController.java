@@ -116,7 +116,6 @@ public class QuestBuilderController {
 		int questID=0;
 		int taskID=0;
 		
-		
 		// in case our GeoCode isn't working
 		if (lat.isEmpty()) {
 			lat = "42.335953";
