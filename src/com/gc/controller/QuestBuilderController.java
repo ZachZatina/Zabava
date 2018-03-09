@@ -160,7 +160,27 @@ public class QuestBuilderController {
 	}
 	
 	@RequestMapping("showquest")
-	public ModelAndView showQuest(@ModelAttribute("tasks") ArrayList<TaskDTO> tasks) {
+	public ModelAndView showQuest(@RequestParam("taskID") String taskIDs, @RequestParam("taskdesc") String taskNames, @RequestParam("taskanswer") String answers) {
+	
+		
+		String[] arrIDs = taskIDs.split(",");
+		String[] arrNames = taskNames.split(",");
+		String[] arrAnswers = answers.split(",");
+		for(int i = 0; i < arrIDs.length; i++) {
+			int ind = Integer.parseInt(arrIDs[i]);
+			System.out.println("Before getTask " + ind);
+			TaskDAOImpl dao = new TaskDAOImpl();
+			TaskDTO task = dao.getTask(ind);
+			System.out.println("After getTask " + ind);
+			task.setTaskDesc(arrNames[i]);
+			System.out.println(arrNames[i]);
+			task.setTaskAnswer(arrAnswers[i]);
+			System.out.println(arrAnswers[i]);
+			
+			dao.updateTask(task);
+			
+		}
+		
 		for (TaskDTO task: tasks) {
 			TaskDAOImpl update = new TaskDAOImpl();
 			update.updateTask(task);
