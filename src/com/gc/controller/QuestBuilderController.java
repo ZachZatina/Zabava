@@ -175,15 +175,15 @@ public class QuestBuilderController {
 	}
 
 	@RequestMapping("showquest")
-	public ModelAndView showQuest(@RequestParam("taskID") String taskIDs, @RequestParam("taskdesc") String taskNames,
-			@RequestParam("taskanswer") String answers) {
+	public ModelAndView showQuest(@RequestParam("taskID") String[] taskIDs, @RequestParam("taskdesc") String[] taskNames,
+			@RequestParam("taskanswer") String[] answers) {
 
 		ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
 		TaskDAOImpl dao = new TaskDAOImpl();
 
-		String[] arrIDs = taskIDs.split(",");
-		String[] arrNames = taskNames.split(",");
-		String[] arrAnswers = answers.split(",");
+		String[] arrIDs = taskIDs;
+		String[] arrNames = taskNames;
+		String[] arrAnswers = answers;
 		for (int i = 0; i < arrIDs.length; i++) {
 			int ind = Integer.parseInt(arrIDs[i]);
 			// TaskDAOImpl dao = new TaskDAOImpl();
