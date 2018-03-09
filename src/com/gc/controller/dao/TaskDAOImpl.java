@@ -1,5 +1,6 @@
 package com.gc.controller.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -35,6 +36,7 @@ public class TaskDAOImpl implements TaskDAO {
 
 	@Override
 	public void updateTask(TaskDTO task) {
+		System.out.println(task.getLocationName());
 		try {
 	         factory = new Configuration().configure().buildSessionFactory();
 	      } catch (Throwable ex) { 
@@ -43,11 +45,11 @@ public class TaskDAOImpl implements TaskDAO {
 	      }
 		Session session = factory.openSession();
 	      Transaction tx = null;
-	      
 	      try {
 	         tx = session.beginTransaction();
 			 session.update(task); 
 	         tx.commit();
+	         
 	      } catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
 	         e.printStackTrace(); 
