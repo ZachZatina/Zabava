@@ -27,8 +27,6 @@ import com.gc.utils.GoogleMapsAPICred;
 @Controller
 public class QuestBuilderController {
 
-	ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
-	
 	@RequestMapping("enter")
 	public ModelAndView getAddress(Model model) {
 
@@ -42,17 +40,17 @@ public class QuestBuilderController {
 
 		String MAP_KEY = GoogleMapsAPICred.MAPS_API_KEY;
 		String strAddress = formatAddress(streetAddress, city, state);
-		// use formatAddress method to build the address from input, to pass to the API call
+		// use formatAddress method to build the address from input, to pass to the API
+		// call
 
-		String addressCall = "/maps/api/geocode/json?address=" + strAddress
-				+ "&key=" + MAP_KEY;
+		String addressCall = "/maps/api/geocode/json?address=" + strAddress + "&key=" + MAP_KEY;
 
 		Double lat = 0.00;
 		Double lng = 0.00;
 
 		try {
 
-			HttpClient http = HttpClientBuilder.create().build(); 
+			HttpClient http = HttpClientBuilder.create().build();
 			HttpHost host = new HttpHost("maps.googleapis.com", 443, "https");
 			HttpGet getPage = new HttpGet(addressCall);
 
@@ -60,7 +58,7 @@ public class QuestBuilderController {
 			String jsonString = EntityUtils.toString(resp.getEntity());
 
 			JSONObject json = new JSONObject(jsonString);
-			
+
 			// retrieve latitude and longitude, to build the map
 			lat = json.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location")
 					.getDouble("lat");
@@ -86,7 +84,7 @@ public class QuestBuilderController {
 
 		String formattedStreet = formatInput(streetAddress);
 		String formattedCity = formatInput(city);
-				
+
 		formatted = formattedStreet + ",+" + formattedCity + ",+" + state;
 
 		return formatted;
@@ -112,18 +110,16 @@ public class QuestBuilderController {
 			@RequestParam("questName") String questName, @RequestParam("radius") int radius,
 			@RequestParam("limit") int limit, Model model) throws IOException {
 
-		
-		int questID=0;
-		int taskID=0;
-		
-		
+		int questID = 0;
+		int taskID = 0;
+		ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
+
 		// in case our GeoCode isn't working
 		if (lat.isEmpty()) {
 			lat = "42.335953";
 			lon = "-83.049774";
 		}
-		
-		
+
 		/*
 		 * Build a QuestDTO object and put it in the DB, retrieving the QuestID
 		 */
@@ -131,63 +127,57 @@ public class QuestBuilderController {
 		quest.setQuestName(questName);
 		quest.setLocation(lat + "," + lon);
 		quest.setLocationId("");
+		//quest.setQuestCode(HibernateQuestDao.getQuestCode());
 		HibernateQuestDao questDao = new HibernateQuestDao();
 		questID = questDao.addQuest(quest);
-		if (questID==0) {
+		if (questID == 0) {
 			System.out.println("Add Quest Failed");
-		}else {
-		
-		tasks = FourSquareDAOImpl.getFSvenues(lat, lon, radius, limit);
+		} else {
 
-		/*
-		 * Add Quest Name and ID to model to use them in the builder page
-		 */
-		model.addAttribute("questName", questName);
-		model.addAttribute("questID", questID);
-		
-		/*
-		 * Create tasks for each point we're given by the FourSquare query
-		 */
-		for (int i=0;i<tasks.size();i++) {
-			tasks.get(i).setQuestID(questID);
-			TaskDAOImpl taskDao = new TaskDAOImpl();
-			taskID = taskDao.addTask(tasks.get(i));
-			tasks.get(i).setTaskID(taskID);
-			System.out.println(tasks.get(i).getLocationName());
-		}
+			tasks = FourSquareDAOImpl.getFSvenues(lat, lon, radius, limit);
+
+			/*
+			 * Add Quest Name and ID to model to use them in the builder page
+			 */
+			model.addAttribute("questName", questName);
+			model.addAttribute("questID", questID);
+
+			/*
+			 * Create tasks for each point we're given by the FourSquare query
+			 */
+			for (int i = 0; i < tasks.size(); i++) {
+				tasks.get(i).setQuestID(questID);
+				TaskDAOImpl taskDao = new TaskDAOImpl();
+				taskID = taskDao.addTask(tasks.get(i));
+				tasks.get(i).setTaskID(taskID);
+			}
 		}
 		return new ModelAndView("builder", "tasks", tasks);
 	}
-	
+
 	@RequestMapping("showquest")
-	public ModelAndView showQuest(@RequestParam("taskID") String taskIDs, @RequestParam("taskdesc") String taskNames, @RequestParam("taskanswer") String answers) {
-	
-		
+	public ModelAndView showQuest(@RequestParam("taskID") String taskIDs, @RequestParam("taskdesc") String taskNames,
+			@RequestParam("taskanswer") String answers) {
+
+		ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
+		TaskDAOImpl dao = new TaskDAOImpl();
+
 		String[] arrIDs = taskIDs.split(",");
 		String[] arrNames = taskNames.split(",");
 		String[] arrAnswers = answers.split(",");
-		for(int i = 0; i < arrIDs.length; i++) {
+		for (int i = 0; i < arrIDs.length; i++) {
 			int ind = Integer.parseInt(arrIDs[i]);
-			System.out.println("Before getTask " + ind);
-			TaskDAOImpl dao = new TaskDAOImpl();
+			// TaskDAOImpl dao = new TaskDAOImpl();
 			TaskDTO task = dao.getTask(ind);
-			System.out.println("After getTask " + ind);
 			task.setTaskDesc(arrNames[i]);
-			System.out.println(arrNames[i]);
 			task.setTaskAnswer(arrAnswers[i]);
-			System.out.println(arrAnswers[i]);
-			
+
 			dao.updateTask(task);
-			
+			tasks.add(task);
+
 		}
-		
-		for (TaskDTO task: tasks) {
-			TaskDAOImpl update = new TaskDAOImpl();
-			update.updateTask(task);
-		}
-		
-		
-		return new ModelAndView("showquest","tasklist",tasks);
+
+		return new ModelAndView("showquest", "tasks", tasks);
 	}
 
 }
