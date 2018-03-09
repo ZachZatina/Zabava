@@ -12,8 +12,8 @@ import com.gc.model.QuestDTO;
 public class RandCharMaker {
 
 	public static String getRandChar() {
-		int num = 0;
-		num = ((int) Math.random() * 36);
+		int num;
+		num = (int)(Math.random() * 36);
 
 		switch (num) {
 		case 0:
@@ -109,12 +109,16 @@ public class RandCharMaker {
 		for (int i = 0; i < badWords.length; i++) {
 			if (qCode.equalsIgnoreCase(badWords[i])) {
 				return false;
+			} else {
+				continue;
 			}
 		}
 		
 		for (int i = 0; i < questList.size(); i++) {
 			if (qCode.equalsIgnoreCase(questList.get(i).getQuestCode())) {
 				return false;
+			} else {
+				continue;
 			}
 		}
 		

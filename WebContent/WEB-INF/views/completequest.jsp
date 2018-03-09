@@ -8,14 +8,17 @@
 <title>Completed Quest Answers</title>
 </head>
 <body>
-	<table>
-		<tr>
-		<tr align="center">
-			<th>Correct Answers</th>
+	<h2>
+		<table>
+			<tr>
+				<tr align="center">
+				<th>Correct Answers</th>
 			<th>Your Answers</th>
 		</tr>
 		<tr>
-		<tr align="center">
+		
+	
+			<tr align="center">
 			<td>
 				<table>
 					<c:forEach var="adminAnswers" items="${aAnswers}">
@@ -25,16 +28,23 @@
 					</c:forEach>
 				</table>
 			</td>
-			<td>
-				<table>
-					<c:forEach var="inputAnswers" items="${uAnswers}">
-						<tr>
-							<td>${inputAnswers}</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</td>
-		</tr>
-	</table>
+				<td>
+					<table>
+						<c:forEach var="inputAnswers" items="${uAnswers}">
+							<tr>
+								<td>${inputAnswers}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</td>
+			</tr>
+			
+		</table>
+	</h2>
+	<br>
+	<br>
+	<h3>
+	<a href="http://localhost:8080/Zabava/">Try Another Quest</a>
+	</h3>
 </body>
 </html>

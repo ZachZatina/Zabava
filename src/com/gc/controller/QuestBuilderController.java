@@ -146,7 +146,7 @@ public class QuestBuilderController {
 		quest.setQuestName(questName);
 		quest.setLocation(lat + "," + lon);
 		quest.setLocationId("");
-		//quest.setQuestCode(HibernateQuestDao.getQuestCode());
+		quest.setQuestCode(HibernateQuestDao.getQuestCode());
 		HibernateQuestDao questDao = new HibernateQuestDao();
 		questID = questDao.addQuest(quest);
 		if (questID == 0) {
