@@ -1,6 +1,8 @@
 package com.gc.controller.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -89,6 +91,7 @@ public class HibernateQuestDao implements QuestDao {
 			if (RandCharMaker.checkForUse(questCode) == true) {
 				isEqual = false;
 			}
+			
 		}
 		return questCode;
 
