@@ -24,9 +24,21 @@ import com.gc.model.TaskDTO;
 import com.gc.utils.FourSquareDAOImpl;
 import com.gc.utils.GoogleMapsAPICred;
 
+/**
+ * 
+ * @authors Zabava
+ *
+ */
+
 @Controller
 public class QuestBuilderController {
 
+	/**
+	 * 
+	 * @param model
+	 * @return ModelAndView
+	 * Display enter
+	 */
 	@RequestMapping("enter")
 	public ModelAndView getAddress(Model model) {
 		boolean addressValid = true;
@@ -34,6 +46,17 @@ public class QuestBuilderController {
 		return new ModelAndView("enter", "valid", addressValid);
 	}
 
+	/**
+	 * 
+	 * @param streetAddress
+	 * @param city
+	 * @param state
+	 * @param model
+	 * @return ModelAndView
+	 * Validate address input
+	 * Retrieve lat and lon
+	 * Routes lat, lon, and MAP_KEY to admin page
+	 */
 	@RequestMapping("admin")
 	public ModelAndView admin(@RequestParam("streetaddress") String streetAddress, @RequestParam("city") String city,
 			@RequestParam("state") String state, Model model) {
@@ -61,14 +84,13 @@ public class QuestBuilderController {
 
 			JSONObject json = new JSONObject(jsonString);
 
-			// retrieve latitude and longitude, to build the map
 		if (json.getJSONArray("results").length() == 0) {
-			// FIXME:
 			addressValid = false;
 			model.addAttribute("valid", addressValid);
 			return new ModelAndView("enter", "failmssg", "Invalid address. Please try again!");
 		}
 			
+		// retrieve latitude and longitude, to build the map
 			lat = json.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location")
 					.getDouble("lat");
 			lng = json.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location")
@@ -77,26 +99,33 @@ public class QuestBuilderController {
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 			System.out.println("Exception e");
-			addressValid = false;
-			model.addAttribute("valid", addressValid);
-			return new ModelAndView("enter", "failmssg", "Invalid address. Please try again!");
+//			addressValid = false;
+//			model.addAttribute("valid", addressValid);
+//			return new ModelAndView("enter", "failmssg", "Invalid address. Please try again!");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("IOException");
-			addressValid = false;
-			model.addAttribute("valid", addressValid);
-			return new ModelAndView("enter", "failmssg", "Invalid address. Please try again!");
+//			addressValid = false;
+//			model.addAttribute("valid", addressValid);
+//			return new ModelAndView("enter", "failmssg", "Invalid address. Please try again!");
 			
 		}
 
 		model.addAttribute("lat", lat);
 		model.addAttribute("lng", lng);
-		model.addAttribute("mapkey", MAP_KEY);
 
-		return new ModelAndView("admin", "message", "questID");
+		return new ModelAndView("admin", "mapkey", MAP_KEY);
 	}
 
+	/**
+	 * 
+	 * @param streetAddress
+	 * @param city
+	 * @param state
+	 * @return String
+	 * Formats address for API call
+	 */
 	public static String formatAddress(String streetAddress, String city, String state) {
 
 		String formatted = "";
@@ -109,7 +138,13 @@ public class QuestBuilderController {
 		return formatted;
 
 	}
-
+	
+	/**
+	 * 
+	 * @param input
+	 * @return String
+	 * Formats input for address 
+	 */
 	public static String formatInput(String input) {
 		String result = "";
 		input = input.trim();
@@ -124,6 +159,19 @@ public class QuestBuilderController {
 		return result;
 	}
 
+	/**
+	 * 
+	 * @param lat
+	 * @param lon
+	 * @param questName
+	 * @param radius
+	 * @param limit
+	 * @param model
+	 * @return ModelAndView
+	 * @throws IOException
+	 * Take input, make call to Foursquare to return json results
+	 * Creates Quest object and Task objects and writes to database
+	 */
 	@RequestMapping("builder")
 	public ModelAndView questBuilder(@RequestParam("lat") String lat, @RequestParam("lon") String lon,
 			@RequestParam("questName") String questName, @RequestParam("radius") int radius,
@@ -174,19 +222,27 @@ public class QuestBuilderController {
 		return new ModelAndView("builder", "tasks", tasks);
 	}
 
+	/**
+	 * 
+	 * @param taskIDs
+	 * @param taskNames
+	 * @param answers
+	 * @return ModelAndView
+	 * 
+	 */
 	@RequestMapping("showquest")
 	public ModelAndView showQuest(@RequestParam("taskID") String taskIDs, @RequestParam("taskdesc") String taskNames,
 			@RequestParam("taskanswer") String answers) {
 
 		ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
 		TaskDAOImpl dao = new TaskDAOImpl();
-
+		
+		//FIXME: allow for user input to have commas
 		String[] arrIDs = taskIDs.split(",");
 		String[] arrNames = taskNames.split(",");
 		String[] arrAnswers = answers.split(",");
 		for (int i = 0; i < arrIDs.length; i++) {
 			int ind = Integer.parseInt(arrIDs[i]);
-			// TaskDAOImpl dao = new TaskDAOImpl();
 			TaskDTO task = dao.getTask(ind);
 			task.setTaskDesc(arrNames[i]);
 			task.setTaskAnswer(arrAnswers[i]);

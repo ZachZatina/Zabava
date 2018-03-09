@@ -18,9 +18,20 @@ import com.gc.model.TaskDTO;
 import com.gc.utils.GoogleMapsAPICred;
 import com.gc.utils.HibernateUtil;
 
+/**
+ * 
+ * @author Andrew Calabro-Cavin, Ben Fogt, Zach Zatina, Alex Brozovich
+ *
+ */
+
 @Controller
 public class QuestController {
 	
+/**
+ * 
+ * @param questId
+ * @return ArrayList taskList list of tasks
+ */
 	public static ArrayList<TaskDTO> generateQuestList(int questId) {
 
 		SessionFactory sessFact = HibernateUtil.getSessionFactory();
@@ -36,14 +47,23 @@ public class QuestController {
 		return taskList;
 	}	
 	
-	@RequestMapping("/")
-	public String index(Model model) {	
-		boolean codeValid = true;
-		model.addAttribute("valid", codeValid);
-		
-		return "index";
-	}
+//	@RequestMapping("/")
+//	public String index(Model model) {	
+//		boolean codeValid = true;
+//		model.addAttribute("valid", codeValid);
+//		
+//		return "index";
+//	}
 	
+	/**
+	 * 
+	 * @param code
+	 * @param model
+	 * @return ModelAndView 
+	 * validate questCode
+	 * create taskList, pass to quest page
+	 * get map center point, pass to map on quest page
+	 */
 	@RequestMapping("quest")
 	public ModelAndView map(@RequestParam("code") String code, Model model) {
 
@@ -87,7 +107,15 @@ public class QuestController {
 		return new ModelAndView("quest", "mapIn", mapCenter);
 	}
 	
-	
+	/**
+	 * 
+	 * @param input
+	 * @param questId
+	 * @param model
+	 * @return ModelAndView
+	 * Takes in user responses, puts into String Array
+	 * Sends this and adminAnswers to completequest page
+	 */
 	@RequestMapping("/completequest")
 	public ModelAndView completeQuest(@RequestParam("input") String input, @RequestParam("questId") int questId, Model model) {
 		ArrayList<TaskDTO> taskList = QuestController.generateQuestList(questId);

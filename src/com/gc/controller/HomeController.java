@@ -9,18 +9,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gc.controller.dao.HibernateQuestDao;
 /**
- * @author alexbrozovich
+ * @author Alex Brozovich, Zach Zatina, Ben Fogt, Andrew Calabro-Cavin
  *
  */
 
 @Controller
 public class HomeController {
 	
+	/**
+	 * 
+	 * @param model
+	 * @return String index - directs to index page
+	 * 
+	 */
 	@RequestMapping("/")
 	public String index(Model model) {	
 		boolean codeValid = true;
 		model.addAttribute("valid", codeValid);
-
 		
 		return "index";
 	}
