@@ -29,15 +29,17 @@ public class QuestBuilderController {
 
 	@RequestMapping("enter")
 	public ModelAndView getAddress(Model model) {
-
-		return new ModelAndView("enter", "message", "hello");
+		boolean addressValid = true;
+		
+		return new ModelAndView("enter", "valid", addressValid);
 	}
 
 	@RequestMapping("admin")
 	public ModelAndView admin(@RequestParam("streetaddress") String streetAddress, @RequestParam("city") String city,
 			@RequestParam("state") String state, Model model) {
-		// presume this page will be called through submit on a login page
 
+		boolean addressValid = true;
+		
 		String MAP_KEY = GoogleMapsAPICred.MAPS_API_KEY;
 		String strAddress = formatAddress(streetAddress, city, state);
 		// use formatAddress method to build the address from input, to pass to the API
@@ -60,6 +62,13 @@ public class QuestBuilderController {
 			JSONObject json = new JSONObject(jsonString);
 
 			// retrieve latitude and longitude, to build the map
+		if (json.getJSONArray("results").length() == 0) {
+			// FIXME:
+			addressValid = false;
+			model.addAttribute("valid", addressValid);
+			return new ModelAndView("enter", "failmssg", "Invalid address. Please try again!");
+		}
+			
 			lat = json.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location")
 					.getDouble("lat");
 			lng = json.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location")
@@ -67,8 +76,18 @@ public class QuestBuilderController {
 
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
+			System.out.println("Exception e");
+			addressValid = false;
+			model.addAttribute("valid", addressValid);
+			return new ModelAndView("enter", "failmssg", "Invalid address. Please try again!");
+			
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("IOException");
+			addressValid = false;
+			model.addAttribute("valid", addressValid);
+			return new ModelAndView("enter", "failmssg", "Invalid address. Please try again!");
+			
 		}
 
 		model.addAttribute("lat", lat);

@@ -36,9 +36,18 @@ public class QuestController {
 		return taskList;
 	}	
 	
+	@RequestMapping("/")
+	public String index(Model model) {	
+		boolean codeValid = true;
+		model.addAttribute("valid", codeValid);
+		
+		return "index";
+	}
+	
 	@RequestMapping("quest")
 	public ModelAndView map(@RequestParam("code") String code, Model model) {
 
+		boolean codeValid = true;
 		model.addAttribute("code", code); // to display
 		
 		SessionFactory sessFact = HibernateUtil.getSessionFactory();
@@ -48,6 +57,15 @@ public class QuestController {
 		crit.add(Restrictions.eq("questCode", code));
 		// use code to retrieve Quest
 		ArrayList<QuestDTO> questList = (ArrayList<QuestDTO>) crit.list();
+		
+		if (questList.size() == 0) {
+			codeValid = false;
+			model.addAttribute("valid", codeValid);
+			tx.commit();
+			sess.close();
+			return new ModelAndView("index", "failmssg", "That code is not valid. Please try again!");
+		}
+		
 		tx.commit();
 		sess.close();
 		
