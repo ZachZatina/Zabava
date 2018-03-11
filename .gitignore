@@ -25,3 +25,5 @@ MySQLCred.java
 
 #hibernate
 hibernate.cfg.xml
+/.metadata/
+/.recommenders/
