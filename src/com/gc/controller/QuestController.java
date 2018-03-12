@@ -100,7 +100,7 @@ public class QuestController {
 		String mapCenter = "{lat: " + qLocation[0].toString() + ", lng: " + qLocation[1].toString() + "}";
 		
 		String mapScript = "https://maps.googleapis.com/maps/api/js?key=" + GoogleMapsAPICred.MAPS_API_KEY + "&callback=initMap";
-	
+		
 				model.addAttribute("tList", taskList);
 				model.addAttribute("mScript", mapScript);
 		
