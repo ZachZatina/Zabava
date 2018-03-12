@@ -37,10 +37,9 @@
       });
 		var infowindow = new google.maps.InfoWindow({});
 		
-		google.maps.event.addListener(marker, 'click', (function (marker) {
+		google.maps.event.addListener(marker, 'mouseover', (function (marker) {
 			return function () {
 				infowindow.setContent('<p style="text-align:center"><strong>'+"${loc.locationName}"+'</strong><br>'+"${loc.address}"+'</p>');
-				//infowindow.setContent("${loc.taskDesc}");
 				infowindow.open(map, marker);
 			}
 		})(marker));
@@ -61,9 +60,9 @@
 		<table>
 			<c:forEach var="task" items="${tList}" varStatus="counter">
 				<tr>
-					<td>${counter.count}.${task.locationName}${task.address}
-						${task.csz} <br> ${task.taskDesc}<br> <input type="text"
-						name="input" maxlength="10"> <br> <br>
+					<td>${counter.count}.${task.locationName}<br>
+						${task.taskDesc}<br> <input type="text" name="input"
+						maxlength="10"> <br> <br>
 					</td>
 				</tr>
 			</c:forEach>
