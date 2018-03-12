@@ -20,11 +20,13 @@
 	<div id="map"></div>
 	<script>
 	function initMap() {
+		bounds  = new google.maps.LatLngBounds();
 		var i = 1;
 		var map = new google.maps.Map(document.getElementById('map'), {
 			zoom: 16,
 			center: ${mapIn}
 		});
+		
 	<c:forEach var="loc" items="${tList}">
 	
 
@@ -43,9 +45,13 @@
 			}
 		})(marker));
 
+	  bounds.extend(new google.maps.LatLng(marker.position.lat(), marker.position.lng()));
+	  console.log(bounds.isEmpty())
+	  map.fitBounds(bounds);       
+	  map.panToBounds(bounds);   
 	  i += 1;
 	</c:forEach>			
-	}
+	}  
 	</script>
 	<script async defer src="${mScript}">
 	</script>

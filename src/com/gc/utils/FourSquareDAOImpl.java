@@ -4,9 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+
 import javax.net.ssl.HttpsURLConnection;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gc.model.TaskDTO;
 import com.gc.model.foursquareobjs.FourSquare;
 import com.gc.model.foursquareobjs.Group;
@@ -28,8 +35,28 @@ import com.google.gson.Gson;
 public class FourSquareDAOImpl {
 
 	public ArrayList<Venue> venueList;
+	
+	/**
+	 * Variables to make the API call. The final variables come from the
+	 * FourSquareAPICred class in utils.
+	 */
+	static String CLIENT_ID = FourSquareAPICred.CLIENT_ID;
+	static String CLIENT_SECRET = FourSquareAPICred.CLIENT_SECRET;
 
-	/*
+	/**  Version is the date that we want the API to be fixed to.
+	 *  Any API changes after this date will not effect this code.
+	 */
+	static String VERSION = FourSquareAPICred.VERSION;
+	
+	/**
+	 * 
+	 * @param lat Latitude of starting point
+	 * @param lon Longitude of starting point
+	 * @param distance from starting point in meters
+	 * @param limit Max number of locations returned (Can be less)
+	 * @return Returns a FourSquare object that is the entire JSON response
+	 * @throws IOException
+	 * 
 	 * Method to get data from FourSquare with list of 50 closest places to a fixed
 	 * location (ll). This returns a FourSquare Object which has layer upon layer of
 	 * objects and lists, all connected to our classes in the
@@ -38,28 +65,27 @@ public class FourSquareDAOImpl {
 
 	public FourSquare getFS(String lat, String lon, int distance, int limit) throws IOException {
 
-		/*
+		/**
 		 * Variables to make the API call. The final variables come from the
 		 * FourSquareAPICred class in utils. As of now (3/5) we need build the methods
 		 * that call this so that we can send the ll, section, and radius variables.
 		 */
 
-		String CLIENT_ID = FourSquareAPICred.CLIENT_ID;
-		String CLIENT_SECRET = FourSquareAPICred.CLIENT_SECRET;
 		String ll = lat + "," + lon;
 
 		// Section is the type of venues to return. topPicks returns a mix of them.
 		String section = "topPicks";
 		// Radius is in Meters.
 		int radius = distance;
-		// Version is the date that we want the API to be fixed to.
-		// Any API changes after this date will not effect this code.
-		String VERSION = FourSquareAPICred.VERSION;
 
-		// Build the string for the URL. addRequestProperty didn't work
-		// so we're building the string using the variables from FourSquareAPICred
-		// The credentials files are hidden from Git, so make sure you have a copy
-		// from Slack.
+
+		/**
+		 *  Build the string for the URL. addRequestProperty didn't work
+		 *  so we're building the string using the variables from FourSquareAPICred
+		 *  The credentials files are hidden from Git, so make sure you have a copy
+		 *  from Slack.
+		 */
+		
 		String urlParams = "?client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET + "&ll=" + ll + "&section="
 				+ section + "&radius=" + radius + "&limit=" + limit + "&v=" + VERSION;
 
@@ -68,23 +94,32 @@ public class FourSquareDAOImpl {
 		HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 
-		// Console print to verify the URL in case of an error 400/410
-		// System.out.println(con);
-
+		/** Console print to verify the URL in case of an error 400/410
+		 * System.out.println(con);
+		 */
 		BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String json = reader.readLine();
 		Gson gson = new Gson();
 
-		// This is where the donuts are made. This call Deserializes the JSON response
-		// from FourSquare into objects corresponding to our classes in
-		// com.gc.model.foursquareobjs.
+		/**
+		 * This is where the donuts are made. This call Deserializes the JSON response
+		 * from FourSquare into objects corresponding to our classes in
+		 * com.gc.model.foursquareobjs.
+		 */
 		FourSquare fsObj = gson.fromJson(json, FourSquare.class);
-
+		con.disconnect();
 		return fsObj;
 	}
 	
 
-	/* 
+	/**
+	 * 
+	 * @param lat Latitude of starting point
+	 * @param lon Longitude of starting point
+	 * @param distance from starting point in meters
+	 * @param limit Max number of locations returned (Can be less)
+	 * @throws IOException
+	 * 
 	 * Get the JSON data from FourSquare and loop through it to produce an array of
 	 * TaskDTO objects with the data we need for the Task table. 
 	 */
@@ -108,6 +143,33 @@ public class FourSquareDAOImpl {
 			locations.add(task);			
 		}
 		return locations;
+	}
+	
+	
+	
+	public static String getFSImage(String locationID) throws IOException {
+		String urlParams = locationID + "?client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET + "&v=" + VERSION;
+
+		URL url = new URL("https://api.foursquare.com/v2/venues/" + urlParams);
+
+		HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		String jsonData = reader.readLine();
+
+		//create ObjectMapper instance
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		//read JSON like DOM Parser
+		JsonNode rootNode = objectMapper.readTree(jsonData);
+		JsonNode prefixNode = rootNode.path("response").path("venue").path("bestPhoto").path("prefix");
+		JsonNode suffixNode = rootNode.path("response").path("venue").path("bestPhoto").path("suffix");
+
+		//System.out.println(prefixNode.isValueNode());
+		String photoURL = prefixNode.textValue() + "cap300" + suffixNode.textValue();
+		con.disconnect();
+		return photoURL;
 	}
 
 }
