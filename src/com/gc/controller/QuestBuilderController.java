@@ -2,7 +2,6 @@ package com.gc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -13,7 +12,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +21,12 @@ import com.gc.model.QuestDTO;
 import com.gc.model.TaskDTO;
 import com.gc.utils.FourSquareDAOImpl;
 import com.gc.utils.GoogleMapsAPICred;
+import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
+import com.google.api.client.auth.oauth2.Credential.AccessMethod;
+import com.google.api.client.http.GenericUrl;
+import com.google.api.client.http.HttpExecuteInterceptor;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.json.JsonFactory;
 
 /**
  * 
@@ -254,5 +258,20 @@ public class QuestBuilderController {
 
 		return new ModelAndView("showquest", "tasks", tasks);
 	}
+	
+	@RequestMapping("adminlogin")
+	public ModelAndView login() {
+		
+		return new ModelAndView("adminlogin","model","");
+	}
 
+	@RequestMapping("tokensignin") 
+	public ModelAndView tokenSignin(String token) {
+		System.out.println(token);
+		
+		
+		
+		return new ModelAndView("adminlogin","message",token);
+	}
+	
 }
