@@ -22,6 +22,7 @@ public class TaskDTO {
 	String csz;
 	String locationName;
 	String locationID;
+	String taskPhotoURL;
 
 
 	public TaskDTO() {
@@ -143,7 +144,14 @@ public class TaskDTO {
 		this.locationID = locationID;
 	}
 	
-	
+	@Column(name="taskphotourl")
+	public String getTaskPhotoURL() {
+		return taskPhotoURL;
+	}
+
+	public void setTaskPhotoURL(String taskPhotoURL) {
+		this.taskPhotoURL = taskPhotoURL;
+	}	
 	
 	
 	

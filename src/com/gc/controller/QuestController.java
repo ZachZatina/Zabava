@@ -100,7 +100,7 @@ public class QuestController {
 		String mapCenter = "{lat: " + qLocation[0].toString() + ", lng: " + qLocation[1].toString() + "}";
 		
 		String mapScript = "https://maps.googleapis.com/maps/api/js?key=" + GoogleMapsAPICred.MAPS_API_KEY + "&callback=initMap";
-	
+		
 				model.addAttribute("tList", taskList);
 				model.addAttribute("mScript", mapScript);
 		
@@ -117,11 +117,11 @@ public class QuestController {
 	 * Sends this and adminAnswers to completequest page
 	 */
 	@RequestMapping("/completequest")
-	public ModelAndView completeQuest(@RequestParam("input") String input, @RequestParam("questId") int questId, Model model) {
+	public ModelAndView completeQuest(@RequestParam("input") String[] input, @RequestParam("questId") int questId, Model model) {
 		ArrayList<TaskDTO> taskList = QuestController.generateQuestList(questId);
 		System.out.println(input);
 
-		String[] inputAnswers = input.split(",");
+		String[] inputAnswers = input;
 		String[] adminAnswers = new String[taskList.size()];
 		for(int i = 0; i < taskList.size(); i++) {
 			adminAnswers[i] = taskList.get(i).getTaskAnswer();

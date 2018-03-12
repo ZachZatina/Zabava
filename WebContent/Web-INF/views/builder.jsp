@@ -12,7 +12,6 @@
 
 	QuestID is: ${questID}
 	<form action="showquest" method="POST">
-		<!-- <form action="delete" method="POST"> -->
 		<input type="hidden" name="questID" value="${questID}">
 		<table>
 
@@ -20,20 +19,21 @@
 				<th>Venue Name</th>
 				<th>Question</th>
 				<th>Answer</th>
+				<th> </th>
 				<th>Delete</th>
 			</tr>
 
 			<c:forEach var="myVar" items="${tasks}" varStatus="status">
 				<tr>
-					<input type="hidden" name="taskID" value="${myVar.taskID}">
+					<input type="hidden" name="taskID" value="${myVar.taskID}"> <!-- added double quotes -->
 					<!--  <input type="hidden" path="${myVar.questID}"> -->
-					<td>${myVar.taskID}${myVar.locationName}</td>
+					<td>${myVar.locationName}</td>
 					<td><input type="text" name="taskdesc"
 						placeholder="Question to Answer"></td>
 					<td><input type="text" name="taskanswer"
 						placeholder="Answer to the Question"></td>
-					<td>
-						<a href="delete?taskandquest=${myVar.taskID},${questID}">Delete</a>
+					<td><img src="${myVar.taskPhotoURL}"></td>
+					<td><a href="delete?taskandquest=${myVar.taskID},${questID}">Delete</a>
 				</tr>
 			</c:forEach>
 
@@ -43,6 +43,3 @@
 
 	</form>
 
-
-</body>
-</html>
