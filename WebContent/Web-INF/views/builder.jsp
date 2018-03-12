@@ -26,9 +26,10 @@
 <tr>
 <input type="hidden" name="taskID" value=${myVar.taskID}>
 <%--  <input type="hidden" path="${myVar.questID}"> --%>
-<td>${myVar.taskID} ${myVar.locationName}</td>
+<td>${myVar.locationName}</td>
 <td><input type="text" name="taskdesc" placeholder="Question to Answer"></td>
 <td><input type="text" name="taskanswer" placeholder="Answer to the Question"></td>
+<td><img src="${myVar.taskPhotoURL}"></a>
 </tr>
 </c:forEach>
 
