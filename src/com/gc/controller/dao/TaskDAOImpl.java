@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import com.gc.model.TaskDTO;
+import com.gc.utils.HibernateUtil;
 import com.gc.utils.FourSquareDAOImpl;
 import com.gc.utils.TaskDAO;
 
@@ -20,6 +21,7 @@ public class TaskDAOImpl implements TaskDAO {
 
 	@Override
 	public List<TaskDTO> getAllTasks() {
+		
 		return null;
 	}
 
@@ -100,6 +102,17 @@ public class TaskDAOImpl implements TaskDAO {
 
 	@Override
 	public void deleteTask(TaskDTO task) {
+		
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		session.delete(task);
+		tx.commit();
+		session.close();
+		
+		return;	
+		
 	}
 
 }
