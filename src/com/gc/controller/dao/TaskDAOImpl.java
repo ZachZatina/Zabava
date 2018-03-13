@@ -1,5 +1,6 @@
 package com.gc.controller.dao;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import com.gc.model.TaskDTO;
+import com.gc.utils.HibernateUtil;
+import com.gc.utils.FourSquareDAOImpl;
 import com.gc.utils.TaskDAO;
 
 public class TaskDAOImpl implements TaskDAO {
@@ -18,6 +21,7 @@ public class TaskDAOImpl implements TaskDAO {
 
 	@Override
 	public List<TaskDTO> getAllTasks() {
+		
 		return null;
 	}
 
@@ -59,6 +63,18 @@ public class TaskDAOImpl implements TaskDAO {
 	}
 	
 	public int addTask(TaskDTO task) {
+		
+		FourSquareDAOImpl dao = new FourSquareDAOImpl();
+		String photoURL = null;
+		try {
+			photoURL = dao.getFSImage(task.getLocationID());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("PhotoURL: " + photoURL);
+		task.setTaskPhotoURL(photoURL);
+		
 		try {
 	         factory = new Configuration().configure().buildSessionFactory();
 	      } catch (Throwable ex) { 
@@ -86,6 +102,17 @@ public class TaskDAOImpl implements TaskDAO {
 
 	@Override
 	public void deleteTask(TaskDTO task) {
+		
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		session.delete(task);
+		tx.commit();
+		session.close();
+		
+		return;	
+		
 	}
 
 }

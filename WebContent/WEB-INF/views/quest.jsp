@@ -15,8 +15,7 @@
 </head>
 <body>
 	Your QuestCode: ${code}
-	<br>
-	Your QuestID: ${questId}
+	<br> Your QuestID: ${questId}
 	<br>
 	<div id="map"></div>
 	<script>
@@ -29,11 +28,22 @@
 		});
 		
 	<c:forEach var="loc" items="${tList}">
-	      var marker = new google.maps.Marker({
+	
+
+	    var marker = new google.maps.Marker({
         	position: {lat: ${loc.lat}, lng: ${loc.lon}},
         	map: map,
         	label: i.toString()
       });
+		var infowindow = new google.maps.InfoWindow({});
+		
+		google.maps.event.addListener(marker, 'mouseover', (function (marker) {
+			return function () {
+				infowindow.setContent('<p style="text-align:center"><strong>'+"${loc.locationName}"+'</strong><br>'+"${loc.address}"+'</p>');
+				infowindow.open(map, marker);
+			}
+		})(marker));
+
 	  bounds.extend(new google.maps.LatLng(marker.position.lat(), marker.position.lng()));
 	  console.log(bounds.isEmpty())
 	  map.fitBounds(bounds);       
@@ -42,25 +52,22 @@
 	</c:forEach>			
 	}  
 	</script>
-	<script async defer
-	src="${mScript}">
+	<script async defer src="${mScript}">
 	</script>
-	
+
 	<form action="completequest" method="post">
-	<input type="hidden" name="questId" value="${questId}">
+		<input type="hidden" name="questId" value="${questId}">
 		<table>
 			<c:forEach var="task" items="${tList}" varStatus="counter">
-			<tr>
-			<td>${counter.count}. ${task.locationName} ${task.address} ${task.csz} <br>
-			${task.taskDesc}<br>
-			<input type="text" name="input" maxlength="10">
-			<br>
-			<br>
-			</td>
-			</tr>
+				<tr>
+					<td>${counter.count}.${task.locationName}<br>
+						${task.taskDesc}<br> <input type="text" name="input"
+						maxlength="10"> <br> <br>
+					</td>
+				</tr>
 			</c:forEach>
 		</table>
-		
+
 		<input type="submit" value="Submit">
 	</form>
 </body>

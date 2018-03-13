@@ -2,7 +2,6 @@ package com.gc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -10,10 +9,15 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +27,13 @@ import com.gc.model.QuestDTO;
 import com.gc.model.TaskDTO;
 import com.gc.utils.FourSquareDAOImpl;
 import com.gc.utils.GoogleMapsAPICred;
+import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
+import com.google.api.client.auth.oauth2.Credential.AccessMethod;
+import com.google.api.client.http.GenericUrl;
+import com.google.api.client.http.HttpExecuteInterceptor;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.gc.utils.HibernateUtil;
 
 /**
  * 
@@ -98,18 +109,9 @@ public class QuestBuilderController {
 
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-			System.out.println("Exception e");
-//			addressValid = false;
-//			model.addAttribute("valid", addressValid);
-//			return new ModelAndView("enter", "failmssg", "Invalid address. Please try again!");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("IOException");
-//			addressValid = false;
-//			model.addAttribute("valid", addressValid);
-//			return new ModelAndView("enter", "failmssg", "Invalid address. Please try again!");
-			
 		}
 
 		model.addAttribute("lat", lat);
@@ -159,6 +161,15 @@ public class QuestBuilderController {
 		return result;
 	}
 
+	@RequestMapping("select")
+	public ModelAndView questSelector(@RequestParam("lat") String lat, @RequestParam("lon") String lon,
+			@RequestParam("questName") String questName, @RequestParam("radius") int radius,
+			@RequestParam("limit") int limit, Model model) {
+		
+		
+		return new ModelAndView("adminselect", "", "");
+	}
+	
 	/**
 	 * 
 	 * @param lat
@@ -208,6 +219,13 @@ public class QuestBuilderController {
 			 */
 			model.addAttribute("questName", questName);
 			model.addAttribute("questID", questID);
+			
+			// hide these
+			model.addAttribute("lat", lat);
+			model.addAttribute("lon", lon);
+			// radius
+			// limit
+			
 
 			/*
 			 * Create tasks for each point we're given by the FourSquare query
@@ -220,6 +238,74 @@ public class QuestBuilderController {
 			}
 		}
 		return new ModelAndView("builder", "tasks", tasks);
+	}
+	
+	/**
+	 * 
+	 * @param questId
+	 * @return ArrayList taskList list of tasks
+	 */
+		public static ArrayList<TaskDTO> generateQuestList(int questId) {
+
+			SessionFactory sessFact = HibernateUtil.getSessionFactory();
+			Session sess = sessFact.openSession();
+			Transaction tx = sess.beginTransaction();
+			Criteria crit = sess.createCriteria(TaskDTO.class);
+			crit.add(Restrictions.eq("questID", questId));
+			// restrict to tasks associated with the questID
+			
+			ArrayList<TaskDTO> taskList = (ArrayList<TaskDTO>) crit.list();
+			tx.commit();
+			sess.close();
+			return taskList;
+		}
+	/**
+	 * 
+	 * @param taskAndQuest
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("delete")
+	public ModelAndView selectTasks(@RequestParam("taskandquest") String taskAndQuest,  Model model) {
+		
+		/*
+		 * takes the string containing taskID and QuestID, parses and converts to int
+		 */
+		String parts[] = taskAndQuest.split(",");
+		System.out.println(parts.length);
+		String taskIDstr = parts[0];
+		String questIDstr = parts[1];
+		int taskID = Integer.parseInt(taskIDstr);
+		int questID = Integer.parseInt(questIDstr);
+		
+		/*
+		 * delete task for taskID
+		 */
+		
+		TaskDTO taskDTO = new TaskDTO();
+		taskDTO.setTaskID(taskID);
+		TaskDAOImpl taskDAO = new TaskDAOImpl();
+		taskDAO.deleteTask(taskDTO);
+		
+		/*
+		 * 	retrieve tasks with questID
+		 */
+	
+		// FIXME: refactor
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Criteria crit = session.createCriteria(TaskDTO.class);
+		crit.add(Restrictions.eq("questID", questID));
+		ArrayList<TaskDTO> taskList = (ArrayList<TaskDTO>) crit.list();
+		
+		session.close();
+				
+		model.addAttribute("questID", questID);
+		model.addAttribute("taskID", taskID);
+				
+		return new ModelAndView("builder", "tasks", taskList);
 	}
 
 	/**
@@ -254,5 +340,20 @@ public class QuestBuilderController {
 
 		return new ModelAndView("showquest", "tasks", tasks);
 	}
+	
+	@RequestMapping("adminlogin")
+	public ModelAndView login() {
+		
+		return new ModelAndView("adminlogin","model","");
+	}
 
+	@RequestMapping("tokensignin") 
+	public ModelAndView tokenSignin(String token) {
+		System.out.println(token);
+		
+		
+		
+		return new ModelAndView("adminlogin","message",token);
+	}
+	
 }
