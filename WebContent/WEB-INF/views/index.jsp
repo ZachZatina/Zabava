@@ -12,7 +12,7 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
 	rel='stylesheet' type='text/css'>
 
-<title>Zabava Quest Home</title>
+<title>ZabavaQuest Home</title>
 
 </head>
 <body>
@@ -27,22 +27,13 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">ZabavaQuest</a>
+				<a class="navbar-brand" href="index">ZabavaQuest</a>
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">About</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Services<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Design</a></li>
-							<li><a href="#">Development</a></li>
-							<li><a href="#">Consulting</a></li>
-						</ul></li>
-					<li><a href="#">Contact</a></li>
-					<li><a href="enter">Admin</a></li>
+					<li><a href="enter">Create</a></li>
 				</ul>
 			</div>
 		</div>
@@ -51,8 +42,19 @@
 	<div class="jumbotron">
 		<div class="container">
 			<h1>ZabavaQuest</h1>
-			<p>Are you ready to boilerstrap your cross-compatible buzzword?
-				It's Sassy, flat and semantic, so what are you waiting for?</p>
+			<br>
+			<h2>Enter your QuestCode here:</h2>
+			<form action="quest" method="post">
+				<h2>
+					<input type="text" name="code" style="text-transform: uppercase" />
+					<!-- <input type="submit" Value="Submit"> -->
+					<input type="submit" class="btn btn-info" value="Submit Button">
+				</h2>
+			</form>
+			<div class="form-group">
+				<label for="usr">Name:</label> <input type="text"
+					class="form-control" id="usr">
+			</div>
 			<br>
 			<p>
 				<a class="btn btn-primary btn-lg" href="#" role="button">Download
@@ -62,25 +64,8 @@
 		</div>
 	</div>
 
-	<div class="container-fluid">
-		<div style="text-align: center">
-			<h1>Bootstrap test</h1>
-			<p>This is some text.</p>
-			<img src="resources\\FFcharacter.JPG" alt="it's an image" width="70">
-		</div>
-	</div>
-	<br>
 	<div style="text-align: center">
-		<h2>Welcome to ZabavaQuest!</h2>
-		<br> <br>
-		<h3>
-			<form action="quest" method="post">
-				Enter your QuestCode here: <input type="text" name="code"
-					style="text-transform: uppercase" /> <input type="submit"
-					Value="Submit">
-			</form>
-			<br>
-		</h3>
+
 		<c:set var="codevalid" value="${valid}" />
 		<c:if test="${codevalid == false}">
 			<p>
@@ -88,28 +73,7 @@
 		</c:if>
 	</div>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4">
-				<span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>
-				<h3>Cloud Computable</h3>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce
-					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-			</div>
-			<div class="col-md-4">
-				<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-				<h3>Backwards Compatible</h3>
-				<p>Etiam porta sem malesuada magna mollis euismod. Donec sed
-					odio dui. Lorem ipsum dolor.</p>
-			</div>
-			<div class="col-md-4">
-				<span class="glyphicon glyphicon-console" aria-hidden="true"></span>
-				<h3>GUI Free</h3>
-				<p>Vestibulum id ligula porta felis euismod semper. Fusce
-					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-			</div>
-		</div>
-	</div>
+
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
