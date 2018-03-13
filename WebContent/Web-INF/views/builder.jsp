@@ -27,8 +27,12 @@
 <input type="hidden" name="taskID" value=${myVar.taskID}>
 <%--  <input type="hidden" path="${myVar.questID}"> --%>
 <td>${myVar.taskID} ${myVar.locationName}</td>
-<td><input type="text" name="taskdesc" placeholder="Question to Answer"></td>
-<td><input type="text" name="taskanswer" placeholder="Answer to the Question"></td>
+<td><input id=${status.count}a type="text" name="taskdesc" placeholder="Question to Answer"></td>
+<td><input id=${status.count}b type="text" name="taskanswer" placeholder="Answer to the Question"></td>
+<form>
+<td><input checked="checked" type="radio" name="formType" value="question" onclick="document.getElementById('${status.count}a').style.visibility = 'visible';document.getElementById('${status.count}b').placeholder = 'Answer to the Question ';document.getElementById('${status.count}a').value = '';">Question Answer</td><br>
+<td><input type="radio" name="formType" value="image" onclick="document.getElementById('${status.count}a').style.visibility = 'hidden';document.getElementById('${status.count}b').placeholder = 'Link to your Photo ';document.getElementById('${status.count}a').value = 'Link to your Photo ';">Image</td><br>
+</form>
 </tr>
 </c:forEach>
 
