@@ -2,6 +2,7 @@ package com.gc.controller.dao;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -10,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.gc.model.QuestDTO;
 import com.gc.model.TaskDTO;
 import com.gc.utils.HibernateUtil;
 import com.gc.utils.FourSquareDAOImpl;
@@ -114,5 +116,7 @@ public class TaskDAOImpl implements TaskDAO {
 		return;	
 		
 	}
+	
+	
 
 }

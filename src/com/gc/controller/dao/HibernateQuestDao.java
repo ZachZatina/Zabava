@@ -3,13 +3,17 @@ package com.gc.controller.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
+import com.gc.model.CreatorDTO;
 import com.gc.model.QuestDTO;
+import com.gc.model.TaskDTO;
 import com.gc.utils.QuestDao;
 import com.gc.utils.RandCharMaker;
 
@@ -48,7 +52,7 @@ public class HibernateQuestDao implements QuestDao {
 	}
 
 	public int addQuest(QuestDTO quest) {
-		System.out.println("Welcome to the HibernateQuestDAO");
+		//System.out.println("Welcome to the HibernateQuestDAO");
 
 		try {
 			factory = new Configuration().configure().buildSessionFactory();
@@ -96,5 +100,37 @@ public class HibernateQuestDao implements QuestDao {
 		return questCode;
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<QuestDTO> getQuestsByCreator(int creatorID){
+		
+		try {
+			factory = new Configuration().configure().buildSessionFactory();
+		} catch (Throwable ex) {
+			System.err.println("Failed to create sessionFactory object." + ex);
+			throw new ExceptionInInitializerError(ex);
+		}
+		
+	      Session session = factory.openSession();
+	      Transaction tx = null;
+	      ArrayList<QuestDTO> quests = null;
+	      try {
+	         tx = session.beginTransaction();
+	         //quests =(ArrayList) session.createQuery(("FROM Quest where creatorid =" + creatorID)).list(); 
+	         Criteria crit = session.createCriteria(QuestDTO.class);
+				crit.add(Restrictions.eq("creatorId", creatorID));
+				// restrict to tasks associated with the creatorID
+				
+				quests = (ArrayList<QuestDTO>) crit.list();
+	         
+	         tx.commit();
+	      } catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      } finally {
+	         session.close(); 
+	      }
+		return quests;
+	   }
 
 }

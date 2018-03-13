@@ -12,11 +12,12 @@ import javax.persistence.Table;
 @Table(name = "Quest") // maps the class to the DB table specified by the name modifier
 public class QuestDTO implements Serializable {
 
-	@Id private int questId; // the specific quest generated
+	private int questId; // the specific quest generated
 	private String locationId; // Foursquare unique identifier
 	private String location; // latitude, longitude
 	private String questName; // User Entered Name
 	private String questCode; // Code for Parties to enter
+	private int creatorId; // the quest owner
 
 	public QuestDTO() {
 
@@ -74,4 +75,14 @@ public class QuestDTO implements Serializable {
 		this.questCode = questCode;
 	}
 
+	@Column
+	public int getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(int creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	
 }

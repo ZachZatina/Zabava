@@ -2,6 +2,7 @@ package com.gc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -13,7 +14,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -21,18 +21,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.gc.controller.dao.CreatorDAOImpl;
 import com.gc.controller.dao.HibernateQuestDao;
 import com.gc.controller.dao.TaskDAOImpl;
+import com.gc.model.CreatorDTO;
 import com.gc.model.QuestDTO;
 import com.gc.model.TaskDTO;
 import com.gc.utils.FourSquareDAOImpl;
 import com.gc.utils.GoogleMapsAPICred;
-import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
-import com.google.api.client.auth.oauth2.Credential.AccessMethod;
-import com.google.api.client.http.GenericUrl;
-import com.google.api.client.http.HttpExecuteInterceptor;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.JsonFactory;
 import com.gc.utils.HibernateUtil;
 
 /**
@@ -346,14 +343,30 @@ public class QuestBuilderController {
 		
 		return new ModelAndView("adminlogin","model","");
 	}
-
-	@RequestMapping("tokensignin") 
-	public ModelAndView tokenSignin(String token) {
-		System.out.println(token);
+	
+	/**
+	 * 
+	 * @param creatorString ID String from Google Token (email address)
+	 * @return Creator page with Array Table of created Quests and Creator ID
+	 */
+	@RequestMapping("creator")
+	public ModelAndView loadCreatorPage(@RequestParam("creatorstring") String creatorString, Model model) {
 		
+		System.out.println(creatorString + " QuestBuilder.loadCreatorPage");
+		//Take email string and look up creatorID
+		CreatorDAOImpl daoCreator = new CreatorDAOImpl();
+		CreatorDTO creator = daoCreator.getCreatorByEmail(creatorString);
+		int creatorID = creator.getCreatorID();
+		System.out.println(creatorID);
+		// Pass creatorid to next page
+		model.addAttribute("creatorID", creatorID);
 		
+		HibernateQuestDao daoQuest = new HibernateQuestDao();
+		ArrayList<QuestDTO> quests = new ArrayList<QuestDTO>();
+		quests = daoQuest.getQuestsByCreator(creatorID);		
 		
-		return new ModelAndView("adminlogin","message",token);
+		return new ModelAndView("creator","quests",quests);
+		
 	}
 	
 }
