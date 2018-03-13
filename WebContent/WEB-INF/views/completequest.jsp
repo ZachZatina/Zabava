@@ -8,43 +8,47 @@
 <title>Completed Quest Answers</title>
 </head>
 <body>
-	<h2>
-		<table>
-			<tr>
+
+	<h1 style="text-align: center">Congratulations on completing this
+		quest!</h1>
+		<h2>
+			<table align="center">
+				<tr>
 				<tr align="center">
-				<th>Correct Answers</th>
-			<th>Your Answers</th>
-		</tr>
-		<tr>
-		
-	
-			<tr align="center">
-			<td>
-				<table>
-					<c:forEach var="adminAnswers" items="${aAnswers}">
-						<tr>
-							<td>${adminAnswers}</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</td>
-				<td>
-					<table>
-						<c:forEach var="inputAnswers" items="${uAnswers}">
-							<tr>
-								<td>${inputAnswers}</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</td>
-			</tr>
-			
-		</table>
-	</h2>
+					<th>Correct Answers</th>
+					<th>Your Answers</th>
+				</tr>
+				<tr>
+				<tr align="center">
+					<td>
+						<table>
+							<c:forEach var="adminAnswers" items="${aAnswers}">
+								<tr>
+									<td>${adminAnswers}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</td>
+					<td>
+						<table>
+							<c:forEach var="inputAnswers" items="${uAnswers}">
+								<tr>
+									<td>${inputAnswers}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</td>
+				</tr>
+
+			</table>
+		</h2>
 	<br>
 	<br>
-	<h3>
-	<a href="http://localhost:8080/Zabava/">Try Another Quest</a>
-	</h3>
+	<div align="center">
+	<form action="http://localhost:8080/Zabava/">
+		<input type="submit" value="Try Another Quest" />
+	</form>
+	</div>
+
 </body>
 </html>
