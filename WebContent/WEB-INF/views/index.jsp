@@ -75,8 +75,9 @@
 		<br> <br>
 		<h3>
 			<form action="quest" method="post">
-				Enter your QuestCode here: <input type="text" name="code"> <input
-					type="submit" Value="Submit">
+				Enter your QuestCode here: <input type="text" name="code"
+					style="text-transform: uppercase" /> <input type="submit"
+					Value="Submit">
 			</form>
 			<br>
 		</h3>

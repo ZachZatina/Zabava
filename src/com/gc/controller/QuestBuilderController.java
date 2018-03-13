@@ -14,17 +14,18 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.gc.controller.dao.CreatorDAOImpl;
 import com.gc.controller.dao.HibernateQuestDao;
 import com.gc.controller.dao.TaskDAOImpl;
+import com.gc.model.CreatorDTO;
 import com.gc.model.QuestDTO;
 import com.gc.model.TaskDTO;
 import com.gc.utils.FourSquareDAOImpl;
@@ -322,5 +323,36 @@ public class QuestBuilderController {
 
 		return new ModelAndView("showquest", "tasks", tasks);
 	}
-
+	
+	@RequestMapping("adminlogin")
+	public ModelAndView login() {
+		
+		return new ModelAndView("adminlogin","model","");
+	}
+	
+	/**
+	 * 
+	 * @param creatorString ID String from Google Token (email address)
+	 * @return Creator page with Array Table of created Quests and Creator ID
+	 */
+	@RequestMapping("creator")
+	public ModelAndView loadCreatorPage(@RequestParam("creatorstring") String creatorString, Model model) {
+		
+		System.out.println(creatorString + " QuestBuilder.loadCreatorPage");
+		//Take email string and look up creatorID
+		CreatorDAOImpl daoCreator = new CreatorDAOImpl();
+		CreatorDTO creator = daoCreator.getCreatorByEmail(creatorString);
+		int creatorID = creator.getCreatorID();
+		System.out.println(creatorID);
+		// Pass creatorid to next page
+		model.addAttribute("creatorID", creatorID);
+		
+		HibernateQuestDao daoQuest = new HibernateQuestDao();
+		ArrayList<QuestDTO> quests = new ArrayList<QuestDTO>();
+		quests = daoQuest.getQuestsByCreator(creatorID);		
+		
+		return new ModelAndView("creator","quests",quests);
+		
+	}
+	
 }
