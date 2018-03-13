@@ -19,7 +19,6 @@ public class HibernateUtil {
 	 * Private constructor
 	 */
 	private HibernateUtil() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	/*

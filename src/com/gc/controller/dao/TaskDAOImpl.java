@@ -19,9 +19,15 @@ public class TaskDAOImpl implements TaskDAO {
 	
 	private static SessionFactory factory;
 
+	/**
+	 * 
+	 */
+	public TaskDAOImpl() {
+		factory = HibernateUtil.getSessionFactory();
+	}
+
 	@Override
 	public List<TaskDTO> getAllTasks() {
-		
 		return null;
 	}
 
@@ -29,24 +35,24 @@ public class TaskDAOImpl implements TaskDAO {
 	public TaskDTO getTask(int taskID) {
 		Session session = factory.openSession();
 		TaskDTO task = (TaskDTO)session.get(TaskDTO.class, taskID);
-		session.close();
+//		session.close();
 		return task;
 	}
 
 	@Override
 	public void saveTask(TaskDTO task) {
-		
 	}
 
 	@Override
 	public void updateTask(TaskDTO task) {
 		System.out.println(task.getLocationName());
-		try {
-	         factory = new Configuration().configure().buildSessionFactory();
-	      } catch (Throwable ex) { 
-	         System.err.println("Failed to create sessionFactory object." + ex);
-	         throw new ExceptionInInitializerError(ex); 
-	      }
+//		try {
+//	         factory = new Configuration().configure().buildSessionFactory();
+//	      } catch (Throwable ex) { 
+//	         System.err.println("Failed to create sessionFactory object." + ex);
+//	         throw new ExceptionInInitializerError(ex); 
+//	      }
+		
 		Session session = factory.openSession();
 	      Transaction tx = null;
 	      try {
@@ -58,7 +64,7 @@ public class TaskDAOImpl implements TaskDAO {
 	         if (tx!=null) tx.rollback();
 	         e.printStackTrace(); 
 	      } finally {
-	         session.close(); 
+//	         session.close(); 
 	      }	
 	}
 	
@@ -69,18 +75,18 @@ public class TaskDAOImpl implements TaskDAO {
 		try {
 			photoURL = dao.getFSImage(task.getLocationID());
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		System.out.println("PhotoURL: " + photoURL);
 		task.setTaskPhotoURL(photoURL);
 		
-		try {
-	         factory = new Configuration().configure().buildSessionFactory();
-	      } catch (Throwable ex) { 
-	         System.err.println("Failed to create sessionFactory object." + ex);
-	         throw new ExceptionInInitializerError(ex); 
-	      }
+//		try {
+//	         factory = new Configuration().configure().buildSessionFactory();
+//	      } catch (Throwable ex) { 
+//	         System.err.println("Failed to create sessionFactory object." + ex);
+//	         throw new ExceptionInInitializerError(ex); 
+//	      }
+//		
 		Session session = factory.openSession();
 	      Transaction tx = null;
 	      int taskID = 0;
@@ -93,7 +99,7 @@ public class TaskDAOImpl implements TaskDAO {
 	         if (tx!=null) tx.rollback();
 	         e.printStackTrace(); 
 	      } finally {
-	         session.close(); 
+//	         session.close(); 
 	      }
 	      return taskID;
 		
@@ -103,13 +109,14 @@ public class TaskDAOImpl implements TaskDAO {
 	@Override
 	public void deleteTask(TaskDTO task) {
 		
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-		Session session = sessionFactory.openSession();
+//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		
+		Session session = factory.openSession();
 		Transaction tx = session.beginTransaction();
 		
 		session.delete(task);
 		tx.commit();
-		session.close();
+//		session.close();
 		
 		return;	
 		

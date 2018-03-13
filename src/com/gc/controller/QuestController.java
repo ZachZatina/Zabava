@@ -36,13 +36,13 @@ public class QuestController {
 
 		SessionFactory sessFact = HibernateUtil.getSessionFactory();
 		Session sess = sessFact.openSession();
-		Transaction tx = sess.beginTransaction();
+		Transaction tx = sess.beginTransaction(); 
 		Criteria crit = sess.createCriteria(TaskDTO.class);
 		crit.add(Restrictions.eq("questID", questId));
 		// restrict to tasks associated with the questID
 		
 		ArrayList<TaskDTO> taskList = (ArrayList<TaskDTO>) crit.list();
-		tx.commit();
+		tx.commit(); 
 		sess.close();
 		return taskList;
 	}	
@@ -82,12 +82,12 @@ public class QuestController {
 			codeValid = false;
 			model.addAttribute("valid", codeValid);
 			tx.commit();
-			sess.close();
+//			sess.close();
 			return new ModelAndView("index", "failmssg", "That code is not valid. Please try again!");
 		}
 		
 		tx.commit();
-		sess.close();
+//		sess.close();
 		
 		int questId = questList.get(0).getQuestId();
 		model.addAttribute("questId", questId); // to display

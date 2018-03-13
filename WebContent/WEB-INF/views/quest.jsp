@@ -5,6 +5,7 @@
 <html>
 <head>
 
+<title>ZabavaQuest</title>
 <style>
 #map {
 	height: 400px;

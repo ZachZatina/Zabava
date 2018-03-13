@@ -7,7 +7,7 @@ import com.gc.model.QuestDTO;
 public interface QuestDao {
 	
 	/*
-	 * @author Andrew Calabro-Cavin
+	 * 
 	 * Handles all CRUD operations
 	 */
 

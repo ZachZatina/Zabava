@@ -157,15 +157,7 @@ public class QuestBuilderController {
 		return result;
 	}
 
-	@RequestMapping("select")
-	public ModelAndView questSelector(@RequestParam("lat") String lat, @RequestParam("lon") String lon,
-			@RequestParam("questName") String questName, @RequestParam("radius") int radius,
-			@RequestParam("limit") int limit, Model model) {
-		
-		
-		return new ModelAndView("adminselect", "", "");
-	}
-	
+
 	/**
 	 * 
 	 * @param lat
@@ -216,13 +208,6 @@ public class QuestBuilderController {
 			model.addAttribute("questName", questName);
 			model.addAttribute("questID", questID);
 			
-			// hide these
-			model.addAttribute("lat", lat);
-			model.addAttribute("lon", lon);
-			// radius
-			// limit
-			
-
 			/*
 			 * Create tasks for each point we're given by the FourSquare query
 			 */
@@ -280,6 +265,7 @@ public class QuestBuilderController {
 		
 		TaskDTO taskDTO = new TaskDTO();
 		taskDTO.setTaskID(taskID);
+		
 		TaskDAOImpl taskDAO = new TaskDAOImpl();
 		taskDAO.deleteTask(taskDTO);
 		
@@ -295,8 +281,8 @@ public class QuestBuilderController {
 		Criteria crit = session.createCriteria(TaskDTO.class);
 		crit.add(Restrictions.eq("questID", questID));
 		ArrayList<TaskDTO> taskList = (ArrayList<TaskDTO>) crit.list();
-		
-		session.close();
+		tx.commit(); 
+//		session.close();
 				
 		model.addAttribute("questID", questID);
 		model.addAttribute("taskID", taskID);

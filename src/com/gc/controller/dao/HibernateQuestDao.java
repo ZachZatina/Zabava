@@ -10,52 +10,55 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import com.gc.model.QuestDTO;
+import com.gc.utils.HibernateUtil;
 import com.gc.utils.QuestDao;
 import com.gc.utils.RandCharMaker;
 
 public class HibernateQuestDao implements QuestDao {
 
 	private static SessionFactory factory;
+	
+	/**
+	 * 
+	 */
+	public HibernateQuestDao() {
+		factory = HibernateUtil.getSessionFactory();
+	}
 
 	@Override
 	public List<QuestDTO> getAllQuests() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public QuestDTO getQuest(int questId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void updateQuest(QuestDTO quest) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void deleteQuest(QuestDTO quest) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void saveQuest(QuestDTO quest) {
-		// TODO Auto-generated method stub
 
 	}
 
 	public int addQuest(QuestDTO quest) {
 		System.out.println("Welcome to the HibernateQuestDAO");
 
-		try {
-			factory = new Configuration().configure().buildSessionFactory();
-		} catch (Throwable ex) {
-			System.err.println("Failed to create sessionFactory object." + ex);
-			throw new ExceptionInInitializerError(ex);
-		}
+//		try {
+//			factory = new Configuration().configure().buildSessionFactory();
+//		} catch (Throwable ex) {
+//			System.err.println("Failed to create sessionFactory object." + ex);
+//			throw new ExceptionInInitializerError(ex);
+//		}
 
 		System.out.println("QuestDAO: Step 0");
 		Session session = factory.openSession();
