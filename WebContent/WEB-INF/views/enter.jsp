@@ -12,11 +12,6 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
 	rel='stylesheet' type='text/css'>
 
-<style>
-body {
-	background: #254441;
-}
-</style>
 <title>Create Quest</title>
 </head>
 <body>
@@ -52,33 +47,21 @@ body {
 				
 			<form action="admin" method="post">
 				<br>
-				<div class="form-group">
-					<label for="street">Street:</label> <input type="text"
-						name="streetaddress" id="street" required>
-				</div>
-				<div class="form-group">
-					<label for="city">City:</label> <input type="text" name="city"
-						id="city" required>
-				</div>
-				<div class="form-group">
-					<label for="state">State:</label> <input type="text" name="state"
-						id="state" required>
-				</div>
 				
 				<div class="input-group">
 					<input id="street" type="text" class="form-control" name="streetaddress"
 						placeholder="Street address" required> <span class="input-group-addon"><i
-						class="glyphicon glyphicon-user"></i></span>
+						class="glyphicon glyphicon-road"></i></span>
 				</div>
 				<div class="input-group">
-					<input id="city" type="text" class="form-control" name="email"
-						placeholder="Email"> <span class="input-group-addon"><i
-						class="glyphicon glyphicon-user"></i></span>
+					<input id="city" type="text" class="form-control" name="city"
+						placeholder="City" required> <span class="input-group-addon"><i
+						class="glyphicon glyphicon-road"></i></span>
 				</div>
-								<div class="input-group">
-					<input id="email" type="text" class="form-control" name="email"
-						placeholder="Email"> <span class="input-group-addon"><i
-						class="glyphicon glyphicon-user"></i></span>
+				<div class="input-group">
+					<input id="state" type="text" class="form-control" name="state"
+						placeholder="State" required> <span class="input-group-addon"><i
+						class="glyphicon glyphicon-road"></i></span>
 				</div>
 				
 				<!-- 				Street: <input type="text" name="streetaddress" required><br>
@@ -86,7 +69,9 @@ body {
 				State: <input type="text" name="state" required><br> <br> -->
 
 				<input type="hidden" name="creatorid" value="${creatorID}">
-				<input type="submit" value="Submit">
+				<br>
+				
+				<input type="submit" class="btn-btn primary btn-md" value="Submit">
 			</form>
 			<c:set var="addressvalid" value="${valid}" />
 			<c:if test="${addressvalid == false }">
