@@ -62,7 +62,7 @@ public class HibernateQuestDao implements QuestDao {
 //			throw new ExceptionInInitializerError(ex);
 //		}
 
-		System.out.println("QuestDAO: Step 0");
+		
 		Session session = factory.openSession();
 		Transaction tx = null;
 		int questID = 0;

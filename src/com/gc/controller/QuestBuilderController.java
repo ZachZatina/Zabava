@@ -169,6 +169,7 @@ public class QuestBuilderController {
 	 * @param radius
 	 * @param limit
 	 * @param model
+	 * @param creatorid
 	 * @return ModelAndView
 	 * @throws IOException
 	 * Take input, make call to Foursquare to return json results
@@ -188,16 +189,17 @@ public class QuestBuilderController {
 			lat = "42.335953";
 			lon = "-83.049774";
 		}
-
+System.out.println("Builder -> CreatorID: " + creatorID);
 		/*
 		 * Build a QuestDTO object and put it in the DB, retrieving the QuestID
 		 */
 		QuestDTO quest = new QuestDTO();
+		quest.setCreatorId((Integer) creatorID);
+		//quest.setCreatorId(creatorID);
 		quest.setQuestName(questName);
 		quest.setLocation(lat + "," + lon);
 		quest.setLocationId("");
 		quest.setQuestCode(HibernateQuestDao.getQuestCode());
-		quest.setCreatorId(creatorID);
 		HibernateQuestDao questDao = new HibernateQuestDao();
 		questID = questDao.addQuest(quest);
 		if (questID == 0) {
