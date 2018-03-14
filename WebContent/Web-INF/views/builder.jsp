@@ -18,7 +18,7 @@
 <body>
 
 	<div class="container">
-		QuestID is: ${questID}
+		QuestID is: ${questName}
 		<form action="showquest" method="POST">
 			<input type="hidden" name="questID" value="${questID}">
 			<table>

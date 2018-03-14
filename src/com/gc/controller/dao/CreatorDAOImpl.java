@@ -54,7 +54,7 @@ public class CreatorDAOImpl implements CreatorDAO {
 		}
 		else {
 		creator.setEmail(email);
-		int creatorID = (int) session.save(creator);
+		int creatorID = (Integer) session.save(creator);
 		creator.setCreatorID(creatorID);
 		}
 		session.close();
@@ -86,7 +86,7 @@ public int addCreator(String email) {
 	      }
 		Session session = factory.openSession();
 	      Transaction tx = null;
-	      int creatorID = 0;
+	      Integer creatorID = 0;
 	      
 	      try {
 	         tx = session.beginTransaction();

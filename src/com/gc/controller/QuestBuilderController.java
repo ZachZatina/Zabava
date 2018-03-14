@@ -48,8 +48,9 @@ public class QuestBuilderController {
 	 * Display enter
 	 */
 	@RequestMapping("enter")
-	public ModelAndView getAddress(Model model) {
+	public ModelAndView getAddress(@RequestParam("creatorid") int creatorID, Model model) {
 		boolean addressValid = true;
+		model.addAttribute("creatorID", creatorID);
 		
 		return new ModelAndView("enter", "valid", addressValid);
 	}
@@ -67,8 +68,9 @@ public class QuestBuilderController {
 	 */
 	@RequestMapping("admin")
 	public ModelAndView admin(@RequestParam("streetaddress") String streetAddress, @RequestParam("city") String city,
-			@RequestParam("state") String state, Model model) {
+			@RequestParam("state") String state, @RequestParam("creatorid") int creatorID, Model model) {
 
+		model.addAttribute("creatorID", creatorID);
 		boolean addressValid = true;
 		
 		String MAP_KEY = GoogleMapsAPICred.MAPS_API_KEY;
@@ -167,6 +169,7 @@ public class QuestBuilderController {
 	 * @param radius
 	 * @param limit
 	 * @param model
+	 * @param creatorid
 	 * @return ModelAndView
 	 * @throws IOException
 	 * Take input, make call to Foursquare to return json results
@@ -175,7 +178,7 @@ public class QuestBuilderController {
 	@RequestMapping("builder")
 	public ModelAndView questBuilder(@RequestParam("lat") String lat, @RequestParam("lon") String lon,
 			@RequestParam("questName") String questName, @RequestParam("radius") int radius,
-			@RequestParam("limit") int limit, Model model) throws IOException {
+			@RequestParam("limit") int limit, @RequestParam("creatorid") int creatorID, Model model) throws IOException {
 
 		int questID = 0;
 		int taskID = 0;
@@ -186,11 +189,13 @@ public class QuestBuilderController {
 			lat = "42.335953";
 			lon = "-83.049774";
 		}
-
+System.out.println("Builder -> CreatorID: " + creatorID);
 		/*
 		 * Build a QuestDTO object and put it in the DB, retrieving the QuestID
 		 */
 		QuestDTO quest = new QuestDTO();
+		quest.setCreatorId((Integer) creatorID);
+		//quest.setCreatorId(creatorID);
 		quest.setQuestName(questName);
 		quest.setLocation(lat + "," + lon);
 		quest.setLocationId("");

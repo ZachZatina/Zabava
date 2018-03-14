@@ -17,7 +17,7 @@ public class QuestDTO implements Serializable {
 	private String location; // latitude, longitude
 	private String questName; // User Entered Name
 	private String questCode; // Code for Parties to enter
-	private int creatorId; // the quest owner
+	private Integer creatorId; // the quest owner
 
 	public QuestDTO() {
 
@@ -35,7 +35,7 @@ public class QuestDTO implements Serializable {
 		return questId;
 	}
 
-	public void setQuestId(int questId) {
+	public void setQuestId(Integer questId) {
 		this.questId = questId;
 	}
 
@@ -75,12 +75,12 @@ public class QuestDTO implements Serializable {
 		this.questCode = questCode;
 	}
 
-	@Column
-	public int getCreatorId() {
+	@Column(name="creatorid")
+	public Integer getCreatorId() {
 		return creatorId;
 	}
 
-	public void setCreatorId(int creatorId) {
+	public void setCreatorId(Integer creatorId) {
 		this.creatorId = creatorId;
 	}
 
