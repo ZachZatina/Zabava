@@ -13,7 +13,7 @@ h3 {
 
 body {
 	background: #f4965e;
-}
+} 
 
 .jumbotron {
 	background: #43AA8B;
@@ -61,4 +61,14 @@ body {
 }
 .navbar-inverse .navbar-nav .dropdown-menu li a:hover {
 	background: #2C463C;
+}
+
+.well-sm {
+	background: #db504A;
+	border-radius 10% 10%;
+	border: 0;
+}
+
+#code {
+	color: white;
 }

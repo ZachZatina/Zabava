@@ -13,11 +13,11 @@
 	rel='stylesheet' type='text/css'>
 
 
-<title>Admin: Create Quest</title>
+<title>Create Quest</title>
 </head>
 <body>
 	<div class="container">
-		<h1>Admin page: Create a Quest</h1>
+		<h1>Create a Quest</h1>
 		<br>
 		<br>
 		<h2>Step 1: Enter an address to serve as the starting point for

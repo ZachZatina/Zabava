@@ -16,7 +16,7 @@
 
 </head>
 <body>
-
+<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -38,6 +38,11 @@
 			</div>
 		</div>
 	</nav>
+
+      <div class="overlay clearfix no-overflow">
+                <video class="background video-placeholder" poster="https://www.youtube.com/watch?v=syBR4xiikcQ" playsinline autoplay loop>
+          <source src="https://www.youtube.com/watch?v=fmi51pYTGfI" type="video/mp4">
+        </video>
 
 	<div class="container">
 		<div class="jumbotron">
