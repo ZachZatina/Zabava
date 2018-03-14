@@ -39,28 +39,25 @@
 		</div>
 	</nav>
 
-	<div class="jumbotron">
-		<div class="container">
+	<div class="container">
+		<div class="jumbotron">
 			<h1>ZabavaQuest</h1>
 			<br>
 			<h2>Enter your QuestCode here:</h2>
 			<form action="quest" method="post">
-				<h2>
+				<p>
 					<input type="text" name="code" style="text-transform: uppercase" />
-					<!-- <input type="submit" Value="Submit"> -->
-					<input type="submit" class="btn btn-info" value="Submit Button">
-				</h2>
+					<!--  <input type="submit" Value="Submit"> -->
+					<input type="submit"
+						class="btn btn-primary" value="Submit">
+				</p>
 			</form>
-			<div class="form-group">
-				<label for="usr">Name:</label> <input type="text"
-					class="form-control" id="usr">
-			</div>
 			<br>
-			<p>
+<!-- 			<p>
 				<a class="btn btn-primary btn-lg" href="#" role="button">Download
 					Free Trial »</a> <a class="btn btn-primary btn-lg" href="#"
 					role="button">Learn more »</a>
-			</p>
+			</p> -->
 		</div>
 	</div>
 
@@ -72,8 +69,6 @@
 				<img src="resources\\mean-git.png" alt="bad job" width="50">${failmssg}</p>
 		</c:if>
 	</div>
-
-
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

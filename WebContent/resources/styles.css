@@ -1,31 +1,35 @@
 
 h2 {
-	color: red;
-	font-weight: bold;
+	color: white;
+}
+
+h3 {
+	color: black;
 }
 
 .navbar {
-	margin-bottom: 0;
+	margin-bottom: 0.9em;
 }
 
 body {
-	background: #ff9730;
+	background: #f4965e;
 }
 
 .jumbotron {
-	background: #27A967;
+	background: #43AA8B;
 	color: white;
 	text-align: center;
+	padding: 0.5em 0.6em;
 }
 .jumbotron p {
-	color: white;
+	color: black;
 	font-size: 26px;
 }
 
 .btn-primary {
 	color: #fff;
-	background-color: transparent;
-	border-color: blue;
+	background-color: #87C8B5;
+	border-color: white;
 	margin-bottom: 5px;
 }
 .btn-primary:hover {
@@ -35,7 +39,8 @@ body {
 }
 
 .navbar-inverse {
-	background: #2E2F31;
+/*  background: #2E2F31; */
+	background: #254441;
 	border: 0;
 }
 .navbar-inverse .navbar-nav li a {
@@ -43,7 +48,8 @@ body {
 	font-size: 16px;
 }
 .navbar-inverse .navbar-nav li a:hover {
-	background: #27A967;
+/*	background: #27A967; */
+	background: #b2b09b;
 }
 .dropdown-menu {
 	background: #2E2F31;
