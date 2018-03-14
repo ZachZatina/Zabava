@@ -1,5 +1,6 @@
 package com.gc.controller.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.gc.model.CreatorDTO;
 import com.gc.utils.CreatorDAO;
+import com.gc.utils.JDBCUtil;
 
 public class CreatorDAOImpl implements CreatorDAO {
 	
@@ -32,7 +34,9 @@ public class CreatorDAOImpl implements CreatorDAO {
 		return creator;
 	}
 	
-	public CreatorDTO getCreatorByEmail(String email) {
+	public CreatorDTO getCreatorByEmail(String email) throws ClassNotFoundException, SQLException {
+		
+		int creatorID;
 		System.out.println(email + " CreatorDAOImpl.getCreatorByEmail");
 		try {
 	         factory = new Configuration().configure().buildSessionFactory();
@@ -49,14 +53,23 @@ public class CreatorDAOImpl implements CreatorDAO {
 		@SuppressWarnings("unchecked")
 		ArrayList<CreatorDTO> results = (ArrayList<CreatorDTO>) cr.list();
 		int found = results.size();
+		System.out.println("Creators Found: " + found);
 		if (found == 1) {
 		creator = results.get(0);
 		}
 		else {
-		creator.setEmail(email);
-		int creatorID = (Integer) session.save(creator);
+		//creator.setEmail(email);
+		System.out.println("About to save new Creator");
+		//creatorID = (Integer) session.save(creator);
+		creatorID = JDBCUtil.addCreatorJDBC(email);
+		System.out.println("New Creator Saved");
 		creator.setCreatorID(creatorID);
+		creator.setEmail(email);
+		results = (ArrayList<CreatorDTO>) cr.list();
+		found = results.size();
+		System.out.println("Creators Found: " + found);
 		}
+		
 		session.close();
 		System.out.println("Email Search Complete: " + email);
 		return creator;

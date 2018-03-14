@@ -1,6 +1,7 @@
 package com.gc.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.http.HttpHost;
@@ -339,9 +340,11 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 	 * 
 	 * @param creatorString ID String from Google Token (email address)
 	 * @return Creator page with Array Table of created Quests and Creator ID
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
 	@RequestMapping("creator")
-	public ModelAndView loadCreatorPage(@RequestParam("creatorstring") String creatorString, Model model) {
+	public ModelAndView loadCreatorPage(@RequestParam("creatorstring") String creatorString, Model model) throws ClassNotFoundException, SQLException {
 		
 		System.out.println(creatorString + " QuestBuilder.loadCreatorPage");
 		//Take email string and look up creatorID
