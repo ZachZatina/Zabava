@@ -9,7 +9,6 @@
 </head>
 <body>
 
-CreatorID is: ${creatorID}
 		
 		<table>
 			<tr>
@@ -30,5 +29,10 @@ CreatorID is: ${creatorID}
 
 		</table>
 
+
+<form action="enter" method="post">
+<input type="hidden" name="creatorid" value="${creatorID}">
+<input type="submit" name="Make New Quest">
+</form>
 </body>
 </html>

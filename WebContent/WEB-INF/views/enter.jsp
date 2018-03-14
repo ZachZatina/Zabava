@@ -26,6 +26,7 @@
 			<br> Street: <input type="text" name="streetaddress" required><br>
 			City: <input type="text" name="city" required><br>
 			State: <input type="text" name="state" required><br> <br>
+			<input type="hidden" name="creatorid" value="${creatorID}">
 			<input type="submit" value="Submit">
 		</form>
 		<c:set var="addressvalid" value="${valid}" />

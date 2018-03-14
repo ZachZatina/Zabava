@@ -28,6 +28,7 @@
 
 	<form action="builder" method="post">
 		<!-- FIXME: need to pass these values in from enter page, until we can read from the map -->
+		<input type="hidden" name="creatorid" value="${creatorID}">
 		<input type="hidden" name="lat" value="${lat}"> <input
 			type="hidden" name="lon" value="${lng}"> Give your Quest a
 		name: <input type="text" name="questName" required><br>
