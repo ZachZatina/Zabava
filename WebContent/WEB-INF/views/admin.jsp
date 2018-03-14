@@ -11,7 +11,7 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
 	rel='stylesheet' type='text/css'>
 
-<title>Admin Create Quest</title>
+<title>Create Quest</title>
 <style>
 #map {
 	height: 400px;
@@ -20,10 +20,10 @@
 </style>
 </head>
 <body>
-	<h1>Admin page: Create a Quest</h1>
+	<h1>Create a Quest</h1>
 	<br>
 	<br>
-	<h2>Step 2: Enter Quest details</h2>
+	<h2>Step 2: Enter Quest Details</h2>
 	<br>
 
 	<form action="builder" method="post">
