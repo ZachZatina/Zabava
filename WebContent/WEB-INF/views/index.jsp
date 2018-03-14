@@ -4,16 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- Add this for bootstrap; set utf-8; and add scripts at bottom of body -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link href="resources\\styles.css" rel="stylesheet" />
+<link href="resources\\styles.css" rel="stylesheet" /> <!-- links to our stylesheet -->
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
 	rel='stylesheet' type='text/css'>
-<link rel="image_src" href="https://s-i.huffpost.com/gen/1878403/images/o-DETROIT-facebook.jpg" />
-<meta itemprop="image" content="https://s-i.huffpost.com/gen/1878403/images/o-DETROIT-facebook.jpg" />
+<!-- <link rel="image_src" href="https://s-i.huffpost.com/gen/1878403/images/o-DETROIT-facebook.jpg" />
+<meta itemprop="image" content="https://s-i.huffpost.com/gen/1878403/images/o-DETROIT-facebook.jpg" /> -->
 
 <title>ZabavaQuest Home</title>
 
@@ -45,7 +47,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">About</a></li>
-					<li><a href="enter">Create</a></li>
+					<li><a href="https://zabavaquest.com/adminlogin">Create</a></li>
 				</ul>
 			</div>
 		</div>
@@ -76,6 +78,7 @@
 		</c:if>
 	</div>
 
+<!-- add these for Bootstrap -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
