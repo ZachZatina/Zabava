@@ -65,6 +65,8 @@
 
 							<tr>
 								<input type="hidden" name="taskID" value="${myVar.taskID}">
+								<input type="hidden" name="questcode" value="${questcode}">
+
 								<!-- added double quotes -->
 								<%--  <input type="hidden" path="${myVar.questID}"> --%>
 
@@ -121,7 +123,7 @@
 										<tr>
 											<td class="itembuilder"><a
 												class="btn btn-primary btn-md"
-												href="delete?taskandquest=${myVar.taskID},${questID},${questName}"
+												href="delete?taskandquest=${myVar.taskID},${questID},${questName},${questcode}"
 												role="button">Delete this item</a></td>
 										</tr>
 										</tr>
