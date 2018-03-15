@@ -41,52 +41,56 @@
 	</nav>
 
 	<div class="container">
-	<div class="well well-sm">
-			<h3>You are currently editing QuestName: <span id="code">${questName}</span></h3>
-		</div>
-		<br>
-		<center><img src="./resources/Powered-by-Foursquare-black-300.png"></center>
-					<div class="panel panel-default">
-				<div class="panel-body">
-		<form action="showquest" method="POST">
-			<input type="hidden" name="questID" value="${questID}">
-			<table>
 
-				<tr>
-					<th></th>
-					<th></th>
-				</tr>
+		<div class="editing-well">
 
-				<c:forEach var="myVar" items="${tasks}" varStatus="status">
+			<h3>
+				You are currently editing QuestName: <span id="code">${questName}</span>
+			</h3>
 
-					<tr>
-						<input type="hidden" name="taskID" value="${myVar.taskID}">
-						<!-- added double quotes -->
-						<%--  <input type="hidden" path="${myVar.questID}"> --%>
+</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form action="showquest" method="POST">
+					<input type="hidden" name="questID" value="${questID}">
+					<table>
 
-						<td class="itembuilder"><img class="imagebuilder" src="${myVar.taskPhotoURL}"></td>
+						<tr>
+							<th></th>
+							<th></th>
+						</tr>
 
-						<td>
-							<table>
-								<tr>
-									<td class="itembuilder">
-										<h3>${myVar.locationName}</h3>
-									</td>
-									
-								</tr>
+						<c:forEach var="myVar" items="${tasks}" varStatus="status">
 
-								<tr>
-									<form>
-										<td class="itembuilder"><input checked="checked" type="radio"
-											name="formType" value="question"
-											onclick="document.getElementById('${status.count}a').style.visibility = 'visible';document.getElementById('${status.count}b').style.visibility = 'visible';document.getElementById('${status.count}b').placeholder = 'Answer to the Question ';document.getElementById('${status.count}a').value = '';">Question & 
-											Answer
-										<input type="radio" name="formType"
-											value="image"
-											onclick="document.getElementById('${status.count}a').style.visibility = 'hidden';document.getElementById('${status.count}b').style.visibility = 'hidden';document.getElementById('${status.count}a').value = 'Take a photo of this landmark, upload it to your favorite image sharing site, and paste link here: ';document.getElementById('${status.count}b').value = '';">Request a Photo</td>
+							<tr>
+								<input type="hidden" name="taskID" value="${myVar.taskID}">
+								<!-- added double quotes -->
+								<%--  <input type="hidden" path="${myVar.questID}"> --%>
 
-									</form>
-									<%-- 									<form>
+								<td class="itembuilder"><img class="imagebuilder"
+									src="${myVar.taskPhotoURL}"></td>
+
+								<td>
+									<table>
+										<tr>
+											<td class="itembuilder">
+												<h3>${myVar.locationName}</h3>
+											</td>
+
+										</tr>
+
+										<tr>
+											<form>
+												<td class="itembuilder"><input checked="checked"
+													type="radio" name="formType" value="question"
+													onclick="document.getElementById('${status.count}a').style.visibility = 'visible';document.getElementById('${status.count}b').style.visibility = 'visible';document.getElementById('${status.count}b').placeholder = 'Answer to the Question ';document.getElementById('${status.count}a').value = '';">Question
+													& Answer <input type="radio" name="formType" value="image"
+													onclick="document.getElementById('${status.count}a').style.visibility = 'hidden';document.getElementById('${status.count}b').style.visibility = 'hidden';document.getElementById('${status.count}a').value = 'Take a photo of this landmark, upload it to your favorite image sharing site, and paste link here: ';document.getElementById('${status.count}b').value = '';">Request
+													a Photo</td>
+
+											</form>
+											<%-- 									<form>
 										<td class="item"><input checked="checked" type="radio"
 											name="formType" value="question"
 											onclick="document.getElementById('${status.count}a').style.visibility = 'visible';document.getElementById('${status.count}b').placeholder = 'Answer to the Question ';document.getElementById('${status.count}a').value = '';">Question
@@ -96,47 +100,65 @@
 											onclick="document.getElementById('${status.count}a').style.visibility = 'hidden';document.getElementById('${status.count}b').placeholder = 'Link to your Photo ';document.getElementById('${status.count}a').value = 'Link to your Photo ';">Image</td>
 										<br>
 									</form> --%>
-								</tr>
-								<tr>
+										</tr>
+										<tr>
 
-									<td class="itembuilder">
-										<div class="input-group">
-											<input id=${status.count}a type="text" class="form-control"
-												name="taskdesc" placeholder="Question for participant">
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="itembuilder">
-										<div class="input-group">
-											<input id=${status.count}b type="text" class="form-control"
-												name="taskanswer" placeholder="Desired Answer">
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="itembuilder"><a class="btn btn-primary btn-md"
-										href="delete?taskandquest=${myVar.taskID},${questID}"
-										role="button">Delete this item</a></td>
-								</tr>
-								</tr>
-								</tr>
+											<td class="itembuilder">
+												<div class="input-group">
+													<input id=${status.count}a type="text" class="form-control"
+														name="taskdesc" placeholder="Question for participant">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="itembuilder">
+												<div class="input-group">
+													<input id=${status.count}b type="text" class="form-control"
+														name="taskanswer" placeholder="Desired answer">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="itembuilder"><a
+												class="btn btn-primary btn-md"
+												href="delete?taskandquest=${myVar.taskID},${questID},${questName}"
+												role="button">Delete this item</a></td>
+										</tr>
+										</tr>
+										</tr>
 
-							</table>
-						</td>
-					</tr>
+									</table>
+								</td>
+							</tr>
+							</div>
+							</div>
+						</c:forEach>
+
+					</table>
+					<!-- 					<div class="well-container-edit">
+						<div class="editing-well">
+							<h3>Click to store your questions and answers</h3>
+							<input type="submit" class="btn btn-primary btn-md"
+								value="Submit">
+						</div>
+					</div> -->
+					<div class="well well-sm">
+						<h3>Click to store your questions and answers</h3>
+						<input type="submit" class="btn btn-primary btn-md" value="Submit">
 					</div>
-					</div>
-				</c:forEach>
 
-			</table>
-			<h3>Click submit to store your questions and answers</h3>
-			<input type="submit" name="Submit">
-		</form>
-	</div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+					<!-- 					<h3>Click submit to store your questions and answers</h3>
+					<input type="submit" name="Submit"> -->
+
+				</form>
+				<center>
+					<img src="./resources/Powered-by-Foursquare-black-300.png">
+				</center>
+
+			</div>
+			<script
+				src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script
+				src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -257,12 +257,13 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 	public ModelAndView selectTasks(@RequestParam("taskandquest") String taskAndQuest,  Model model) {
 		
 		/*
-		 * takes the string containing taskID and QuestID, parses and converts to int
+		 * takes the string containing taskID, QuestID, and questName, parses, converts to int if neccessary
 		 */
 		String parts[] = taskAndQuest.split(",");
 		System.out.println(parts.length);
 		String taskIDstr = parts[0];
 		String questIDstr = parts[1];
+		String questName = parts[2];
 		int taskID = Integer.parseInt(taskIDstr);
 		int questID = Integer.parseInt(questIDstr);
 		
@@ -293,6 +294,7 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 				
 		model.addAttribute("questID", questID);
 		model.addAttribute("taskID", taskID);
+		model.addAttribute("questName", questName);
 				
 		return new ModelAndView("builder", "tasks", taskList);
 	}

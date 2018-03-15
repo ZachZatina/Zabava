@@ -43,6 +43,8 @@
 		</div>
 	</nav>
 
+<!-- Display -->
+
 	<div class="container">
 		<div class="jumbotron">
 			<h1>Create a Quest</h1>
