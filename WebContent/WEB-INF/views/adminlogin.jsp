@@ -6,8 +6,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="740412392638-gqhd6ch0lrtml78nvtdoa0h7318nvcts.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id"
+	content="740412392638-gqhd6ch0lrtml78nvtdoa0h7318nvcts.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="resources\\styles.css" rel="stylesheet" />
@@ -17,39 +18,40 @@
 </head>
 <body>
 
-<!-- Navigation -->
+	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-static-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="./">ZabavaQuest</a>
-			</div>
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">About</a></li>
-					<li><a href="https://zabavaquest.com/adminlogin">Create</a></li>
-				</ul>
-			</div>
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="./">ZabavaQuest</a>
 		</div>
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="https://zabavaquest.com/adminlogin">Create</a></li>
+				<li><a href="about">About</a></li>
+			</ul>
+		</div>
+	</div>
 	</nav>
 
-	<center><script src="https://apis.google.com/js/platform.js?onload=init" async
-		defer></script>
-	<script>function init() {
+	<center>
+		<script src="https://apis.google.com/js/platform.js?onload=init" async
+			defer></script>
+		<script>function init() {
 	  gapi.load('auth2', function() {  });
 	  document.getElementById('button').style.visibility='hidden';
 	  }
 	  </script>
 
-<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    <script>
+		<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+		<script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
@@ -69,8 +71,8 @@
       };
     </script>
 
-	<script src="https://smartlock.google.com/client"></script>
-	<script>	
+		<script src="https://smartlock.google.com/client"></script>
+		<script>	
     window.onGoogleYoloLoad = (googleyolo) => {
       googleyolo.hint({
         supportedAuthMethods: [
@@ -108,20 +110,19 @@
       };
        
   </script>
-  
-  <br>
-  <br>
-  
-  
-  
-  
-	<form action="creator" method="post" id="button">
-	<input type="hidden" name="creatorstring" id="creatorstring" value="">
-	<input type="submit" value="Proceed to Creator Page"> 
-	</form>
-</center>
 
-<script
+		<br> <br>
+
+
+
+
+		<form action="creator" method="post" id="button">
+			<input type="hidden" name="creatorstring" id="creatorstring" value="">
+			<input type="submit" value="Proceed to Creator Page">
+		</form>
+	</center>
+
+	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

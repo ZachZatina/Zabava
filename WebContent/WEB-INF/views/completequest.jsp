@@ -15,7 +15,7 @@
 <title>Completed Quest Answers</title>
 </head>
 <body>
-<!-- Navigation -->
+	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -31,8 +31,8 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">About</a></li>
 					<li><a href="https://zabavaquest.com/adminlogin">Create</a></li>
+					<li><a href="about">About</a></li>
 				</ul>
 			</div>
 		</div>

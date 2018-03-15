@@ -15,8 +15,6 @@
 <!-- links to our stylesheet -->
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
 	rel='stylesheet' type='text/css'>
-<!-- <link rel="image_src" href="https://s-i.huffpost.com/gen/1878403/images/o-DETROIT-facebook.jpg" />
-<meta itemprop="image" content="https://s-i.huffpost.com/gen/1878403/images/o-DETROIT-facebook.jpg" /> -->
 
 <title>ZabavaQuest Home</title>
 
@@ -43,13 +41,13 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="./">ZabavaQuest</a>
+					<a class="navbar-brand" href="#">ZabavaQuest</a>
 				</div>
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="https://zabavaquest.com/adminlogin">Create</a></li>
-						<li><a href="About.jsp">About</a></li>
+						<li><a href="about">About</a></li>
 					</ul>
 				</div>
 			</div>

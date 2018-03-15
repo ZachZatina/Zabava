@@ -31,8 +31,8 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">About</a></li>
 					<li><a href="https://zabavaquest.com/adminlogin">Create</a></li>
+					<li><a href="about">About</a></li>
 				</ul>
 			</div>
 		</div>
@@ -44,30 +44,32 @@
 			<br> <br>
 			<h2>Step 1: Enter an address to serve as the starting point for
 				your Quest.</h2>
-				
+
 			<form action="admin" method="post">
 				<br>
-				
+
 				<div class="input-group">
-					<input id="street" type="text" class="form-control" name="streetaddress"
-						placeholder="Street address" required> <span class="input-group-addon"><i
+					<input id="street" type="text" class="form-control"
+						name="streetaddress" placeholder="Street address" required>
+					<span class="input-group-addon"><i
 						class="glyphicon glyphicon-road"></i></span>
 				</div>
 				<div class="input-group">
 					<input id="city" type="text" class="form-control" name="city"
-						placeholder="City" required> <span class="input-group-addon"><i
+						placeholder="City" required> <span
+						class="input-group-addon"><i
 						class="glyphicon glyphicon-road"></i></span>
 				</div>
 				<div class="input-group">
 					<input id="state" type="text" class="form-control" name="state"
-						placeholder="State" required> <span class="input-group-addon"><i
+						placeholder="State" required> <span
+						class="input-group-addon"><i
 						class="glyphicon glyphicon-road"></i></span>
 				</div>
-				
+
 				<input type="hidden" name="creatorid" value="${creatorID}">
-				<br>
-				
-				<input type="submit" class="btn btn-primary btn-md" value="Submit">
+				<br> <input type="submit" class="btn btn-primary btn-md"
+					value="Submit">
 			</form>
 			<c:set var="addressvalid" value="${valid}" />
 			<c:if test="${addressvalid == false }">
