@@ -24,17 +24,22 @@
 <body>
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-static-top">
+		
 		<div class="container">
+			
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
 					aria-expanded="false">
+					
 					<span class="sr-only">Toggle navigation</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="./">ZabavaQuest</a>
+				
 			</div>
+			
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
@@ -42,12 +47,11 @@
 					<li><a href="https://zabavaquest.com/adminlogin">Create</a></li>
 				</ul>
 			</div>
+		<h4 class="qc">Questcode: ${code}</h4>
 		</div>
 	</nav>
-	<div class="container">
-		<div class="well well-sm">
-			<h3>QuestCode: <span id="code">${code}</span></h3>
-		</div>
+ 	<div class="container">
+		
 	</div>
 	<br>
 	<div id="map"></div>
@@ -101,7 +105,7 @@
 			</c:forEach>
 		</table>
 
-		<input type="submit" value="Submit">
+		<input class="btn btn-primary" type="submit" value="Submit">
 	</form>
 	<img src="./resources/Powered-by-Foursquare-black-300.png">
 	</div>
