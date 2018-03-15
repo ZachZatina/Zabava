@@ -68,7 +68,9 @@ public class QuestController {
 	public ModelAndView map(@RequestParam("code") String code, Model model) {
 
 		boolean codeValid = true;
+		code = code.toUpperCase();
 		model.addAttribute("code", code); // to display
+		
 		
 		SessionFactory sessFact = HibernateUtil.getSessionFactory();
 		Session sess = sessFact.openSession();
