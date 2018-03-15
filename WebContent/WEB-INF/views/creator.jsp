@@ -39,7 +39,6 @@
 
 	<br>
 
-<
 <center>
 <form action="enter" method="post">
 <input type="hidden" name="creatorid" value="${creatorID}">
