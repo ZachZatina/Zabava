@@ -1,6 +1,6 @@
 .table-hover {
 	text-align: center;
-	width: 50%;
+	width: 100%;
 }
 .table-bordered {
 	border: 50px;
@@ -17,7 +17,12 @@ h3 {
 .navbar {
 	margin-bottom: 0.9em;
 }
-
+.qc {
+	color: red;
+	text-align: center;
+	padding: 0px;
+	
+}
 body {
 	background: #B2B09B;
 } 
@@ -78,6 +83,8 @@ body {
 }
 
 .well-sm {
+	background: #db504A;
+	/*border-radius 10% 10%; */
 	background: #254441;
 	border-radius 10% 10%;
 	border: 0;
@@ -213,4 +220,11 @@ body {
   .video-foreground,
 .video-background iframe  { display: block; }
 #indexdiv { background-image: none; }
+}
+
+.table-bordered th {
+	padding: 3px;
+}
+.table-bordered td {
+	padding: 3px;
 }

@@ -43,13 +43,15 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index">ZabavaQuest</a>
+
+					<a class="navbar-brand" href="./">ZabavaQuest</a>
 				</div>
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">About</a></li>
+
 						<li><a href="https://zabavaquest.com/adminlogin">Create</a></li>
+						<li><a href="About.jsp">About</a></li>
 					</ul>
 				</div>
 			</div>
@@ -71,6 +73,7 @@
 			</div>
 		</div>
 
+		<!-- 		<div style="text-align: center"> -->
 
 		<c:set var="codevalid" value="${valid}" />
 		<c:if test="${codevalid == false}">
