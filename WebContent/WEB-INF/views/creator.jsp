@@ -42,8 +42,9 @@
 <center>
 <form action="enter" method="post">
 <input type="hidden" name="creatorid" value="${creatorID}">
-<input type="submit" value="Make New Quest">
+<input class= "btn btn-primary" type="submit" value="Make New Quest">
 </form>
+<br>
 </center>
 
 <center>
