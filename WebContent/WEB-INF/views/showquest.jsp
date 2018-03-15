@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<table>
+	<table class="table-bordered">
 		<tr>
 			<th>Venue Name</th>
 			<th>Address</th>

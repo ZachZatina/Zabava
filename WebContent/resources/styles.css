@@ -200,3 +200,10 @@ body {
 .video-background iframe  { display: block; }
 #indexdiv { background-image: none; }
 }
+
+.table-bordered th {
+	padding: 3px;
+}
+.table-bordered td {
+	padding: 3px;
+}
