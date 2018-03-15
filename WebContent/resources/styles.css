@@ -17,7 +17,13 @@ h3 {
 .navbar {
 	margin-bottom: 0.9em;
 }
-
+.qc {
+	color: red;
+	text-align: center;
+	height: 0px;
+	padding: 0px;
+	
+}
 body {
 	background: #B2B09B;
 } 
@@ -73,7 +79,7 @@ body {
 
 .well-sm {
 	background: #db504A;
-	border-radius 10% 10%;
+	/*border-radius 10% 10%; */
 	border: 0;
 }
 
