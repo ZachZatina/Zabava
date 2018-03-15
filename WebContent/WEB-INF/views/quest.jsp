@@ -87,10 +87,10 @@
 	</script>
 	<script async defer src="${mScript}">
 	</script>
-
+	<div class="questBox" align="center">
 	<form action="completequest" method="post">
 		<input type="hidden" name="questId" value="${questId}">
-		<table>
+		<table class="table-hover table-bordered">
 			<c:forEach var="task" items="${tList}" varStatus="counter">
 				<tr>
 					<td>${counter.count}.${task.locationName}<br>
@@ -103,7 +103,7 @@
 
 		<input type="submit" value="Submit">
 	</form>
-
+	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
