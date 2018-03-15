@@ -38,11 +38,17 @@
 	</nav>
 
 <br>
-<center><form action="enter" method="post">
+
+<center>
+<form action="enter" method="post">
 <input type="hidden" name="creatorid" value="${creatorID}">
 <input type="submit" value="Make New Quest">
 </form>
+</center>
 
+<center>
+<div class="container">
+		<div class="jumbotron">
 		<br>
 		<div class="questBox" align="center"><table>
 			<tr>
@@ -59,6 +65,8 @@
 
 		</table>
 		</center>
+		</div>
+		</div>
 		</div>
 		<center><img src="./resources/Powered-by-Foursquare-black-300.png"></center>
 		
