@@ -15,7 +15,7 @@
 <title>Completed Quest Answers</title>
 </head>
 <body>
-<!-- Navigation -->
+	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -37,47 +37,57 @@
 			</div>
 		</div>
 	</nav>
+	<div class="container">
+		<div class="jumbotron quest">
+			<h1 style="text-align: center">Congratulations on completing
+				this quest!</h1>
+			<h2>
+				<table align="center">
+					<!-- <tr> -->
+					<tr align="center">
+						<th>
+							<div class="completelist" align="center">Correct Answers</div>
+						<th>
+							<div class="completelist" align="center">Your Answers</div>
+						</th>
+					</tr>
+					<!-- <tr> -->
+					<tr align="center">
+						<td>
+							<div class="completelist" align="center">
+								<table>
+									<c:forEach var="adminAnswers" items="${aAnswers}">
+										<tr>
+											<td>${adminAnswers}</td>
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+						</td>
+						<td>
+							<div class="completelist" align="center">
+								<table>
+									<c:forEach var="inputAnswers" items="${uAnswers}">
+										<tr>
+											<td>${inputAnswers}</td>
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+						</td>
+					</tr>
 
-	<h1 style="text-align: center">Congratulations on completing this
-		quest!</h1>
-	<h2>
-		<table align="center">
-			<tr>
-			<tr align="center">
-				<th>Correct Answers</th>
-				<th>Your Answers</th>
-			</tr>
-			<tr>
-			<tr align="center">
-				<td>
-					<table>
-						<c:forEach var="adminAnswers" items="${aAnswers}">
-							<tr>
-								<td>${adminAnswers}</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</td>
-				<td>
-					<table>
-						<c:forEach var="inputAnswers" items="${uAnswers}">
-							<tr>
-								<td>${inputAnswers}</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</td>
-			</tr>
+				</table>
+			</h2>
+			<br> <br>
 
-		</table>
-	</h2>
-	<br>
-	<br>
-
-	<div align="center">
-		<form action="./" method="post">
-			<input type="submit" value="Try Another Quest" />
-		</form>
+			<div align="center">
+				<form action="./" method="post">
+					<input type="submit" class="btn btn-primary"
+						value="Try Another Quest" />
+				</form>
+			</div>
+		</div>
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

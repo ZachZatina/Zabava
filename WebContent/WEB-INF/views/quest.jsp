@@ -46,12 +46,21 @@
 	</nav>
 	<div class="container">
 		<div class="well well-sm">
-			<h3>QuestCode: <span id="code">${code}</span></h3>
+			<h3>
+				QuestCode: <span id="code">${code}</span>
+			</h3>
 		</div>
 	</div>
 	<br>
 	<div id="map"></div>
-	<script>
+	
+	<!-- added jumbotron quest -->
+	<div class="container">
+		<div class="jumbotron quest">
+		<!-- end -->
+
+
+			<script>
 	function initMap() {
 		bounds  = new google.maps.LatLngBounds();
 		var i = 1;
@@ -85,25 +94,28 @@
 	</c:forEach>			
 	}  
 	</script>
-	<script async defer src="${mScript}">
+			<script async defer src="${mScript}">
 	</script>
-	<div class="questBox" align="center">
-	<form action="completequest" method="post">
-		<input type="hidden" name="questId" value="${questId}">
-		<table class="table-hover table-bordered">
-			<c:forEach var="task" items="${tList}" varStatus="counter">
-				<tr>
-					<td>${counter.count}.${task.locationName}<br>
-						${task.taskDesc}<br> <input type="text" name="input"
-						maxlength="50"> <br> <br>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
+			<div class="questBox" align="center">
+				<form action="completequest" method="post">
+					<input type="hidden" name="questId" value="${questId}">
+					<table class="table-hover table-bordered">
+						<c:forEach var="task" items="${tList}" varStatus="counter">
+							<tr>
+								<td>${counter.count}.${task.locationName}<br>
+									${task.taskDesc}<br> <input type="text" name="input"
+									maxlength="50"> <br> <br>
+								</td>
+							</tr>
+						</c:forEach>
+					</table>
 
-		<input type="submit" value="Submit">
-	</form>
-	<img src="./resources/Powered-by-Foursquare-black-300.png">
+					<input type="submit" value="Submit">
+				</form>
+			</div>
+		</div>
+		<img src="./resources/Powered-by-Foursquare-black-300.png">
+
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
