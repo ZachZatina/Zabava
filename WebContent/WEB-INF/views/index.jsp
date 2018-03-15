@@ -20,7 +20,8 @@
 <title>ZabavaQuest Home</title>
 
 </head>
-<body id="indexbody">
+<body>
+<div id="indexdiv">
 
 	<div class="video-background">
 		<div class="video-foreground">
@@ -83,5 +84,6 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>

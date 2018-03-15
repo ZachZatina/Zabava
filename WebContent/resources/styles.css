@@ -5,9 +5,7 @@
 .table-bordered {
 	border: 50px;
 }
-.questBox {
-	width: 75%;
-}
+
 h2 {
 	color: white;
 }
@@ -116,7 +114,7 @@ body {
 
 /* -- index.jsp -- */
 
-#indexbody {
+#indexdiv {
 	background-image: url("https://s-i.huffpost.com/gen/1878403/images/o-DETROIT-facebook.jpg");
 	background-color: black;
 }
@@ -146,9 +144,9 @@ body {
   pointer-events: none;
 }
 
-@media (min-aspect-ratio: 16/9) {
-  .video-foreground { height: 300%; top: -100%; }
+@media (min-width: 480px) {
+  .video-foreground { height: 300%; top: -100%; display: none }
 }
-@media (max-aspect-ratio: 16/9) {
-  .video-foreground { width: 300%; left: -100%; }
+@media (max-width: 480px) {
+  .video-foreground { width: 300%; left: -100%; display: none }
 }

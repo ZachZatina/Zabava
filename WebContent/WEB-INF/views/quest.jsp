@@ -33,7 +33,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index">ZabavaQuest</a>
+				<a class="navbar-brand" href="./">ZabavaQuest</a>
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
@@ -103,6 +103,7 @@
 
 		<input type="submit" value="Submit">
 	</form>
+	<img src="./resources/Powered-by-Foursquare-black-300.png">
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
