@@ -179,7 +179,7 @@ public class QuestBuilderController {
 	@RequestMapping("builder")
 	public ModelAndView questBuilder(@RequestParam("lat") String lat, @RequestParam("lon") String lon,
 			@RequestParam("questName") String questName, @RequestParam("radius") int radius,
-			@RequestParam("limit") int limit, @RequestParam("creatorid") int creatorID, Model model) throws IOException {
+			@RequestParam("limit") int limit, @RequestParam("creatorid") int creatorID, @RequestParam("questcode") String questCode, Model model) throws IOException {
 
 		int questID = 0;
 		int taskID = 0;
@@ -214,6 +214,7 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 			 */
 			model.addAttribute("questName", questName);
 			model.addAttribute("questID", questID);
+			model.addAttribute("questCode", questCode);
 			
 			/*
 			 * Create tasks for each point we're given by the FourSquare query
@@ -254,7 +255,7 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 	 * @return
 	 */
 	@RequestMapping("delete")
-	public ModelAndView selectTasks(@RequestParam("taskandquest") String taskAndQuest,  Model model) {
+	public ModelAndView selectTasks(@RequestParam("taskandquest") String taskAndQuest, @RequestParam("questcode") String questCode,  Model model) {
 		
 		/*
 		 * takes the string containing taskID, QuestID, and questName, parses, converts to int if neccessary
@@ -295,6 +296,7 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 		model.addAttribute("questID", questID);
 		model.addAttribute("taskID", taskID);
 		model.addAttribute("questName", questName);
+		model.addAttribute("questCode", questCode);
 				
 		return new ModelAndView("builder", "tasks", taskList);
 	}
@@ -309,7 +311,7 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 	 */
 	@RequestMapping("showquest")
 	public ModelAndView showQuest(@RequestParam("taskID") String[] taskIDs, @RequestParam("taskdesc") String[] taskNames,
-			@RequestParam("taskanswer") String[] answers) {
+			@RequestParam("taskanswer") String[] answers, @RequestParam("questcode") String questCode, Model model) {
 
 		ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
 		TaskDAOImpl dao = new TaskDAOImpl();
@@ -328,7 +330,7 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 			tasks.add(task);
 
 		}
-
+		model.addAttribute("questCode", questCode);
 		return new ModelAndView("showquest", "tasks", tasks);
 	}
 	
