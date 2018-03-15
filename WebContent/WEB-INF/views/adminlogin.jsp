@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -28,7 +28,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index">ZabavaQuest</a>
+				<a class="navbar-brand" href="./">ZabavaQuest</a>
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
@@ -117,8 +117,13 @@
   
 	<form action="creator" method="post" id="button">
 	<input type="hidden" name="creatorstring" id="creatorstring" value="">
-	<input type="submit" value="Proceed to Admin Page"> 
+	<input type="submit" value="Proceed to Creator Page"> 
 	</form>
 </center>
+
+<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

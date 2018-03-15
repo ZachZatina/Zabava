@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<!-- Navigation -->
+	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -41,44 +41,92 @@
 	</nav>
 
 	<div class="container">
-		QuestName is: ${questName}
+	<div class="well well-sm">
+			<h3>You are currently editing QuestName: <span id="code">${questName}</span></h3>
+		</div>
+		<br>
+		<center><img src="./resources/Powered-by-Foursquare-black-300.png"></center>
+					<div class="panel panel-default">
+				<div class="panel-body">
 		<form action="showquest" method="POST">
 			<input type="hidden" name="questID" value="${questID}">
 			<table>
 
 				<tr>
-					<th>Venue Name</th>
-					<th>Question</th>
-					<th>Answer</th>
 					<th></th>
-					<th>Delete</th>
+					<th></th>
 				</tr>
 
 				<c:forEach var="myVar" items="${tasks}" varStatus="status">
+
 					<tr>
 						<input type="hidden" name="taskID" value="${myVar.taskID}">
 						<!-- added double quotes -->
 						<%--  <input type="hidden" path="${myVar.questID}"> --%>
-						<td>${myVar.locationName}</td>
-						<td><input id=${status.count}a type="text" name="taskdesc"
-							placeholder="Question to Answer"></td>
-						<td><input id=${status.count}b type="text" name="taskanswer"
-							placeholder="Answer to the Question"></td>
-						<td><img src="${myVar.taskPhotoURL}"></td>
-						<td><a class="btn btn-primary btn-lg"
-							href="delete?taskandquest=${myVar.taskID},${questID}"
-							role="button">Delete</a></td>
-						<form>
-							<td><input checked="checked" type="radio" name="formType"
-								value="question"
-								onclick="document.getElementById('${status.count}a').style.visibility = 'visible';document.getElementById('${status.count}b').placeholder = 'Answer to the Question ';document.getElementById('${status.count}a').value = '';">Question
-								Answer</td>
-							<br>
-							<td><input type="radio" name="formType" value="image"
-								onclick="document.getElementById('${status.count}a').style.visibility = 'hidden';document.getElementById('${status.count}b').placeholder = 'Link to your Photo ';document.getElementById('${status.count}a').value = 'Link to your Photo ';">Image</td>
-							<br>
-						</form>
+
+						<td class="itembuilder"><img class="imagebuilder" src="${myVar.taskPhotoURL}"></td>
+
+						<td>
+							<table>
+								<tr>
+									<td class="itembuilder">
+										<h3>${myVar.locationName}</h3>
+									</td>
+									
+								</tr>
+
+								<tr>
+									<form>
+										<td class="itembuilder"><input checked="checked" type="radio"
+											name="formType" value="question"
+											onclick="document.getElementById('${status.count}a').style.visibility = 'visible';document.getElementById('${status.count}b').style.visibility = 'visible';document.getElementById('${status.count}b').placeholder = 'Answer to the Question ';document.getElementById('${status.count}a').value = '';">Question & 
+											Answer
+										<input type="radio" name="formType"
+											value="image"
+											onclick="document.getElementById('${status.count}a').style.visibility = 'hidden';document.getElementById('${status.count}b').style.visibility = 'hidden';document.getElementById('${status.count}a').value = 'Take a photo of this landmark, upload it to your favorite image sharing site, and paste link here: ';document.getElementById('${status.count}b').value = '';">Request a Photo</td>
+
+									</form>
+									<%-- 									<form>
+										<td class="item"><input checked="checked" type="radio"
+											name="formType" value="question"
+											onclick="document.getElementById('${status.count}a').style.visibility = 'visible';document.getElementById('${status.count}b').placeholder = 'Answer to the Question ';document.getElementById('${status.count}a').value = '';">Question
+											Answer</td> <br>
+										<td class="item"><input type="radio" name="formType"
+											value="image"
+											onclick="document.getElementById('${status.count}a').style.visibility = 'hidden';document.getElementById('${status.count}b').placeholder = 'Link to your Photo ';document.getElementById('${status.count}a').value = 'Link to your Photo ';">Image</td>
+										<br>
+									</form> --%>
+								</tr>
+								<tr>
+
+									<td class="itembuilder">
+										<div class="input-group">
+											<input id=${status.count}a type="text" class="form-control"
+												name="taskdesc" placeholder="Question for participant">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="itembuilder">
+										<div class="input-group">
+											<input id=${status.count}b type="text" class="form-control"
+												name="taskanswer" placeholder="Desired Answer">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="itembuilder"><a class="btn btn-primary btn-md"
+										href="delete?taskandquest=${myVar.taskID},${questID}"
+										role="button">Delete this item</a></td>
+								</tr>
+								</tr>
+								</tr>
+
+							</table>
+						</td>
 					</tr>
+					</div>
+					</div>
 				</c:forEach>
 
 			</table>
