@@ -51,18 +51,6 @@
 		</div>
 	</nav>
 
-	<%-- 	<div class="container">
-		<div class="well well-sm">
-			<h3>
-				QuestCode: <span id="code">${code}</span>
-			</h3>
-		</div> --%>
-
-
-	<!--  	<div class="container">
-		
-	</div> -->
-	<br>
 	<div id="map"></div>
 
 	<!-- added jumbotron quest -->
@@ -110,15 +98,17 @@
 			<div class="questBox" align="center">
 				<form action="completequest" method="post">
 					<input type="hidden" name="questId" value="${questId}">
-					<table class="table-hover table-bordered">
+					<table class="table-hover">
+					<div>
 						<c:forEach var="task" items="${tList}" varStatus="counter">
 							<tr>
-								<td>${counter.count}.${task.locationName}<br>
+								<td><span id="locationname">${counter.count}.${task.locationName}</span><br>
 									${task.taskDesc}<br> <input type="text" name="input"
 									maxlength="50"> <br> <br>
 								</td>
 							</tr>
 						</c:forEach>
+					</div>
 					</table>
 
 					<input class="btn btn-primary" type="submit" value="Submit">
