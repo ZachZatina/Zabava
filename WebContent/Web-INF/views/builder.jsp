@@ -64,7 +64,7 @@
 						<!-- added double quotes -->
 						<%--  <input type="hidden" path="${myVar.questID}"> --%>
 
-						<td class="itembuilder"><img class="imagebuilder" src="${myVar.taskPhotoURL}"></td>
+						<td class="itembuilder" align="center"><img class="imagebuilder" src="${myVar.taskPhotoURL}"></td>
 
 						<td>
 							<table>
