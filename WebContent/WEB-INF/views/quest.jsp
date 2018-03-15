@@ -24,38 +24,54 @@
 <body>
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-static-top">
-		
+
 		<div class="container">
-			
+
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
 					aria-expanded="false">
-					
+
 					<span class="sr-only">Toggle navigation</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="./">ZabavaQuest</a>
-				
+
 			</div>
-			
+
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">About</a></li>
 					<li><a href="https://zabavaquest.com/adminlogin">Create</a></li>
+					<li><a href="about">About</a></li>
 				</ul>
 			</div>
-		<h4 class="qc">Questcode: ${code}</h4>
+			<h4 class="qc">Questcode: ${code}</h4>
 		</div>
 	</nav>
- 	<div class="container">
+
+	<%-- 	<div class="container">
+		<div class="well well-sm">
+			<h3>
+				QuestCode: <span id="code">${code}</span>
+			</h3>
+		</div> --%>
+
+
+	<!--  	<div class="container">
 		
-	</div>
+	</div> -->
 	<br>
 	<div id="map"></div>
-	<script>
+
+	<!-- added jumbotron quest -->
+	<div class="container">
+		<div class="jumbotron quest">
+			<!-- end -->
+
+
+			<script>
 	function initMap() {
 		bounds  = new google.maps.LatLngBounds();
 		var i = 1;
@@ -89,25 +105,30 @@
 	</c:forEach>			
 	}  
 	</script>
-	<script async defer src="${mScript}">
+			<script async defer src="${mScript}">
 	</script>
-	<div class="questBox" align="center">
-	<form action="completequest" method="post">
-		<input type="hidden" name="questId" value="${questId}">
-		<table class="table-hover table-bordered">
-			<c:forEach var="task" items="${tList}" varStatus="counter">
-				<tr>
-					<td>${counter.count}.${task.locationName}<br>
-						${task.taskDesc}<br> <input type="text" name="input"
-						maxlength="50"> <br> <br>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
+			<div class="questBox" align="center">
+				<form action="completequest" method="post">
+					<input type="hidden" name="questId" value="${questId}">
+					<table class="table-hover table-bordered">
+						<c:forEach var="task" items="${tList}" varStatus="counter">
+							<tr>
+								<td>${counter.count}.${task.locationName}<br>
+									${task.taskDesc}<br> <input type="text" name="input"
+									maxlength="50"> <br> <br>
+								</td>
+							</tr>
+						</c:forEach>
+					</table>
 
-		<input class="btn btn-primary" type="submit" value="Submit">
-	</form>
-	<img src="./resources/Powered-by-Foursquare-black-300.png">
+					<input class="btn btn-primary" type="submit" value="Submit">
+				</form>
+			</div>
+		</div>
+		<div align="center">
+		<img src="./resources/Powered-by-Foursquare-black-300.png" align="center">
+		</div>
+
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

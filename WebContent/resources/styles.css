@@ -38,6 +38,12 @@ body {
 	font-size: 26px;
 }
 
+.quest {
+	background: #f4965e;
+	color: white;
+	text-align: center;
+	padding: 0.5em 0.6em;
+}
 
 .btn-primary {
 	color: #fff;
@@ -147,6 +153,14 @@ body {
 
 /* -- index.jsp -- */
 
+.completelist {
+	margin: 5px;
+	border: 1px solid white;
+	border-radius: 5px;
+	padding: 10px;
+	align-items: center;
+}
+
 #indexdiv {
 	height: 100vh;
 	background-position: center center;
@@ -181,6 +195,13 @@ body {
   pointer-events: none;
 }
 
+/* -- user: complete quest -- */
+
+@media only screen and (max-width: 700px) {
+    .editing-well {
+	height: 55px;
+    }
+}
 @media only screen and (max-width: 700px) {
     .well-container {
 	padding: 0px;
@@ -199,4 +220,11 @@ body {
   .video-foreground,
 .video-background iframe  { display: block; }
 #indexdiv { background-image: none; }
+}
+
+.table-bordered th {
+	padding: 3px;
+}
+.table-bordered td {
+	padding: 3px;
 }

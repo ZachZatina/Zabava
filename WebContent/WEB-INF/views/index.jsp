@@ -42,10 +42,12 @@
 							class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="#">ZabavaQuest</a>
+
 				</div>
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
+
 						<li><a href="https://zabavaquest.com/adminlogin">Create</a></li>
 						<li><a href="about">About</a></li>
 					</ul>
@@ -69,20 +71,23 @@
 			</div>
 		</div>
 
-		<div style="text-align: center">
+		<!-- 		<div style="text-align: center"> -->
 
-			<c:set var="codevalid" value="${valid}" />
-			<c:if test="${codevalid == false}">
-				<p>
-					<img src="resources\\mean-git.png" alt="bad job" width="50">${failmssg}</p>
-			</c:if>
-		</div>
+		<c:set var="codevalid" value="${valid}" />
+		<c:if test="${codevalid == false}">
 
-		<!-- add these for Bootstrap -->
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			<div class="editing-well">
+				<div style="text-align: center">
+					<h3>${failmssg}</h3>
+				</div>
+		</c:if>
+	</div>
+
+	<!-- add these for Bootstrap -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</div>
 </body>
 </html>

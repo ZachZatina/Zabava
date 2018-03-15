@@ -323,7 +323,7 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 			TaskDTO task = dao.getTask(ind);
 			task.setTaskDesc(arrNames[i]);
 			task.setTaskAnswer(arrAnswers[i]);
-
+			task.setLocationName(task.getLocationName().replace('?', ' '));
 			dao.updateTask(task);
 			tasks.add(task);
 

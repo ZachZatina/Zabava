@@ -38,8 +38,9 @@
 		</div>
 	</div>
 	</nav>
+	
+	<table class="table-bordered">
 
-	<table>
 		<tr>
 			<th>Venue Name</th>
 			<th>Address</th>
