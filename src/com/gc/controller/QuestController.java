@@ -85,7 +85,7 @@ public class QuestController {
 			model.addAttribute("valid", codeValid);
 			tx.commit();
 //			sess.close();
-			return new ModelAndView("index", "failmssg", "That code is not valid. Please try again!");
+			return new ModelAndView("index", "failmssg", "Code not valid. Please try again!");
 		}
 		
 		tx.commit();
