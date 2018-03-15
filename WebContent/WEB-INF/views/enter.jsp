@@ -64,14 +64,10 @@
 						class="glyphicon glyphicon-road"></i></span>
 				</div>
 				
-				<!-- 				Street: <input type="text" name="streetaddress" required><br>
-				City: <input type="text" name="city" required><br>
-				State: <input type="text" name="state" required><br> <br> -->
-
 				<input type="hidden" name="creatorid" value="${creatorID}">
 				<br>
 				
-				<input type="submit" class="btn-btn primary btn-md" value="Submit">
+				<input type="submit" class="btn btn-primary btn-md" value="Submit">
 			</form>
 			<c:set var="addressvalid" value="${valid}" />
 			<c:if test="${addressvalid == false }">

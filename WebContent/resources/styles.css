@@ -26,11 +26,12 @@ body {
 	font-size: 26px;
 }
 
+
 .btn-primary {
 	color: #fff;
 	background-color: #87C8B5;
 	border-color: white;
-	margin-bottom: 5px;
+	margin: 5px;
 }
 .btn-primary:hover {
 	color: #27A967;
@@ -71,4 +72,13 @@ body {
 
 #code {
 	color: white;
+}
+
+img {
+	margin: 5px;
+	border-radius: 5px;
+}
+
+.itembuilder {
+	margin: 5px;
 }
