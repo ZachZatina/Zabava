@@ -49,6 +49,7 @@
 <center>
 <div class="container">
 		<div class="jumbotron">
+		<h2>My previous quest codes:</h2>
 		<br>
 		<div class="questBox" align="center"><table>
 			<tr>
