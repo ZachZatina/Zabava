@@ -48,12 +48,6 @@ public class TaskDAOImpl implements TaskDAO {
 	@Override
 	public void updateTask(TaskDTO task) {
 		System.out.println(task.getLocationName());
-//		try {
-//	         factory = new Configuration().configure().buildSessionFactory();
-//	      } catch (Throwable ex) { 
-//	         System.err.println("Failed to create sessionFactory object." + ex);
-//	         throw new ExceptionInInitializerError(ex); 
-//	      }
 		
 		Session session = factory.openSession();
 	      Transaction tx = null;
@@ -79,16 +73,8 @@ public class TaskDAOImpl implements TaskDAO {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		System.out.println("PhotoURL: " + photoURL);
 		task.setTaskPhotoURL(photoURL);
-		
-//		try {
-//	         factory = new Configuration().configure().buildSessionFactory();
-//	      } catch (Throwable ex) { 
-//	         System.err.println("Failed to create sessionFactory object." + ex);
-//	         throw new ExceptionInInitializerError(ex); 
-//	      }
-//		
+			
 		Session session = factory.openSession();
 	      Transaction tx = null;
 	      int taskID = 0;
@@ -110,9 +96,7 @@ public class TaskDAOImpl implements TaskDAO {
 
 	@Override
 	public void deleteTask(TaskDTO task) {
-		
-//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-		
+			
 		Session session = factory.openSession();
 		Transaction tx = session.beginTransaction();
 		

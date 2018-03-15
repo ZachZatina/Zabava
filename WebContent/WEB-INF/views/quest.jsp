@@ -51,6 +51,8 @@
 		</div>
 	</nav>
 
+	<br>
+	
 	<div id="map"></div>
 
 	<!-- added jumbotron quest -->

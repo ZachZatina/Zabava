@@ -84,7 +84,6 @@
 				<h3>Selected Location:</h3>
 			</div>
 		</div>
-		<!-- FIXME: read coordinates from the map to send-->
 		<div id="map"></div>
 
 	</div>

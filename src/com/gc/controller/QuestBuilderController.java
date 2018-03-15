@@ -190,13 +190,11 @@ public class QuestBuilderController {
 			lat = "42.335953";
 			lon = "-83.049774";
 		}
-System.out.println("Builder -> CreatorID: " + creatorID);
 		/*
 		 * Build a QuestDTO object and put it in the DB, retrieving the QuestID
 		 */
 		QuestDTO quest = new QuestDTO();
 		quest.setCreatorId((Integer) creatorID);
-		//quest.setCreatorId(creatorID);
 		quest.setQuestName(questName);
 		quest.setLocation(lat + "," + lon);
 		quest.setLocationId("");
@@ -261,7 +259,6 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 		 * takes the string containing taskID, QuestID, and questName, parses, converts to int if neccessary
 		 */
 		String parts[] = taskAndQuest.split(",");
-		System.out.println(parts.length);
 		String taskIDstr = parts[0];
 		String questIDstr = parts[1];
 		String questName = parts[2];
