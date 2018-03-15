@@ -44,6 +44,8 @@
 	<div class="well well-sm">
 			<h3>You are currently editing QuestName: <span id="code">${questName}</span></h3>
 		</div>
+		<br>
+		<center><img src="./resources/Powered-by-Foursquare-black-300.png"></center>
 					<div class="panel panel-default">
 				<div class="panel-body">
 		<form action="showquest" method="POST">
