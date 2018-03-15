@@ -48,8 +48,8 @@
 				You are currently editing QuestName: <span id="code">${questName}</span>
 			</h3>
 
-</div>
-		
+		</div>
+
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<form action="showquest" method="POST">
@@ -68,8 +68,8 @@
 								<!-- added double quotes -->
 								<%--  <input type="hidden" path="${myVar.questID}"> --%>
 
-								<td class="itembuilder"><img class="imagebuilder"
-									src="${myVar.taskPhotoURL}"></td>
+								<td class="itembuilder" align="center"><img
+									class="imagebuilder" src="${myVar.taskPhotoURL}"></td>
 
 								<td>
 									<table>
