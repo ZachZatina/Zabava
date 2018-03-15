@@ -26,5 +26,9 @@ public class HomeController {
 		
 		return "index";
 	}
-
+	@RequestMapping("/about")
+	public String about() {	
+		
+		return "About";
+	}
 }
