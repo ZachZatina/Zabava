@@ -53,16 +53,11 @@ public class CreatorDAOImpl implements CreatorDAO {
 		@SuppressWarnings("unchecked")
 		ArrayList<CreatorDTO> results = (ArrayList<CreatorDTO>) cr.list();
 		int found = results.size();
-		System.out.println("Creators Found: " + found);
 		if (found == 1) {
 		creator = results.get(0);
 		}
 		else {
-		//creator.setEmail(email);
-		System.out.println("About to save new Creator");
-		//creatorID = (Integer) session.save(creator);
 		creatorID = JDBCUtil.addCreatorJDBC(email);
-		System.out.println("New Creator Saved");
 		creator.setCreatorID(creatorID);
 		creator.setEmail(email);
 		results = (ArrayList<CreatorDTO>) cr.list();
@@ -71,7 +66,6 @@ public class CreatorDAOImpl implements CreatorDAO {
 		}
 		
 		session.close();
-		System.out.println("Email Search Complete: " + email);
 		return creator;
 	}
 

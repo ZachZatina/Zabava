@@ -47,14 +47,6 @@ public class QuestController {
 		return taskList;
 	}	
 	
-//	@RequestMapping("/")
-//	public String index(Model model) {	
-//		boolean codeValid = true;
-//		model.addAttribute("valid", codeValid);
-//		
-//		return "index";
-//	}
-	
 	/**
 	 * 
 	 * @param code
@@ -121,7 +113,6 @@ public class QuestController {
 	@RequestMapping("/completequest")
 	public ModelAndView completeQuest(@RequestParam("input") String[] input, @RequestParam("questId") int questId, Model model) {
 		ArrayList<TaskDTO> taskList = QuestController.generateQuestList(questId);
-		System.out.println(input);
 
 		String[] inputAnswers = input;
 		String[] adminAnswers = new String[taskList.size()];

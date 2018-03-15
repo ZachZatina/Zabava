@@ -51,17 +51,6 @@
 		</div>
 	</nav>
 
-	<%-- 	<div class="container">
-		<div class="well well-sm">
-			<h3>
-				QuestCode: <span id="code">${code}</span>
-			</h3>
-		</div> --%>
-
-
-	<!--  	<div class="container">
-		
-	</div> -->
 	<br>
 	<div id="map"></div>
 

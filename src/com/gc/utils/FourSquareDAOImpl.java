@@ -166,7 +166,6 @@ public class FourSquareDAOImpl {
 		JsonNode prefixNode = rootNode.path("response").path("venue").path("bestPhoto").path("prefix");
 		JsonNode suffixNode = rootNode.path("response").path("venue").path("bestPhoto").path("suffix");
 
-		//System.out.println(prefixNode.isValueNode());
 		String photoURL = prefixNode.textValue() + "cap300" + suffixNode.textValue();
 		con.disconnect();
 		return photoURL;
