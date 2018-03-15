@@ -26,7 +26,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index">ZabavaQuest</a>
+				<a class="navbar-brand" href="./">ZabavaQuest</a>
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
@@ -50,15 +50,18 @@
 				
 				<div class="input-group">
 					<input id="street" type="text" class="form-control" name="streetaddress"
-						placeholder="Street address" required> 
+						placeholder="Street address" required> <span class="input-group-addon"><i
+						class="glyphicon glyphicon-road"></i></span>
 				</div>
 				<div class="input-group">
 					<input id="city" type="text" class="form-control" name="city"
-						placeholder="City" required> 
+						placeholder="City" required> <span class="input-group-addon"><i
+						class="glyphicon glyphicon-road"></i></span>
 				</div>
 				<div class="input-group">
 					<input id="state" type="text" class="form-control" name="state"
-						placeholder="State" required> 
+						placeholder="State" required> <span class="input-group-addon"><i
+						class="glyphicon glyphicon-road"></i></span>
 				</div>
 				
 				<input type="hidden" name="creatorid" value="${creatorID}">
