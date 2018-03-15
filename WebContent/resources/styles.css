@@ -1,4 +1,13 @@
-
+.table-hover {
+	text-align: center;
+	width: 50%;
+}
+.table-bordered {
+	border: 50px;
+}
+.questBox {
+	width: 75%;
+}
 h2 {
 	color: white;
 }
@@ -12,7 +21,7 @@ h3 {
 }
 
 body {
-	background: #b2b09b;
+	background: #B2B09B;
 } 
 
 .jumbotron {
@@ -74,11 +83,47 @@ body {
 	color: white;
 }
 
-img {
+.imagebuilder {
 	margin: 5px;
 	border-radius: 5px;
 }
 
 .itembuilder {
 	margin: 5px;
+
+#indexbody {
+	background-image: url("https://s-i.huffpost.com/gen/1878403/images/o-DETROIT-facebook.jpg");
+	background-color: black;
+}
+
+#indexjumbotron {
+	background: rgba(244, 150, 94, 0.0);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+* { box-sizing: border-box; }
+.video-background {
+  background: #000;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -99;
+}
+.video-foreground,
+.video-background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .video-foreground { height: 300%; top: -100%; }
+}
+@media (max-aspect-ratio: 16/9) {
+  .video-foreground { width: 300%; left: -100%; }
 }

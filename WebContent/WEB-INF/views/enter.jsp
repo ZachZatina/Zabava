@@ -50,18 +50,15 @@
 				
 				<div class="input-group">
 					<input id="street" type="text" class="form-control" name="streetaddress"
-						placeholder="Street address" required> <span class="input-group-addon"><i
-						class="glyphicon glyphicon-road"></i></span>
+						placeholder="Street address" required> 
 				</div>
 				<div class="input-group">
 					<input id="city" type="text" class="form-control" name="city"
-						placeholder="City" required> <span class="input-group-addon"><i
-						class="glyphicon glyphicon-road"></i></span>
+						placeholder="City" required> 
 				</div>
 				<div class="input-group">
 					<input id="state" type="text" class="form-control" name="state"
-						placeholder="State" required> <span class="input-group-addon"><i
-						class="glyphicon glyphicon-road"></i></span>
+						placeholder="State" required> 
 				</div>
 				
 				<input type="hidden" name="creatorid" value="${creatorID}">
