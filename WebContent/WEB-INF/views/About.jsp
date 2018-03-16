@@ -44,17 +44,16 @@
 	
 	<div class="container">
 		<div class="jumbotron">
-			<h2 align="center">How Zabava Quest came to be.</h2>
+			<h2 align="center">How Zabava Quest came to be:</h2>
 			<p>Zabava Quest started as a final project for Alex Brozovich,
 				Andrew Calabro-Cavin, Ben Fogt, and Zachariah Zatina, as part of the
-				Java coding bootcamp through Grand Circus out of Detroit, Michigan</p>
+				Java coding bootcamp through Grand Circus out of Detroit, Michigan.</p>
 			<br>
 			<h2 align="center">Where did the name 'Zabava' come from?</h2>
-			<p>Originally on the drawing board we came up with the name of
-				Scavenger Quest, however the name was already taken as another
-				website. Ben then brought up the idea of ZABA quest as it was the
-				first initial of all of our names, Andrew took this and remembered
-				that 'zabava' is Bosnian for fun or party. The rest, as they say is
+			<p>On the drawing board we came up with the name of
+				Scavenger Quest, but the name was already taken. Ben suggested ZABA Quest, using the
+				first initial of all of our names. Andrew remembered
+				that 'zabava' is Bosnian/Serbian/Croatian for 'fun' or 'party.' The rest, as they say, is
 				history.</p>
 			<br>
 		</div>

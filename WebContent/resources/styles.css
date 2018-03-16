@@ -1,10 +1,4 @@
-.table-hover {
-	text-align: center;
-	width: 100%;
-}
-.table-bordered {
-	border: 50px;
-}
+
 
 h2 {
 	color: white;
@@ -57,6 +51,8 @@ body {
 	border-color: white;
 }
 
+/* -- navbar -- */
+
 .navbar-inverse {
 /*  background: #2E2F31; */
 	background: #254441;
@@ -81,6 +77,8 @@ body {
 .navbar-inverse .navbar-nav .dropdown-menu li a:hover {
 	background: #2C463C;
 }
+
+/* --  -- */
 
 .well-sm {
 	background: #db504A;
@@ -197,9 +195,38 @@ body {
 
 /* -- user: complete quest -- */
 
+#locationname {
+	font-weight:bold;
+}
+.table-hover {
+	text-align: center;
+	width: 100%;
+	color: black;
+}
+.table-bordered {
+	border: 0px;
+}
+
+.table-bordered th {
+	padding: 3px;
+	border: 0px;
+}
+.table-bordered td {
+	padding: 3px;
+}
+
+/* -- media queries --*/
+
+@media only screen and (max-width: 630px) {
+	.imagebuilder {
+	width: 50px;
+	}
+}
+
 @media only screen and (max-width: 700px) {
     .editing-well {
-	height: 55px;
+	height: 70px;
+	padding: 20px;
     }
 }
 @media only screen and (max-width: 700px) {
@@ -220,11 +247,4 @@ body {
   .video-foreground,
 .video-background iframe  { display: block; }
 #indexdiv { background-image: none; }
-}
-
-.table-bordered th {
-	padding: 3px;
-}
-.table-bordered td {
-	padding: 3px;
 }

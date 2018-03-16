@@ -53,15 +53,6 @@ public class HibernateQuestDao implements QuestDao {
 	}
 
 	public int addQuest(QuestDTO quest) {
-		//System.out.println("Welcome to the HibernateQuestDAO");
-
-//		try {
-//			factory = new Configuration().configure().buildSessionFactory();
-//		} catch (Throwable ex) {
-//			System.err.println("Failed to create sessionFactory object." + ex);
-//			throw new ExceptionInInitializerError(ex);
-//		}
-
 		
 		Session session = factory.openSession();
 		Transaction tx = null;
@@ -117,7 +108,6 @@ public class HibernateQuestDao implements QuestDao {
 	      ArrayList<QuestDTO> quests = null;
 	      try {
 	         tx = session.beginTransaction();
-	         //quests =(ArrayList) session.createQuery(("FROM Quest where creatorid =" + creatorID)).list(); 
 	         Criteria crit = session.createCriteria(QuestDTO.class);
 				crit.add(Restrictions.eq("creatorId", creatorID));
 				// restrict to tasks associated with the creatorID

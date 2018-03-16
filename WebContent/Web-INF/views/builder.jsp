@@ -65,7 +65,6 @@
 
 							<tr>
 								<input type="hidden" name="taskID" value="${myVar.taskID}">
-								<input type="hidden" name="questcode" value="${questCode}">
 
 								<!-- added double quotes -->
 								<%--  <input type="hidden" path="${myVar.questID}"> --%>
@@ -92,16 +91,7 @@
 													a Photo</td>
 
 											</form>
-											<%-- 									<form>
-										<td class="item"><input checked="checked" type="radio"
-											name="formType" value="question"
-											onclick="document.getElementById('${status.count}a').style.visibility = 'visible';document.getElementById('${status.count}b').placeholder = 'Answer to the Question ';document.getElementById('${status.count}a').value = '';">Question
-											Answer</td> <br>
-										<td class="item"><input type="radio" name="formType"
-											value="image"
-											onclick="document.getElementById('${status.count}a').style.visibility = 'hidden';document.getElementById('${status.count}b').placeholder = 'Link to your Photo ';document.getElementById('${status.count}a').value = 'Link to your Photo ';">Image</td>
-										<br>
-									</form> --%>
+
 										</tr>
 										<tr>
 
@@ -137,20 +127,11 @@
 						</c:forEach>
 
 					</table>
-					<!-- 					<div class="well-container-edit">
-						<div class="editing-well">
-							<h3>Click to store your questions and answers</h3>
-							<input type="submit" class="btn btn-primary btn-md"
-								value="Submit">
-						</div>
-					</div> -->
+
 					<div class="well well-sm">
 						<h3>Click to store your questions and answers</h3>
 						<input type="submit" class="btn btn-primary btn-md" value="Submit">
 					</div>
-
-					<!-- 					<h3>Click submit to store your questions and answers</h3>
-					<input type="submit" name="Submit"> -->
 
 				</form>
 				<center>

@@ -118,7 +118,7 @@
 
 		<form action="creator" method="post" id="button">
 			<input type="hidden" name="creatorstring" id="creatorstring" value="">
-			<input type="submit" value="Proceed to Creator Page">
+			<input type="submit" value="Proceed to Creator Page" class="btn btn-primary">
 		</form>
 	</center>
 

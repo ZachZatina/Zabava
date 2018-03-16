@@ -191,13 +191,11 @@ public class QuestBuilderController {
 			lat = "42.335953";
 			lon = "-83.049774";
 		}
-System.out.println("Builder -> CreatorID: " + creatorID);
 		/*
 		 * Build a QuestDTO object and put it in the DB, retrieving the QuestID
 		 */
 		QuestDTO quest = new QuestDTO();
 		quest.setCreatorId((Integer) creatorID);
-		//quest.setCreatorId(creatorID);
 		quest.setQuestName(questName);
 		quest.setLocation(lat + "," + lon);
 		quest.setLocationId("");
@@ -216,7 +214,7 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 			 */
 			model.addAttribute("questName", questName);
 			model.addAttribute("questID", questID);
-			model.addAttribute("questCode", questCode);
+			// model.addAttribute("questCode", questCode);
 			
 			/*
 			 * Create tasks for each point we're given by the FourSquare query
@@ -257,13 +255,11 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 	 * @return
 	 */
 	@RequestMapping("delete")
-	public ModelAndView selectTasks(@RequestParam("taskandquest") String taskAndQuest,  Model model) {
-		
+	public ModelAndView selectTasks(@RequestParam("taskandquest") String taskAndQuest, Model model) {
 		/*
 		 * takes the string containing taskID, QuestID, and questName, parses, converts to int if neccessary
 		 */
 		String parts[] = taskAndQuest.split(",");
-		System.out.println(parts.length);
 		String taskIDstr = parts[0];
 		String questIDstr = parts[1];
 		String questName = parts[2];
@@ -313,8 +309,7 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 	 * 
 	 */
 	@RequestMapping("showquest")
-	public ModelAndView showQuest(@RequestParam("taskID") String[] taskIDs, @RequestParam("taskdesc") String[] taskNames,
-			@RequestParam("taskanswer") String[] answers, Model model) throws ClassNotFoundException, SQLException {
+	public ModelAndView showQuest(@RequestParam("taskID") String[] taskIDs, @RequestParam("taskdesc") String[] taskNames, @RequestParam("taskanswer") String[] answers, Model model) throws ClassNotFoundException, SQLException {
 
 		ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
 		TaskDAOImpl dao = new TaskDAOImpl();
@@ -337,8 +332,6 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 		int taskID = Integer.valueOf(arrIDs[0]);
 		String questCode = JDBCUtil.getQuestCodeFromTask(taskID);
 		model.addAttribute("questCode", questCode);
-		
-		
 		
 		return new ModelAndView("showquest", "tasks", tasks);
 	}
