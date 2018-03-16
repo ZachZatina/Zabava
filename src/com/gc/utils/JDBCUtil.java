@@ -34,13 +34,12 @@ public static String getQuestCodeFromTask(int taskID) throws SQLException, Class
 	String questCode = null;
 	
 	Connection con = getDBConnection();
-	PreparedStatement ps = con.prepareStatement("select questCode from ZabavaDB.Quest where questID = (SELECT questID from ZabavaDB.task where taskID = ?)", Statement.RETURN_GENERATED_KEYS);
+	PreparedStatement ps = con.prepareStatement("select questCode from Quest where questID = (SELECT questID from task where taskID = ?)");
 	ps.setInt(1, taskID);
 	System.out.println(ps);
-	ps.executeUpdate();
-	ResultSet rs = ps.getGeneratedKeys();
+	ResultSet rs = ps.executeQuery();
 	if (rs.next()) {
-	  String newCode = rs.getString(0);
+	  String newCode = rs.getString(1);
 	  questCode = newCode;
 	}
 	con.close();

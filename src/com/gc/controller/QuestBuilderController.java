@@ -317,7 +317,7 @@ public class QuestBuilderController {
 		String[] arrIDs = taskIDs;
 		String[] arrNames = taskNames;
 		String[] arrAnswers = answers;
-
+System.out.println("Before Loop");
 		for (int i = 0; i < arrIDs.length; i++) {
 			int ind = Integer.parseInt(arrIDs[i]);
 			TaskDTO task = dao.getTask(ind);
@@ -328,6 +328,7 @@ public class QuestBuilderController {
 			tasks.add(task);
 
 		}
+		System.out.println("After Loop");
 		
 		int taskID = Integer.valueOf(arrIDs[0]);
 		String questCode = JDBCUtil.getQuestCodeFromTask(taskID);
