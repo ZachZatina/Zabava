@@ -66,7 +66,7 @@ public class TaskDAOImpl implements TaskDAO {
 	         if (tx!=null) tx.rollback();
 	         e.printStackTrace(); 
 	      } finally {
-//	         session.close(); 
+        session.close(); 
 	      }	
 	}
 	
@@ -101,7 +101,7 @@ public class TaskDAOImpl implements TaskDAO {
 	         if (tx!=null) tx.rollback();
 	         e.printStackTrace(); 
 	      } finally {
-//	         session.close(); 
+         session.close(); 
 	      }
 	      return taskID;
 		
@@ -118,12 +118,10 @@ public class TaskDAOImpl implements TaskDAO {
 		
 		session.delete(task);
 		tx.commit();
-//		session.close();
+		session.close();
 		
 		return;	
 		
-	}
-	
-	
+	}	
 
 }

@@ -30,6 +30,26 @@ public static int addCreatorJDBC(String email) throws SQLException, ClassNotFoun
 	return creatorID;
 }
 
+public static String getQuestCodeFromTask(int taskID) throws SQLException, ClassNotFoundException {
+	String questCode = null;
+	
+	Connection con = getDBConnection();
+	PreparedStatement ps = con.prepareStatement("select questCode from ZabavaDB.Quest where questID = (SELECT questID from ZabavaDB.task where taskID = ?)", Statement.RETURN_GENERATED_KEYS);
+	ps.setInt(1, taskID);
+	System.out.println(ps);
+	ps.executeUpdate();
+	ResultSet rs = ps.getGeneratedKeys();
+	if (rs.next()) {
+	  String newCode = rs.getString(0);
+	  questCode = newCode;
+	}
+	con.close();
+	
+	
+	
+	return questCode;
+}
+
 private static Connection getDBConnection() throws ClassNotFoundException, SQLException {
 	
 	MySQLCred jdbc = new MySQLCred();

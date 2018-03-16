@@ -32,6 +32,7 @@ import com.gc.model.TaskDTO;
 import com.gc.utils.FourSquareDAOImpl;
 import com.gc.utils.GoogleMapsAPICred;
 import com.gc.utils.HibernateUtil;
+import com.gc.utils.JDBCUtil;
 
 /**
  * 
@@ -179,7 +180,7 @@ public class QuestBuilderController {
 	@RequestMapping("builder")
 	public ModelAndView questBuilder(@RequestParam("lat") String lat, @RequestParam("lon") String lon,
 			@RequestParam("questName") String questName, @RequestParam("radius") int radius,
-			@RequestParam("limit") int limit, @RequestParam("creatorid") int creatorID, @RequestParam("questcode") String questCode, Model model) throws IOException {
+			@RequestParam("limit") int limit, @RequestParam("creatorid") int creatorID, Model model) throws IOException {
 
 		int questID = 0;
 		int taskID = 0;
@@ -200,7 +201,8 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 		quest.setQuestName(questName);
 		quest.setLocation(lat + "," + lon);
 		quest.setLocationId("");
-		quest.setQuestCode(HibernateQuestDao.getQuestCode());
+		String questCode = HibernateQuestDao.getQuestCode();
+		quest.setQuestCode(questCode);
 		HibernateQuestDao questDao = new HibernateQuestDao();
 		questID = questDao.addQuest(quest);
 		if (questID == 0) {
@@ -255,7 +257,7 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 	 * @return
 	 */
 	@RequestMapping("delete")
-	public ModelAndView selectTasks(@RequestParam("taskandquest") String taskAndQuest, @RequestParam("questcode") String questCode,  Model model) {
+	public ModelAndView selectTasks(@RequestParam("taskandquest") String taskAndQuest,  Model model) {
 		
 		/*
 		 * takes the string containing taskID, QuestID, and questName, parses, converts to int if neccessary
@@ -296,7 +298,6 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 		model.addAttribute("questID", questID);
 		model.addAttribute("taskID", taskID);
 		model.addAttribute("questName", questName);
-		model.addAttribute("questCode", questCode);
 				
 		return new ModelAndView("builder", "tasks", taskList);
 	}
@@ -307,11 +308,13 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 	 * @param taskNames
 	 * @param answers
 	 * @return ModelAndView
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 * 
 	 */
 	@RequestMapping("showquest")
 	public ModelAndView showQuest(@RequestParam("taskID") String[] taskIDs, @RequestParam("taskdesc") String[] taskNames,
-			@RequestParam("taskanswer") String[] answers, @RequestParam("questcode") String questCode, Model model) {
+			@RequestParam("taskanswer") String[] answers, Model model) throws ClassNotFoundException, SQLException {
 
 		ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
 		TaskDAOImpl dao = new TaskDAOImpl();
@@ -330,7 +333,13 @@ System.out.println("Builder -> CreatorID: " + creatorID);
 			tasks.add(task);
 
 		}
+		
+		int taskID = Integer.valueOf(arrIDs[0]);
+		String questCode = JDBCUtil.getQuestCodeFromTask(taskID);
 		model.addAttribute("questCode", questCode);
+		
+		
+		
 		return new ModelAndView("showquest", "tasks", tasks);
 	}
 	
