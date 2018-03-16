@@ -65,7 +65,7 @@
 
 							<tr>
 								<input type="hidden" name="taskID" value="${myVar.taskID}">
-								<input type="hidden" name="questcode" value="${questcode}">
+<%-- 								<input type="hidden" name="questcode" value="${questcode}"> --%>
 
 								<!-- added double quotes -->
 								<%--  <input type="hidden" path="${myVar.questID}"> --%>

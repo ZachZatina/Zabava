@@ -217,9 +217,16 @@ body {
 
 /* -- media queries --*/
 
+@media only screen and (max-width: 630px) {
+	.imagebuilder {
+	width: 50px;
+	}
+}
+
 @media only screen and (max-width: 700px) {
     .editing-well {
-	height: 55px;
+	height: 70px;
+	padding: 20px;
     }
 }
 @media only screen and (max-width: 700px) {
